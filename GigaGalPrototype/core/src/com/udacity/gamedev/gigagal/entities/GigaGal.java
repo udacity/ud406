@@ -14,35 +14,54 @@ public class GigaGal {
     public final static String TAG = GigaGal.class.getName();
 
     Vector2 position;
+    Vector2 lastFramePosition;
     Vector2 velocity;
-    Texture standingRight;
-    Texture standingLeft;
+
+    GigaGalSprite standingRight;
+    GigaGalSprite standingLeft;
+    GigaGalSprite jumpingRight;
+    GigaGalSprite jumpingLeft;
+    GigaGalSprite walkingRight;
+    GigaGalSprite walkingLeft;
+
 
     Facing facing;
     JumpState jumpState;
+    WalkState walkState;
+
     long jumpStartTime;
 
-    public GigaGal(){
-        position = new Vector2();
+    public GigaGal() {
+        position = new Vector2(20, 20);
+        lastFramePosition = position;
         velocity = new Vector2();
-        standingRight = new Texture("standingRight.png");
-        standingLeft = new Texture("standingLeft.png");
+        standingRight = new GigaGalSprite(Constants.STANDING_RIGHT_SPRITE_FILE_NAME, Constants.STANDING_RIGHT_EYE_POSITION);
 
-        jumpState = JumpState.GROUNDED;
+        standingLeft = new GigaGalSprite(Constants.STANDING_LEFT_SPRITE_FILE_NAME, Constants.STANDING_LEFT_EYE_POSITION);
+        jumpingRight = new GigaGalSprite(Constants.JUMPING_RIGHT_SPRITE_FILE_NAME, Constants.JUMPING_RIGHT_EYE_POSITION);
+        jumpingLeft = new GigaGalSprite(Constants.JUMPING_LEFT_SPRITE_FILE_NAME, Constants.JUMPING_LEFT_EYE_POSITION);
+
+        walkingRight = new GigaGalSprite(Constants.WALKING_RIGHT_SPRITE_FILE_NAME, Constants.WALKING_RIGHT_EYE_POSITION);
+        walkingLeft = new GigaGalSprite(Constants.WALKING_LEFT_SPRITE_FILE_NAME, Constants.WALKING_LEFT_EYE_POSITION);
+
+        jumpState = JumpState.FALLING;
         facing = Facing.RIGHT;
+        walkState = WalkState.STANDING;
     }
 
-    public void update(float delta){
-        if (Gdx.input.isKeyPressed(Keys.LEFT)){
+    public void update(float delta) {
+        lastFramePosition = position;
+
+        if (Gdx.input.isKeyPressed(Keys.LEFT)) {
             moveLeft(delta);
-        }
-
-        if (Gdx.input.isKeyPressed(Keys.RIGHT)){
+        } else if (Gdx.input.isKeyPressed(Keys.RIGHT)) {
             moveRight(delta);
+        } else {
+            walkState = WalkState.STANDING;
         }
 
-        if (Gdx.input.isKeyPressed(Keys.Z)){
-            switch (jumpState){
+        if (Gdx.input.isKeyPressed(Keys.Z)) {
+            switch (jumpState) {
                 case GROUNDED:
                     startJump();
                     break;
@@ -53,42 +72,55 @@ public class GigaGal {
             endJump();
         }
 
-        if (jumpState == JumpState.FALLING){
+        if (jumpState == JumpState.FALLING) {
 //            Gdx.app.log(TAG, "Falling");
             velocity.y -= Constants.GRAVITY;
         }
 
         position.mulAdd(velocity, delta);
 
-        if (position.y < 0){
+        if (position.y - Constants.GIGAGAL_EYE_HEIGHT < 0) {
             jumpState = JumpState.GROUNDED;
-            position.y = 0;
+            position.y = Constants.GIGAGAL_EYE_HEIGHT;
 
         }
 
+//        for (Platform platform : platforms){
+//            if (lastFramePosition.y > platform.top && position.y < platform.top){
+
+
+
+
+
+//            }
+//        }
+
+
+
     }
 
-    private void moveLeft(float delta){
+    private void moveLeft(float delta) {
         position.x -= delta * Constants.GIGA_GAL_MOVE_SPEED;
         facing = Facing.LEFT;
+        walkState = WalkState.WALKING;
 
     }
 
 
-    private void moveRight(float delta){
+    private void moveRight(float delta) {
         position.x += delta * Constants.GIGA_GAL_MOVE_SPEED;
         facing = Facing.RIGHT;
+        walkState = WalkState.WALKING;
     }
 
 
-
-    private void startJump(){
+    private void startJump() {
         jumpState = JumpState.JUMPING;
         velocity.y = Constants.JUMP_SPEED;
         jumpStartTime = TimeUtils.nanoTime();
     }
 
-    private void continueJump(){
+    private void continueJump() {
         if (jumpState == JumpState.JUMPING) {
             float jumpDuration = MathUtils.nanoToSec * (TimeUtils.nanoTime() - jumpStartTime);
             if (jumpDuration < Constants.MAX_JUMP_DURATION) {
@@ -99,47 +131,61 @@ public class GigaGal {
         }
     }
 
-    private void endJump(){
-        if (jumpState == JumpState.JUMPING){
+    private void endJump() {
+        if (jumpState == JumpState.JUMPING) {
             jumpState = JumpState.FALLING;
         }
     }
 
-    private void fall(){
+    private void fall() {
 
     }
 
 
+    public void render(SpriteBatch batch) {
 
-
-    public void render(SpriteBatch batch){
 
         switch (facing){
             case RIGHT:
-                batch.draw(
-                        standingRight,
-                        position.x - Constants.STANDING_FACING_RIGHT_SPRITE_LEFT_MARGIN,
-                        position.y - Constants.STANDING_FACING_RIGHT_SPRITE_BOTTOM_MARGIN,
-                        standingRight.getWidth(),
-                        standingRight.getHeight()
-                );
+                switch (jumpState){
+                    case JUMPING:
+                    case FALLING:
+                        jumpingRight.render(batch, position);
+                        break;
+                    case GROUNDED:
+                        switch (walkState){
+                            case STANDING:
+                                standingRight.render(batch, position);
+                                break;
+                            case WALKING:
+                                walkingRight.render(batch, position);
+                                break;
+                        }
+                        break;
+                }
                 break;
             case LEFT:
-                batch.draw(
-                        standingLeft,
-                        position.x - Constants.STANDING_FACING_LEFT_SPRITE_LEFT_MARGIN,
-                        position.y - Constants.STANDING_FACING_LEFT_SPRITE_BOTTOM_MARGIN,
-                        standingLeft.getWidth(),
-                        standingLeft.getHeight()
-                );
+                switch (jumpState){
+                    case JUMPING:
+                    case FALLING:
+                        jumpingLeft.render(batch, position);
+                        break;
+                    case GROUNDED:
+                        switch (walkState){
+                            case STANDING:
+                                standingLeft.render(batch, position);
+                                break;
+                            case WALKING:
+                                walkingLeft.render(batch, position);
+                                break;
+                        }
+                        break;
+                }
+                break;
 
         }
 
-
     }
-
-
-
 
 
     enum JumpState {
@@ -151,6 +197,34 @@ public class GigaGal {
     enum Facing {
         LEFT,
         RIGHT
+    }
+
+    enum WalkState {
+        STANDING,
+        WALKING
+    }
+
+
+    class GigaGalSprite {
+        Texture texture;
+        Vector2 eyePosition;
+
+        public GigaGalSprite(String textureFileName, Vector2 eyePosition) {
+
+            this.texture = new Texture(textureFileName);
+            this.eyePosition = eyePosition;
+        }
+
+
+        public void render(SpriteBatch batch, Vector2 position) {
+            batch.draw(
+                    texture,
+                    position.x - eyePosition.x,
+                    position.y - eyePosition.y,
+                    texture.getWidth(),
+                    texture.getHeight()
+            );
+        }
     }
 
 }
