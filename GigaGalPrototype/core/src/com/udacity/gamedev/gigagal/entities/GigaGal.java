@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.udacity.gamedev.gigagal.util.Constants;
 
@@ -49,7 +50,7 @@ public class GigaGal {
         walkState = WalkState.STANDING;
     }
 
-    public void update(float delta) {
+    public void update(float delta, Array<Platform> platforms) {
         lastFramePosition = position;
 
         if (Gdx.input.isKeyPressed(Keys.LEFT)) {
@@ -85,15 +86,15 @@ public class GigaGal {
 
         }
 
-//        for (Platform platform : platforms){
-//            if (lastFramePosition.y > platform.top && position.y < platform.top){
+        for (Platform platform : platforms){
+            if (lastFramePosition.y > platform.top && position.y < platform.top){
+                float leftFoot = position.x - Constants.g
 
 
 
 
-
-//            }
-//        }
+            }
+        }
 
 
 
