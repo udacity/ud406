@@ -96,40 +96,19 @@ project(":core") {
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"
     }
 
-    task texturePacker << {
-            logger.info "Calling TexturePacker"
-            // Qualified path needed because Gdx object is not initialized
-            TexturePacker.process("android/assets/image-sprites", "android/assets/images", "gigagal.pack")
-    }
-
-
-
-    task texturePackerAsNeeded << {
+    task texturePackerAsNeeded {
         // TODO Figure out it if is ok hard code these
         def pack = new File("android/assets/images/gigagal.pack.png")
         def atlas = new File("android/assets/images/gigagal.pack.atlas")
-        // If the texture pack doesn't exist, create it
-        if (!pack.exists()) {
-            logger.info "Pack doesn't exist. Generating..."
-            project.tasks.texturePacker.execute()
-        } else {
-            logger.info "Pack exists. Checking to see if we need to regenerate"
-            // Get the file times of the items in the sprites directory and check the times
-            def time = pack.lastModified()
-            def files = new File("android/assets/image-sprites")
+        def sprites = new File("android/assets/image-sprites")
+        inputs.files sprites
+        outputs.file pack
+        outputs.file atlas
 
-            // Grab the last modified times, sort them, grab the last one
-            def lastModified = files.listFiles().collect{ it.lastModified()}.sort()[-1]
-            if (lastModified > time) {
-                logger.info "Files have been modified. Regenerating..."
-
-                pack.delete()
-                atlas.delete()
-
-                project.tasks.texturePacker.execute()
-            } else {
-                logger.info "No need to regenerate pack."
-            }
+        doLast {
+            pack.delete()
+            atlas.delete()
+            TexturePacker.process("android/assets/image-sprites", "android/assets/images", "gigagal.pack")
         }
     }
 
