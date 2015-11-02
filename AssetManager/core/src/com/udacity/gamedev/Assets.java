@@ -8,6 +8,7 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.Animation.PlayMode;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
@@ -102,7 +103,7 @@ public class Assets implements Disposable, AssetErrorListener {
             frames.add(get(name));
         }
 
-        Animation animation = new Animation(duration, frames);
+        Animation animation = new Animation(duration, frames, PlayMode.LOOP_PINGPONG);
         return animation;
     }
 
