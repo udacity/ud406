@@ -13,23 +13,23 @@ public class Constants {
 
 
 
-    public static final String STANDING_RIGHT_SPRITE_FILE_NAME = "standing-right.png";
-    public static final Vector2 STANDING_RIGHT_EYE_POSITION = new Vector2(11, 16);
+    public static final String STANDING_RIGHT = "standing-right";
+    public static final String STANDING_LEFT = "standing-left";
+    public static final String JUMPING_RIGHT = "jumping-right";
+    public static final String JUMPING_LEFT = "jumping-left";
+    public static final String WALKING_RIGHT_1 = "walk-1-right";
+    public static final String WALKING_LEFT_1 = "walk-1-left";
+    public static final String WALKING_RIGHT_2 = "walk-2-right";
+    public static final String WALKING_LEFT_2 = "walk-2-left";
+    public static final String WALKING_RIGHT_3 = "walk-3-right";
+    public static final String WALKING_LEFT_3 = "walk-3-left";
 
-    public static final String STANDING_LEFT_SPRITE_FILE_NAME = "standing-left.png";
-    public static final Vector2 STANDING_LEFT_EYE_POSITION = new Vector2(13, 16);
+    public static final float WALK_LOOP_DURATION = 0.25f;
 
-    public static final String JUMPING_RIGHT_SPRITE_FILE_NAME = "jumping-right.png";
-    public static final Vector2 JUMPING_RIGHT_EYE_POSITION = new Vector2(28, 35);
 
-    public static final String JUMPING_LEFT_SPRITE_FILE_NAME = "jumping-left.png";
-    public static final Vector2 JUMPING_LEFT_EYE_POSITION = new Vector2(13, 16);
+    public static final String TEXTURE_ATLAS = "images/gigagal.pack.atlas";
 
-    public static final String WALKING_RIGHT_SPRITE_FILE_NAME = "walk-2-right.png";
-    public static final Vector2 WALKING_RIGHT_EYE_POSITION = new Vector2(13, 16);
-
-    public static final String WALKING_LEFT_SPRITE_FILE_NAME = "walk-2-left.png";
-    public static final Vector2 WALKING_LEFT_EYE_POSITION = new Vector2(13, 16);
+    public static final Vector2 GIGAGAL_EYE_POSITION = new Vector2(13, 16);
 
 
 

@@ -2,16 +2,20 @@ package com.udacity.gamedev.gigagal;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
+import com.udacity.gamedev.gigagal.util.Assets;
 import com.udacity.gamedev.gigagal.util.Constants;
 
 /**
  * Created by silver on 10/14/15.
  */
 public class GameplayScreen implements Screen {
+
+    public static final String TAG = GameplayScreen.class.getName();
 
     Level level;
     SpriteBatch batch;
@@ -21,6 +25,14 @@ public class GameplayScreen implements Screen {
 
     @Override
     public void show() {
+
+        AssetManager am = new AssetManager();
+        Assets.instance.init(am);
+        am.finishLoading();
+        Gdx.app.log(TAG, "Loading should be done");
+
+
+
         level = new Level();
         batch = new SpriteBatch();
         renderer = new ShapeRenderer();

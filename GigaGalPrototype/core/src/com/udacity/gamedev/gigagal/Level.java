@@ -23,7 +23,7 @@ public class Level {
 
 
     public void update(float delta){
-        gigaGal.update(delta);
+        gigaGal.update(delta, platforms);
 
     }
 

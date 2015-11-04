@@ -4,10 +4,12 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.TimeUtils;
+import com.udacity.gamedev.gigagal.util.Assets;
 import com.udacity.gamedev.gigagal.util.Constants;
 
 public class GigaGal {
@@ -29,6 +31,7 @@ public class GigaGal {
     Facing facing;
     JumpState jumpState;
     WalkState walkState;
+    long walkStartTime;
 
     long jumpStartTime;
 
@@ -36,14 +39,6 @@ public class GigaGal {
         position = new Vector2(20, 20);
         lastFramePosition = position;
         velocity = new Vector2();
-        standingRight = new GigaGalSprite(Constants.STANDING_RIGHT_SPRITE_FILE_NAME, Constants.STANDING_RIGHT_EYE_POSITION);
-
-        standingLeft = new GigaGalSprite(Constants.STANDING_LEFT_SPRITE_FILE_NAME, Constants.STANDING_LEFT_EYE_POSITION);
-        jumpingRight = new GigaGalSprite(Constants.JUMPING_RIGHT_SPRITE_FILE_NAME, Constants.JUMPING_RIGHT_EYE_POSITION);
-        jumpingLeft = new GigaGalSprite(Constants.JUMPING_LEFT_SPRITE_FILE_NAME, Constants.JUMPING_LEFT_EYE_POSITION);
-
-        walkingRight = new GigaGalSprite(Constants.WALKING_RIGHT_SPRITE_FILE_NAME, Constants.WALKING_RIGHT_EYE_POSITION);
-        walkingLeft = new GigaGalSprite(Constants.WALKING_LEFT_SPRITE_FILE_NAME, Constants.WALKING_LEFT_EYE_POSITION);
 
         jumpState = JumpState.FALLING;
         facing = Facing.RIGHT;
@@ -59,6 +54,7 @@ public class GigaGal {
             moveRight(delta);
         } else {
             walkState = WalkState.STANDING;
+
         }
 
         if (Gdx.input.isKeyPressed(Keys.Z)) {
@@ -86,25 +82,30 @@ public class GigaGal {
 
         }
 
-        for (Platform platform : platforms){
-            if (lastFramePosition.y > platform.top && position.y < platform.top){
-                float leftFoot = position.x - Constants.g
-
-
-
-
-            }
-        }
+//        for (Platform platform : platforms){
+//            if (lastFramePosition.y > platform.top && position.y < platform.top){
+//                float leftFoot = position.x - Constants.g
+//
+//
+//
+//
+//            }
+//        }
 
 
 
     }
 
-    private void moveLeft(float delta) {
-        position.x -= delta * Constants.GIGA_GAL_MOVE_SPEED;
-        facing = Facing.LEFT;
-        walkState = WalkState.WALKING;
+    private void startMovingLeft(float delta){
+    }
 
+    private void moveLeft(float delta) {
+        facing = Facing.LEFT;
+        if (walkState != WalkState.WALKING){
+            walkState = WalkState.WALKING;
+            walkStartTime = TimeUtils.nanoTime();
+        }
+        position.x -= delta * Constants.GIGA_GAL_MOVE_SPEED;
     }
 
 
@@ -117,8 +118,8 @@ public class GigaGal {
 
     private void startJump() {
         jumpState = JumpState.JUMPING;
-        velocity.y = Constants.JUMP_SPEED;
         jumpStartTime = TimeUtils.nanoTime();
+        continueJump();
     }
 
     private void continueJump() {
@@ -146,20 +147,23 @@ public class GigaGal {
     public void render(SpriteBatch batch) {
 
 
+        TextureRegion region = Assets.instance.gigaGalAssets.standingRight;
+
         switch (facing){
             case RIGHT:
                 switch (jumpState){
                     case JUMPING:
                     case FALLING:
-                        jumpingRight.render(batch, position);
+                        region = Assets.instance.gigaGalAssets.jumpingRight;
                         break;
                     case GROUNDED:
                         switch (walkState){
                             case STANDING:
-                                standingRight.render(batch, position);
+                                region = Assets.instance.gigaGalAssets.standingRight;
                                 break;
                             case WALKING:
-                                walkingRight.render(batch, position);
+                                float walkTimeSeconds = MathUtils.nanoToSec * (TimeUtils.nanoTime() - walkStartTime);
+                                region = Assets.instance.gigaGalAssets.walkingRightAnimation.getKeyFrame(walkTimeSeconds);
                                 break;
                         }
                         break;
@@ -169,15 +173,16 @@ public class GigaGal {
                 switch (jumpState){
                     case JUMPING:
                     case FALLING:
-                        jumpingLeft.render(batch, position);
+                        region = Assets.instance.gigaGalAssets.jumpingLeft;
                         break;
                     case GROUNDED:
                         switch (walkState){
                             case STANDING:
-                                standingLeft.render(batch, position);
+                                region = Assets.instance.gigaGalAssets.standingLeft;
                                 break;
                             case WALKING:
-                                walkingLeft.render(batch, position);
+                                float walkTimeSeconds = MathUtils.nanoToSec * (TimeUtils.nanoTime() - walkStartTime);
+                                region = Assets.instance.gigaGalAssets.walkingLeftAnimation.getKeyFrame(walkTimeSeconds);
                                 break;
                         }
                         break;
@@ -186,6 +191,34 @@ public class GigaGal {
 
         }
 
+        batch.draw(
+                region.getTexture(),
+                position.x - Constants.GIGAGAL_EYE_POSITION.x,
+                position.y - Constants.GIGAGAL_EYE_POSITION.y,
+                0,
+                0,
+                region.getRegionWidth(),
+                region.getRegionHeight(),
+                1,
+                1,
+                0,
+                region.getRegionX(),
+                region.getRegionY(),
+                region.getRegionWidth(),
+                region.getRegionHeight(),
+                false,
+                false);
+
+    }
+
+    private void renderGigaGal(SpriteBatch batch, Vector2 position, Texture texture) {
+        batch.draw(
+                texture,
+                position.x - Constants.GIGAGAL_EYE_POSITION.x,
+                position.y - Constants.GIGAGAL_EYE_POSITION.y,
+                texture.getWidth(),
+                texture.getHeight()
+        );
     }
 
 

@@ -1,3 +1,5 @@
+import com.badlogic.gdx.tools.texturepacker.TexturePacker
+
 buildscript {
     repositories {
         mavenCentral()
@@ -8,6 +10,7 @@ buildscript {
         classpath 'de.richsource.gradle.plugins:gwt-gradle-plugin:0.6'
         classpath 'com.android.tools.build:gradle:1.2.3'
         classpath 'org.robovm:robovm-gradle-plugin:1.8.0'
+        classpath "com.badlogicgames.gdx:gdx-tools:1.7.0"
     }
 }
 
@@ -91,6 +94,27 @@ project(":core") {
     dependencies {
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"
     }
+
+    task packTextures {
+        def pack = new File("android/assets/images/gigagal.pack.png")
+        def atlas = new File("android/assets/images/gigagal.pack.atlas")
+        inputs.dir new File("core/rawAssets/sprites")
+//        outputs.file pack
+//        outputs.file atlas
+//        outputs.dir file("android/assets/images")
+
+        doLast {
+            pack.delete()
+            atlas.delete()
+            TexturePacker.process("core/rawAssets/sprites", "android/assets/images", "gigagal.pack")
+        }
+    }
+
+    project.tasks.compileJava.dependsOn packTextures
+
+
+
+
 }
 
 tasks.eclipse.doLast {
