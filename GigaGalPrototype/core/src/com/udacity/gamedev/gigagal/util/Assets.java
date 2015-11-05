@@ -77,16 +77,18 @@ public class Assets implements Disposable, AssetErrorListener {
 
 
             Array<AtlasRegion> walkingLeftFrames = new Array<AtlasRegion>();
+            walkingLeftFrames.add(atlas.findRegion(Constants.WALKING_LEFT_2));
             walkingLeftFrames.add(atlas.findRegion(Constants.WALKING_LEFT_1));
             walkingLeftFrames.add(atlas.findRegion(Constants.WALKING_LEFT_2));
             walkingLeftFrames.add(atlas.findRegion(Constants.WALKING_LEFT_3));
-            walkingLeftAnimation = new Animation(Constants.WALK_LOOP_DURATION, walkingLeftFrames, PlayMode.LOOP_PINGPONG);
+            walkingLeftAnimation = new Animation(Constants.WALK_LOOP_DURATION, walkingLeftFrames, PlayMode.LOOP);
 
             Array<AtlasRegion> walkingRightFrames = new Array<AtlasRegion>();
+            walkingRightFrames.add(atlas.findRegion(Constants.WALKING_RIGHT_2));
             walkingRightFrames.add(atlas.findRegion(Constants.WALKING_RIGHT_1));
             walkingRightFrames.add(atlas.findRegion(Constants.WALKING_RIGHT_2));
             walkingRightFrames.add(atlas.findRegion(Constants.WALKING_RIGHT_3));
-            walkingRightAnimation = new Animation(Constants.WALK_LOOP_DURATION, walkingRightFrames, PlayMode.LOOP_PINGPONG);
+            walkingRightAnimation = new Animation(Constants.WALK_LOOP_DURATION, walkingRightFrames, PlayMode.LOOP);
 
 
             Gdx.app.log(TAG, "GigaGal assets ready!");

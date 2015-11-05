@@ -37,7 +37,7 @@ public class GigaGal {
 
     public GigaGal() {
         position = new Vector2(20, 20);
-        lastFramePosition = position;
+        lastFramePosition = new Vector2(position);
         velocity = new Vector2();
 
         jumpState = JumpState.FALLING;
@@ -46,7 +46,7 @@ public class GigaGal {
     }
 
     public void update(float delta, Array<Platform> platforms) {
-        lastFramePosition = position;
+        lastFramePosition.set(position);
 
         if (Gdx.input.isKeyPressed(Keys.LEFT)) {
             moveLeft(delta);
@@ -69,50 +69,73 @@ public class GigaGal {
             endJump();
         }
 
-        if (jumpState == JumpState.FALLING) {
-//            Gdx.app.log(TAG, "Falling");
-            velocity.y -= Constants.GRAVITY;
-        }
+
+        velocity.y -= Constants.GRAVITY;
 
         position.mulAdd(velocity, delta);
 
-        if (position.y - Constants.GIGAGAL_EYE_HEIGHT < 0) {
-            jumpState = JumpState.GROUNDED;
-            position.y = Constants.GIGAGAL_EYE_HEIGHT;
+
+        if (jumpState != JumpState.JUMPING) {
+            jumpState = JumpState.FALLING;
+
+            if (position.y - Constants.GIGAGAL_EYE_HEIGHT < 0) {
+                jumpState = JumpState.GROUNDED;
+                position.y = Constants.GIGAGAL_EYE_HEIGHT;
+                velocity.y = 0;
+
+            }
+
+            for (Platform platform : platforms) {
+
+                if (lastFramePosition.y - Constants.GIGAGAL_EYE_HEIGHT >= platform.top && position.y - Constants.GIGAGAL_EYE_HEIGHT < platform.top) {
+
+                    float leftFoot = position.x - Constants.GIGAGAL_STANCE_WIDTH / 2;
+                    float rightFoot = position.x + Constants.GIGAGAL_STANCE_WIDTH / 2;
+
+                    boolean leftFootIn = (platform.left < leftFoot && platform.right > leftFoot);
+                    boolean rightFootIn = (platform.left < rightFoot && platform.right > rightFoot);
+                    boolean straddle = (platform.left > leftFoot && platform.right < rightFoot);
+
+
+                    if (leftFootIn || rightFootIn || straddle) {
+
+
+
+                        jumpState = JumpState.GROUNDED;
+                        velocity.y = 0;
+                        position.y = platform.top + Constants.GIGAGAL_EYE_HEIGHT;
+                    }
+
+
+
+                }
+            }
+
+
+
 
         }
 
-//        for (Platform platform : platforms){
-//            if (lastFramePosition.y > platform.top && position.y < platform.top){
-//                float leftFoot = position.x - Constants.g
-//
-//
-//
-//
-//            }
-//        }
 
-
-
-    }
-
-    private void startMovingLeft(float delta){
     }
 
     private void moveLeft(float delta) {
-        facing = Facing.LEFT;
-        if (walkState != WalkState.WALKING){
-            walkState = WalkState.WALKING;
+        if (walkState != WalkState.WALKING) {
             walkStartTime = TimeUtils.nanoTime();
         }
+        facing = Facing.LEFT;
+        walkState = WalkState.WALKING;
         position.x -= delta * Constants.GIGA_GAL_MOVE_SPEED;
     }
 
 
     private void moveRight(float delta) {
-        position.x += delta * Constants.GIGA_GAL_MOVE_SPEED;
+        if (walkState != WalkState.WALKING) {
+            walkStartTime = TimeUtils.nanoTime();
+        }
         facing = Facing.RIGHT;
         walkState = WalkState.WALKING;
+        position.x += delta * Constants.GIGA_GAL_MOVE_SPEED;
     }
 
 
@@ -149,15 +172,15 @@ public class GigaGal {
 
         TextureRegion region = Assets.instance.gigaGalAssets.standingRight;
 
-        switch (facing){
+        switch (facing) {
             case RIGHT:
-                switch (jumpState){
+                switch (jumpState) {
                     case JUMPING:
                     case FALLING:
                         region = Assets.instance.gigaGalAssets.jumpingRight;
                         break;
                     case GROUNDED:
-                        switch (walkState){
+                        switch (walkState) {
                             case STANDING:
                                 region = Assets.instance.gigaGalAssets.standingRight;
                                 break;
@@ -170,13 +193,13 @@ public class GigaGal {
                 }
                 break;
             case LEFT:
-                switch (jumpState){
+                switch (jumpState) {
                     case JUMPING:
                     case FALLING:
                         region = Assets.instance.gigaGalAssets.jumpingLeft;
                         break;
                     case GROUNDED:
-                        switch (walkState){
+                        switch (walkState) {
                             case STANDING:
                                 region = Assets.instance.gigaGalAssets.standingLeft;
                                 break;

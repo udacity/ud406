@@ -29,14 +29,14 @@ public class Constants {
 
     public static final String TEXTURE_ATLAS = "images/gigagal.pack.atlas";
 
-    public static final Vector2 GIGAGAL_EYE_POSITION = new Vector2(13, 16);
+    public static final Vector2 GIGAGAL_EYE_POSITION = new Vector2(16, 24);
 
 
 
 
     public static final float GIGAGAL_HEIGHT = 25.0f;
     public static final float GIGAGAL_EYE_HEIGHT = 16.0f;
-    public static final float GIGAGAL_STANCE_WIDTH = 28.0f;
+    public static final float GIGAGAL_STANCE_WIDTH = 21.0f;
     public static final Vector2 GIGAGAL_GUN_OFFSET = new Vector2(13 ,-7);
 
 
