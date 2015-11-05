@@ -26,6 +26,9 @@ public class Constants {
 
     public static final float WALK_LOOP_DURATION = 0.25f;
 
+    public static final String PLATFORM_SPRITE = "platform";
+    public static final int PLATFORM_EDGE = 8;
+
 
     public static final String TEXTURE_ATLAS = "images/gigagal.pack.atlas";
 

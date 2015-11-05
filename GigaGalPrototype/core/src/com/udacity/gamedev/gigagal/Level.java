@@ -2,7 +2,6 @@ package com.udacity.gamedev.gigagal;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.udacity.gamedev.gigagal.entities.GigaGal;
@@ -30,13 +29,18 @@ public class Level {
 
     public void render(SpriteBatch batch, ShapeRenderer renderer, Viewport viewport){
 
-        renderer.begin(ShapeType.Filled);
-        for (Platform platform : platforms){
-            platform.render(renderer);
-        }
-        renderer.end();
+//        renderer.begin(ShapeType.Filled);
+//        for (Platform platform : platforms){
+//            platform.render(renderer);
+//        }
+//        renderer.end();
 
         batch.begin();
+
+        for (Platform platform : platforms){
+            platform.render(batch);
+        }
+
         gigaGal.render(batch);
         batch.end();
 
@@ -45,9 +49,11 @@ public class Level {
 
 
     private void addDebugPlatforms(){
-        platforms.add(new Platform(20, 10, 20, 40));
+        platforms.add(new Platform(20, 11, 20, 40));
 
         platforms.add(new Platform(40, 10, 50, 80));
+
+        platforms.add(new Platform(75, 20, 90, 200));
 
     }
 

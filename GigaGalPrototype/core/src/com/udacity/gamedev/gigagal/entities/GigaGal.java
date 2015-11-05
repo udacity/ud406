@@ -48,26 +48,7 @@ public class GigaGal {
     public void update(float delta, Array<Platform> platforms) {
         lastFramePosition.set(position);
 
-        if (Gdx.input.isKeyPressed(Keys.LEFT)) {
-            moveLeft(delta);
-        } else if (Gdx.input.isKeyPressed(Keys.RIGHT)) {
-            moveRight(delta);
-        } else {
-            walkState = WalkState.STANDING;
 
-        }
-
-        if (Gdx.input.isKeyPressed(Keys.Z)) {
-            switch (jumpState) {
-                case GROUNDED:
-                    startJump();
-                    break;
-                case JUMPING:
-                    continueJump();
-            }
-        } else {
-            endJump();
-        }
 
 
         velocity.y -= Constants.GRAVITY;
@@ -111,9 +92,27 @@ public class GigaGal {
                 }
             }
 
+        }
 
+        if (Gdx.input.isKeyPressed(Keys.LEFT)) {
+            moveLeft(delta);
+        } else if (Gdx.input.isKeyPressed(Keys.RIGHT)) {
+            moveRight(delta);
+        } else {
+            walkState = WalkState.STANDING;
 
+        }
 
+        if (Gdx.input.isKeyPressed(Keys.Z)) {
+            switch (jumpState) {
+                case GROUNDED:
+                    startJump();
+                    break;
+                case JUMPING:
+                    continueJump();
+            }
+        } else {
+            endJump();
         }
 
 

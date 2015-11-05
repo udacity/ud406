@@ -1,8 +1,8 @@
 package com.udacity.gamedev.gigagal.entities;
 
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.udacity.gamedev.gigagal.util.Assets;
 
 /**
  * Created by silver on 10/26/15.
@@ -25,11 +25,12 @@ public class Platform {
         this.right = right;
     }
 
-    public void render(ShapeRenderer renderer){
-        renderer.set(ShapeType.Filled);
-        renderer.setColor(PLATFORM_COLOR);
+    public void render(SpriteBatch batch) {
 
-        renderer.rect(left, bottom, right - left, top - bottom);
+        float width = right - left;
+        float height = top - bottom;
+
+        Assets.instance.platformAssets.platformNinePatch.draw(batch, left - 1, bottom - 1, width + 2, height + 2);
 
     }
 

@@ -6,10 +6,9 @@ import com.badlogic.gdx.assets.AssetErrorListener;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Animation.PlayMode;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.sun.media.jfxmediaimpl.MediaDisposer.Disposable;
 
@@ -23,6 +22,7 @@ public class Assets implements Disposable, AssetErrorListener {
     private AssetManager assetManager;
 
     public GigaGalAssets gigaGalAssets;
+    public PlatformAssets platformAssets;
 
     public static final Assets instance = new Assets();
 
@@ -39,6 +39,7 @@ public class Assets implements Disposable, AssetErrorListener {
 
         TextureAtlas atlas = assetManager.get(Constants.TEXTURE_ATLAS);
         gigaGalAssets = new GigaGalAssets(atlas);
+        platformAssets = new PlatformAssets(atlas);
     }
 
     @Override
@@ -90,15 +91,23 @@ public class Assets implements Disposable, AssetErrorListener {
             walkingRightFrames.add(atlas.findRegion(Constants.WALKING_RIGHT_3));
             walkingRightAnimation = new Animation(Constants.WALK_LOOP_DURATION, walkingRightFrames, PlayMode.LOOP);
 
-
             Gdx.app.log(TAG, "GigaGal assets ready!");
+        }
+    }
+
+    public class PlatformAssets{
+
+        public final NinePatch platformNinePatch;
+
+        public PlatformAssets(TextureAtlas atlas){
+
+            AtlasRegion region = atlas.findRegion(Constants.PLATFORM_SPRITE);
+
+            int edge = Constants.PLATFORM_EDGE;
+
+            platformNinePatch = new NinePatch(region, edge, edge, edge, edge);
 
         }
-
-        public void render(SpriteBatch batch, Vector2 position){
-
-        }
-
 
     }
 
