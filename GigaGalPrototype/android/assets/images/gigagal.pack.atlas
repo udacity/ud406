@@ -1,12 +1,12 @@
 
 gigagal.pack.png
-size: 1024,128
+size: 512,64
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
 bullet
   rotate: false
-  xy: 93, 36
+  xy: 93, 18
   size: 7, 5
   orig: 7, 5
   offset: 0, 0
@@ -20,14 +20,14 @@ enemy
   index: -1
 explosion-large
   rotate: false
-  xy: 93, 43
+  xy: 402, 43
   size: 17, 17
   orig: 17, 17
   offset: 0, 0
   index: -1
 explosion-medium
   rotate: false
-  xy: 624, 113
+  xy: 402, 28
   size: 13, 13
   orig: 13, 13
   offset: 0, 0
@@ -41,16 +41,16 @@ explosion-small
   index: -1
 jumping-left
   rotate: false
-  xy: 2, 62
-  size: 64, 64
-  orig: 64, 64
+  xy: 255, 25
+  size: 29, 35
+  orig: 29, 35
   offset: 0, 0
   index: -1
 jumping-right
   rotate: false
-  xy: 596, 93
-  size: 26, 33
-  orig: 26, 33
+  xy: 159, 25
+  size: 30, 35
+  orig: 30, 35
   offset: 0, 0
   index: -1
 platform
@@ -62,64 +62,64 @@ platform
   index: -1
 powerup
   rotate: false
-  xy: 596, 74
+  xy: 421, 43
   size: 15, 17
   orig: 15, 17
   offset: 0, 0
   index: -1
 standing-left
   rotate: false
-  xy: 68, 62
-  size: 64, 64
-  orig: 64, 64
+  xy: 286, 25
+  size: 28, 35
+  orig: 28, 35
   offset: 0, 0
   index: -1
 standing-right
   rotate: false
-  xy: 134, 62
-  size: 64, 64
-  orig: 64, 64
+  xy: 93, 25
+  size: 31, 35
+  orig: 31, 35
   offset: 0, 0
   index: -1
 walk-1-left
   rotate: false
-  xy: 200, 62
-  size: 64, 64
-  orig: 64, 64
+  xy: 346, 25
+  size: 27, 35
+  orig: 27, 35
   offset: 0, 0
   index: -1
 walk-1-right
   rotate: false
-  xy: 266, 62
-  size: 64, 64
-  orig: 64, 64
+  xy: 191, 25
+  size: 30, 35
+  orig: 30, 35
   offset: 0, 0
   index: -1
 walk-2-left
   rotate: false
-  xy: 332, 62
-  size: 64, 64
-  orig: 64, 64
+  xy: 375, 25
+  size: 25, 35
+  orig: 25, 35
   offset: 0, 0
   index: -1
 walk-2-right
   rotate: false
-  xy: 398, 62
-  size: 64, 64
-  orig: 64, 64
+  xy: 223, 25
+  size: 30, 35
+  orig: 30, 35
   offset: 0, 0
   index: -1
 walk-3-left
   rotate: false
-  xy: 464, 62
-  size: 64, 64
-  orig: 64, 64
+  xy: 316, 25
+  size: 28, 35
+  orig: 28, 35
   offset: 0, 0
   index: -1
 walk-3-right
   rotate: false
-  xy: 530, 62
-  size: 64, 64
-  orig: 64, 64
+  xy: 126, 25
+  size: 31, 35
+  orig: 31, 35
   offset: 0, 0
   index: -1

@@ -10,9 +10,7 @@ import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.udacity.gamedev.gigagal.util.Assets;
 import com.udacity.gamedev.gigagal.util.Constants;
 
-/**
- * Created by silver on 10/14/15.
- */
+
 public class GameplayScreen implements Screen {
 
     public static final String TAG = GameplayScreen.class.getName();
@@ -25,13 +23,10 @@ public class GameplayScreen implements Screen {
 
     @Override
     public void show() {
-
         AssetManager am = new AssetManager();
         Assets.instance.init(am);
         am.finishLoading();
         Gdx.app.log(TAG, "Loading should be done");
-
-
 
         level = new Level();
         batch = new SpriteBatch();
@@ -42,11 +37,8 @@ public class GameplayScreen implements Screen {
 
     @Override
     public void render(float delta) {
-
         level.update(delta);
-
         viewport.apply();
-
         Gdx.gl.glClearColor(
                 Constants.BACKGROUND_COLOR.r,
                 Constants.BACKGROUND_COLOR.g,
@@ -81,6 +73,6 @@ public class GameplayScreen implements Screen {
 
     @Override
     public void dispose() {
-
+        Assets.instance.dispose();
     }
 }

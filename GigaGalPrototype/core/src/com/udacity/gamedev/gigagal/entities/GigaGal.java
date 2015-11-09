@@ -2,7 +2,6 @@ package com.udacity.gamedev.gigagal.entities;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
@@ -20,26 +19,17 @@ public class GigaGal {
     Vector2 lastFramePosition;
     Vector2 velocity;
 
-    GigaGalSprite standingRight;
-    GigaGalSprite standingLeft;
-    GigaGalSprite jumpingRight;
-    GigaGalSprite jumpingLeft;
-    GigaGalSprite walkingRight;
-    GigaGalSprite walkingLeft;
-
-
     Facing facing;
     JumpState jumpState;
     WalkState walkState;
-    long walkStartTime;
 
+    long walkStartTime;
     long jumpStartTime;
 
     public GigaGal() {
         position = new Vector2(20, 20);
         lastFramePosition = new Vector2(position);
         velocity = new Vector2();
-
         jumpState = JumpState.FALLING;
         facing = Facing.RIGHT;
         walkState = WalkState.STANDING;
@@ -47,14 +37,8 @@ public class GigaGal {
 
     public void update(float delta, Array<Platform> platforms) {
         lastFramePosition.set(position);
-
-
-
-
         velocity.y -= Constants.GRAVITY;
-
         position.mulAdd(velocity, delta);
-
 
         if (jumpState != JumpState.JUMPING) {
             jumpState = JumpState.FALLING;
@@ -63,35 +47,15 @@ public class GigaGal {
                 jumpState = JumpState.GROUNDED;
                 position.y = Constants.GIGAGAL_EYE_HEIGHT;
                 velocity.y = 0;
-
             }
 
             for (Platform platform : platforms) {
-
-                if (lastFramePosition.y - Constants.GIGAGAL_EYE_HEIGHT >= platform.top && position.y - Constants.GIGAGAL_EYE_HEIGHT < platform.top) {
-
-                    float leftFoot = position.x - Constants.GIGAGAL_STANCE_WIDTH / 2;
-                    float rightFoot = position.x + Constants.GIGAGAL_STANCE_WIDTH / 2;
-
-                    boolean leftFootIn = (platform.left < leftFoot && platform.right > leftFoot);
-                    boolean rightFootIn = (platform.left < rightFoot && platform.right > rightFoot);
-                    boolean straddle = (platform.left > leftFoot && platform.right < rightFoot);
-
-
-                    if (leftFootIn || rightFootIn || straddle) {
-
-
-
-                        jumpState = JumpState.GROUNDED;
-                        velocity.y = 0;
-                        position.y = platform.top + Constants.GIGAGAL_EYE_HEIGHT;
-                    }
-
-
-
+                if (landedOnPlatform(platform)) {
+                    jumpState = JumpState.GROUNDED;
+                    velocity.y = 0;
+                    position.y = platform.top + Constants.GIGAGAL_EYE_HEIGHT;
                 }
             }
-
         }
 
         if (Gdx.input.isKeyPressed(Keys.LEFT)) {
@@ -100,7 +64,6 @@ public class GigaGal {
             moveRight(delta);
         } else {
             walkState = WalkState.STANDING;
-
         }
 
         if (Gdx.input.isKeyPressed(Keys.Z)) {
@@ -114,27 +77,45 @@ public class GigaGal {
         } else {
             endJump();
         }
-
-
     }
 
+    boolean landedOnPlatform(Platform platform) {
+        boolean leftFootIn = false;
+        boolean rightFootIn = false;
+        boolean straddle = false;
+
+        if (lastFramePosition.y - Constants.GIGAGAL_EYE_HEIGHT >= platform.top &&
+                position.y - Constants.GIGAGAL_EYE_HEIGHT < platform.top) {
+
+            float leftFoot = position.x - Constants.GIGAGAL_STANCE_WIDTH / 2;
+            float rightFoot = position.x + Constants.GIGAGAL_STANCE_WIDTH / 2;
+
+            leftFootIn = (platform.left < leftFoot && platform.right > leftFoot);
+            rightFootIn = (platform.left < rightFoot && platform.right > rightFoot);
+            straddle = (platform.left > leftFoot && platform.right < rightFoot);
+        }
+        return leftFootIn || rightFootIn || straddle;
+    }
+
+
     private void moveLeft(float delta) {
-        if (walkState != WalkState.WALKING) {
+        if (jumpState == JumpState.GROUNDED && walkState != WalkState.WALKING) {
             walkStartTime = TimeUtils.nanoTime();
         }
-        facing = Facing.LEFT;
         walkState = WalkState.WALKING;
-        position.x -= delta * Constants.GIGA_GAL_MOVE_SPEED;
+        facing = Facing.LEFT;
+
+        position.x -= delta * Constants.GIGAGAL_MOVE_SPEED;
     }
 
 
     private void moveRight(float delta) {
-        if (walkState != WalkState.WALKING) {
+        if (jumpState == JumpState.GROUNDED && walkState != WalkState.WALKING) {
             walkStartTime = TimeUtils.nanoTime();
         }
-        facing = Facing.RIGHT;
         walkState = WalkState.WALKING;
-        position.x += delta * Constants.GIGA_GAL_MOVE_SPEED;
+        facing = Facing.RIGHT;
+        position.x += delta * Constants.GIGAGAL_MOVE_SPEED;
     }
 
 
@@ -161,14 +142,7 @@ public class GigaGal {
         }
     }
 
-    private void fall() {
-
-    }
-
-
     public void render(SpriteBatch batch) {
-
-
         TextureRegion region = Assets.instance.gigaGalAssets.standingRight;
 
         switch (facing) {
@@ -230,19 +204,7 @@ public class GigaGal {
                 region.getRegionHeight(),
                 false,
                 false);
-
     }
-
-    private void renderGigaGal(SpriteBatch batch, Vector2 position, Texture texture) {
-        batch.draw(
-                texture,
-                position.x - Constants.GIGAGAL_EYE_POSITION.x,
-                position.y - Constants.GIGAGAL_EYE_POSITION.y,
-                texture.getWidth(),
-                texture.getHeight()
-        );
-    }
-
 
     enum JumpState {
         JUMPING,
@@ -258,29 +220,6 @@ public class GigaGal {
     enum WalkState {
         STANDING,
         WALKING
-    }
-
-
-    class GigaGalSprite {
-        Texture texture;
-        Vector2 eyePosition;
-
-        public GigaGalSprite(String textureFileName, Vector2 eyePosition) {
-
-            this.texture = new Texture(textureFileName);
-            this.eyePosition = eyePosition;
-        }
-
-
-        public void render(SpriteBatch batch, Vector2 position) {
-            batch.draw(
-                    texture,
-                    position.x - eyePosition.x,
-                    position.y - eyePosition.y,
-                    texture.getWidth(),
-                    texture.getHeight()
-            );
-        }
     }
 
 }

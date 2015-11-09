@@ -12,30 +12,23 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.badlogic.gdx.utils.Array;
 import com.sun.media.jfxmediaimpl.MediaDisposer.Disposable;
 
-/**
- * Created by silver on 11/4/15.
- */
+
 public class Assets implements Disposable, AssetErrorListener {
 
     public static final String TAG = Assets.class.getName();
 
-    private AssetManager assetManager;
-
     public GigaGalAssets gigaGalAssets;
     public PlatformAssets platformAssets;
-
     public static final Assets instance = new Assets();
+    private AssetManager assetManager;
 
-    private Assets(){
-
-    }
+    private Assets(){}
 
     public void init(AssetManager assetManager){
         this.assetManager = assetManager;
         assetManager.setErrorListener(this);
         assetManager.load(Constants.TEXTURE_ATLAS, TextureAtlas.class);
         assetManager.finishLoading();
-        Gdx.app.debug(TAG, "# of assets loaded" + assetManager.getAssetNames().size);
 
         TextureAtlas atlas = assetManager.get(Constants.TEXTURE_ATLAS);
         gigaGalAssets = new GigaGalAssets(atlas);
@@ -44,14 +37,13 @@ public class Assets implements Disposable, AssetErrorListener {
 
     @Override
     public void error(AssetDescriptor asset, Throwable throwable) {
-
+        Gdx.app.error(TAG, "Couldn't load asset: " + asset.fileName, throwable);
     }
 
     @Override
     public void dispose() {
-
+        assetManager.dispose();
     }
-
 
     public class GigaGalAssets {
 
@@ -66,7 +58,6 @@ public class Assets implements Disposable, AssetErrorListener {
         public final Animation walkingRightAnimation;
 
 
-
         public GigaGalAssets(TextureAtlas atlas){
             standingLeft = atlas.findRegion(Constants.STANDING_LEFT);
             standingRight = atlas.findRegion(Constants.STANDING_RIGHT);
@@ -75,7 +66,6 @@ public class Assets implements Disposable, AssetErrorListener {
 
             jumpingLeft = atlas.findRegion(Constants.JUMPING_LEFT);
             jumpingRight = atlas.findRegion(Constants.JUMPING_RIGHT);
-
 
             Array<AtlasRegion> walkingLeftFrames = new Array<AtlasRegion>();
             walkingLeftFrames.add(atlas.findRegion(Constants.WALKING_LEFT_2));
@@ -90,8 +80,6 @@ public class Assets implements Disposable, AssetErrorListener {
             walkingRightFrames.add(atlas.findRegion(Constants.WALKING_RIGHT_2));
             walkingRightFrames.add(atlas.findRegion(Constants.WALKING_RIGHT_3));
             walkingRightAnimation = new Animation(Constants.WALK_LOOP_DURATION, walkingRightFrames, PlayMode.LOOP);
-
-            Gdx.app.log(TAG, "GigaGal assets ready!");
         }
     }
 
@@ -100,16 +88,9 @@ public class Assets implements Disposable, AssetErrorListener {
         public final NinePatch platformNinePatch;
 
         public PlatformAssets(TextureAtlas atlas){
-
             AtlasRegion region = atlas.findRegion(Constants.PLATFORM_SPRITE);
-
             int edge = Constants.PLATFORM_EDGE;
-
             platformNinePatch = new NinePatch(region, edge, edge, edge, edge);
-
         }
-
     }
-
-
 }

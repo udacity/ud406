@@ -90,7 +90,6 @@ project(":html") {
 project(":core") {
     apply plugin: "java"
 
-
     dependencies {
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"
     }
@@ -98,10 +97,6 @@ project(":core") {
     task packTextures {
         def pack = new File("android/assets/images/gigagal.pack.png")
         def atlas = new File("android/assets/images/gigagal.pack.atlas")
-        inputs.dir new File("core/rawAssets/sprites")
-//        outputs.file pack
-//        outputs.file atlas
-//        outputs.dir file("android/assets/images")
 
         doLast {
             pack.delete()
@@ -111,10 +106,6 @@ project(":core") {
     }
 
     project.tasks.compileJava.dependsOn packTextures
-
-
-
-
 }
 
 tasks.eclipse.doLast {
