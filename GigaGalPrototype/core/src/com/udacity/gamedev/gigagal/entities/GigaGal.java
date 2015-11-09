@@ -104,7 +104,6 @@ public class GigaGal {
         }
         walkState = WalkState.WALKING;
         facing = Facing.LEFT;
-
         position.x -= delta * Constants.GIGAGAL_MOVE_SPEED;
     }
 
@@ -145,14 +144,14 @@ public class GigaGal {
     public void render(SpriteBatch batch) {
         TextureRegion region = Assets.instance.gigaGalAssets.standingRight;
 
-        if (facing == Facing.RIGHT && jumpState != JumpState.GROUNDED){
+        if (facing == Facing.RIGHT && jumpState != JumpState.GROUNDED) {
             region = Assets.instance.gigaGalAssets.jumpingRight;
         } else if (facing == Facing.RIGHT && walkState == WalkState.STANDING) {
             region = Assets.instance.gigaGalAssets.standingRight;
         } else if (facing == Facing.RIGHT && walkState == WalkState.WALKING) {
             float walkTimeSeconds = MathUtils.nanoToSec * (TimeUtils.nanoTime() - walkStartTime);
             region = Assets.instance.gigaGalAssets.walkingRightAnimation.getKeyFrame(walkTimeSeconds);
-        } else if (facing == Facing.LEFT && jumpState != JumpState.GROUNDED){
+        } else if (facing == Facing.LEFT && jumpState != JumpState.GROUNDED) {
             region = Assets.instance.gigaGalAssets.jumpingLeft;
         } else if (facing == Facing.LEFT && walkState == WalkState.STANDING) {
             region = Assets.instance.gigaGalAssets.standingLeft;
@@ -195,5 +194,4 @@ public class GigaGal {
         STANDING,
         WALKING
     }
-
 }

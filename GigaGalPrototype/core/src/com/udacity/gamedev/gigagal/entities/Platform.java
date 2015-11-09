@@ -10,11 +10,11 @@ public class Platform {
     float left;
     float right;
 
-    public Platform(float top, float bottom, float left, float right) {
+    public Platform(float left, float top, float width, float height) {
         this.top = top;
-        this.bottom = bottom;
+        this.bottom = top - height;
         this.left = left;
-        this.right = right;
+        this.right = left + width;
     }
 
     public void render(SpriteBatch batch) {

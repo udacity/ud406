@@ -16,15 +16,15 @@ import com.sun.media.jfxmediaimpl.MediaDisposer.Disposable;
 public class Assets implements Disposable, AssetErrorListener {
 
     public static final String TAG = Assets.class.getName();
-
+    public static final Assets instance = new Assets();
     public GigaGalAssets gigaGalAssets;
     public PlatformAssets platformAssets;
-    public static final Assets instance = new Assets();
     private AssetManager assetManager;
 
-    private Assets(){}
+    private Assets() {
+    }
 
-    public void init(AssetManager assetManager){
+    public void init(AssetManager assetManager) {
         this.assetManager = assetManager;
         assetManager.setErrorListener(this);
         assetManager.load(Constants.TEXTURE_ATLAS, TextureAtlas.class);
@@ -58,7 +58,7 @@ public class Assets implements Disposable, AssetErrorListener {
         public final Animation walkingRightAnimation;
 
 
-        public GigaGalAssets(TextureAtlas atlas){
+        public GigaGalAssets(TextureAtlas atlas) {
             standingLeft = atlas.findRegion(Constants.STANDING_LEFT);
             standingRight = atlas.findRegion(Constants.STANDING_RIGHT);
             walkingLeft = atlas.findRegion(Constants.WALKING_LEFT_2);
@@ -83,11 +83,11 @@ public class Assets implements Disposable, AssetErrorListener {
         }
     }
 
-    public class PlatformAssets{
+    public class PlatformAssets {
 
         public final NinePatch platformNinePatch;
 
-        public PlatformAssets(TextureAtlas atlas){
+        public PlatformAssets(TextureAtlas atlas) {
             AtlasRegion region = atlas.findRegion(Constants.PLATFORM_SPRITE);
             int edge = Constants.PLATFORM_EDGE;
             platformNinePatch = new NinePatch(region, edge, edge, edge, edge);
