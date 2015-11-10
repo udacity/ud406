@@ -18,9 +18,4 @@ public class Constants {
     public static final float GIGAGAL_STANCE_WIDTH = 21.0f;
 
     public static final float GIGAGAL_MOVE_SPEED = WORLD_SIZE / 2;
-
-    public static final float JUMP_SPEED = 1.5f * WORLD_SIZE;
-    public static final float MAX_JUMP_DURATION = .1f;
-
-    public static final float GRAVITY = WORLD_SIZE / 10;
 }
