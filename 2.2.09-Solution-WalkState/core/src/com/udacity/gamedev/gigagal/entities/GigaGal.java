@@ -22,7 +22,6 @@ public class GigaGal {
     JumpState jumpState;
     WalkState walkState;
 
-    long walkStartTime;
     long jumpStartTime;
 
     public GigaGal() {
@@ -72,18 +71,12 @@ public class GigaGal {
     }
 
     private void moveLeft(float delta) {
-        if (jumpState == JumpState.GROUNDED && walkState != WalkState.WALKING) {
-            walkStartTime = TimeUtils.nanoTime();
-        }
         walkState = WalkState.WALKING;
         facing = Facing.LEFT;
         position.x -= delta * Constants.GIGAGAL_MOVE_SPEED;
     }
 
     private void moveRight(float delta) {
-        if (jumpState == JumpState.GROUNDED && walkState != WalkState.WALKING) {
-            walkStartTime = TimeUtils.nanoTime();
-        }
         walkState = WalkState.WALKING;
         facing = Facing.RIGHT;
         position.x += delta * Constants.GIGAGAL_MOVE_SPEED;

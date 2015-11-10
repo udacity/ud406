@@ -14,8 +14,6 @@ public class Constants {
     public static final String STANDING_LEFT = "standing-left";
     public static final String JUMPING_RIGHT = "jumping-right";
     public static final String JUMPING_LEFT = "jumping-left";
-    public static final String WALKING_RIGHT_2 = "walk-2-right";
-    public static final String WALKING_LEFT_2 = "walk-2-left";
 
     public static final Vector2 GIGAGAL_EYE_POSITION = new Vector2(16, 24);
     public static final float GIGAGAL_EYE_HEIGHT = 16.0f;

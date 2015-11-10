@@ -20,9 +20,7 @@ public class GigaGal {
 
     Facing facing;
     JumpState jumpState;
-    WalkState walkState;
 
-    long walkStartTime;
     long jumpStartTime;
 
     public GigaGal() {
@@ -31,7 +29,6 @@ public class GigaGal {
         velocity = new Vector2();
         jumpState = JumpState.FALLING;
         facing = Facing.RIGHT;
-        walkState = WalkState.STANDING;
     }
 
     public void update(float delta) {
@@ -54,8 +51,6 @@ public class GigaGal {
             moveLeft(delta);
         } else if (Gdx.input.isKeyPressed(Keys.RIGHT)) {
             moveRight(delta);
-        } else {
-            walkState = WalkState.STANDING;
         }
 
         if (Gdx.input.isKeyPressed(Keys.Z)) {
@@ -72,19 +67,11 @@ public class GigaGal {
     }
 
     private void moveLeft(float delta) {
-        if (jumpState == JumpState.GROUNDED && walkState != WalkState.WALKING) {
-            walkStartTime = TimeUtils.nanoTime();
-        }
-        walkState = WalkState.WALKING;
         facing = Facing.LEFT;
         position.x -= delta * Constants.GIGAGAL_MOVE_SPEED;
     }
 
     private void moveRight(float delta) {
-        if (jumpState == JumpState.GROUNDED && walkState != WalkState.WALKING) {
-            walkStartTime = TimeUtils.nanoTime();
-        }
-        walkState = WalkState.WALKING;
         facing = Facing.RIGHT;
         position.x += delta * Constants.GIGAGAL_MOVE_SPEED;
     }
@@ -117,16 +104,12 @@ public class GigaGal {
 
         if (facing == Facing.RIGHT && jumpState != JumpState.GROUNDED) {
             region = Assets.instance.gigaGalAssets.jumpingRight;
-        } else if (facing == Facing.RIGHT && walkState == WalkState.STANDING) {
+        } else if (facing == Facing.RIGHT) {
             region = Assets.instance.gigaGalAssets.standingRight;
-        } else if (facing == Facing.RIGHT && walkState == WalkState.WALKING) {
-            region = Assets.instance.gigaGalAssets.walkingRight;
         } else if (facing == Facing.LEFT && jumpState != JumpState.GROUNDED) {
             region = Assets.instance.gigaGalAssets.jumpingLeft;
-        } else if (facing == Facing.LEFT && walkState == WalkState.STANDING) {
+        } else if (facing == Facing.LEFT) {
             region = Assets.instance.gigaGalAssets.standingLeft;
-        } else if (facing == Facing.LEFT && walkState == WalkState.WALKING) {
-            region = Assets.instance.gigaGalAssets.walkingLeft;
         }
 
         batch.draw(
@@ -157,10 +140,5 @@ public class GigaGal {
     enum Facing {
         LEFT,
         RIGHT
-    }
-
-    enum WalkState {
-        STANDING,
-        WALKING
     }
 }
