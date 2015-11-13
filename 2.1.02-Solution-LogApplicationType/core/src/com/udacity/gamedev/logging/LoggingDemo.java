@@ -7,21 +7,29 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class LoggingDemo extends ApplicationAdapter {
-	SpriteBatch batch;
-	Texture img;
-	
-	@Override
-	public void create () {
-		batch = new SpriteBatch();
-		img = new Texture("badlogic.jpg");
-	}
 
-	@Override
-	public void render () {
-		Gdx.gl.glClearColor(1, 0, 0, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		batch.begin();
-		batch.draw(img, 0, 0);
-		batch.end();
-	}
+    // TODO: Give your ApplicationListener a log TAG
+    public static final String TAG = LoggingDemo.class.getName();
+
+    SpriteBatch batch;
+    Texture img;
+
+    @Override
+    public void create() {
+        batch = new SpriteBatch();
+        img = new Texture("badlogic.jpg");
+
+        // TODO: Use Gdx.app to find what ApplicationType we're running
+        // TODO: Use Gdx.app to log the result
+        Gdx.app.log(TAG, "This game is running on: " + Gdx.app.getType().toString());
+    }
+
+    @Override
+    public void render() {
+        Gdx.gl.glClearColor(1, 0, 0, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        batch.begin();
+        batch.draw(img, 0, 0);
+        batch.end();
+    }
 }
