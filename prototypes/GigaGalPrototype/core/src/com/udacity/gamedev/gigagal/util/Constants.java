@@ -37,4 +37,6 @@ public class Constants {
     public static final float MAX_JUMP_DURATION = .1f;
 
     public static final float GRAVITY = WORLD_SIZE / 10;
+
+    public static final String ENEMY_SPRITE = "enemy";
 }
