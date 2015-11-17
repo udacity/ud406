@@ -2,7 +2,6 @@ package com.udacity.gamedev.fileloading;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -54,23 +53,20 @@ public class FileLoading extends ApplicationAdapter {
         batch = new SpriteBatch();
         img = new Texture("badlogic.jpg");
 
-        String encryptedPunchline = encrypt("Very Carefully");
-        Gdx.app.log(TAG, encryptedPunchline);
-
-        Gdx.app.log(TAG, "How does GigaGal tie her shoelaces when her arms are cannons?");
+        Gdx.app.log(TAG, "How does GigaGal tie her shoe laces when her arms are cannons?");
 
         // TODO: Go find the text file in the android/assets directory
         // TODO: Get a FileHandle using Gdx.files.internal()
-        FileHandle file =  Gdx.files.internal("punchline");
+
 
         // TODO: Read the file using FileHandle.readString()
-        String encrypted = file.readString();
+
 
         // TODO: Decrypt the punchline
-        String punchline = decrypt(encrypted);
+
 
         // TODO: Log the rest of the joke
-        Gdx.app.log(TAG, punchline);
+
     }
 
     @Override

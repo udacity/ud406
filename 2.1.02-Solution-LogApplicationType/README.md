@@ -36,4 +36,8 @@ Remember, `System.out.println()` is not a cross-platform solution. Always use `G
 
 # Logging Exercise
 
-In this exercise, you'll use `Gdx.app` to find and log what type of device your game is running on! Check out the TODOs to get started.
+In this exercise, you'll use `Gdx.app` to find and log what type of device your game is running on! 
+
+If you open up the TODOs pane at the bottom left of Android Studio, you'll see a list of steps you'll need to complete. If any of those steps gives you trouble, or if you just want to see our solution, you can find it (annotated with the same TODOs) in the 2.1.02-Solution-LogApplicationType folder.  
+
+Check out the TODOs to get started.
