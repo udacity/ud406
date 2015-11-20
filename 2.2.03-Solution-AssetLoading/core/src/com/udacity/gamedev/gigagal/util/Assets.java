@@ -13,13 +13,16 @@ public class    Assets implements Disposable, AssetErrorListener {
 
     public static final String TAG = Assets.class.getName();
     public static final Assets instance = new Assets();
+
     public GigaGalAssets gigaGalAssets;
+
     private AssetManager assetManager;
 
     private Assets() {
     }
 
     public void init(AssetManager assetManager) {
+
         this.assetManager = assetManager;
         assetManager.setErrorListener(this);
         assetManager.load(Constants.TEXTURE_ATLAS, TextureAtlas.class);
