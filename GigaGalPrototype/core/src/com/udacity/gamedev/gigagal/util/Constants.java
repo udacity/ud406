@@ -28,6 +28,10 @@ public class Constants {
     public static final int PLATFORM_EDGE = 8;
 
     public static final Vector2 GIGAGAL_EYE_POSITION = new Vector2(16, 24);
+    public static final Vector2 GIGAGAL_CANNON_OFFSET = new Vector2(12, -7);
+
+
+
     public static final float GIGAGAL_EYE_HEIGHT = 16.0f;
     public static final float GIGAGAL_STANCE_WIDTH = 21.0f;
 
@@ -37,4 +41,15 @@ public class Constants {
     public static final float MAX_JUMP_DURATION = .1f;
 
     public static final float GRAVITY = WORLD_SIZE / 10;
+
+    public static final float CHASE_CAM_MOVE_SPEED = WORLD_SIZE;
+
+    public static final float BULLET_MOVE_SPEED = 2 * WORLD_SIZE;
+    public static final Vector2 BULLET_CENTER = new Vector2(3, 2);
+    public static final String BULLET_SPRITE = "bullet";
+
+    public static final String ENEMY_SPRITE = "enemy";
+    public static final Vector2 ENEMY_CENTER = new Vector2(14, 22);
+
+
 }

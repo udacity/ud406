@@ -5,8 +5,10 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.udacity.gamedev.gigagal.util.Assets;
+import com.udacity.gamedev.gigagal.util.ChaseCam;
 import com.udacity.gamedev.gigagal.util.Constants;
 
 
@@ -17,6 +19,7 @@ public class GameplayScreen extends ScreenAdapter {
     Level level;
     SpriteBatch batch;
     ExtendViewport viewport;
+    ChaseCam chaseCam;
 
     @Override
     public void show() {
@@ -25,6 +28,7 @@ public class GameplayScreen extends ScreenAdapter {
         level = new Level();
         batch = new SpriteBatch();
         viewport = new ExtendViewport(Constants.WORLD_SIZE, Constants.WORLD_SIZE);
+        chaseCam = new ChaseCam(viewport.getCamera(), new Rectangle(), level.gigaGal);
     }
 
     @Override
@@ -40,6 +44,7 @@ public class GameplayScreen extends ScreenAdapter {
     @Override
     public void render(float delta) {
         level.update(delta);
+        chaseCam.update(delta);
         viewport.apply();
         Gdx.gl.glClearColor(
                 Constants.BACKGROUND_COLOR.r,
