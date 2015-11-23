@@ -1,0 +1,125 @@
+
+gigagal.pack.png
+size: 512,64
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+bullet
+  rotate: false
+  xy: 93, 18
+  size: 7, 5
+  orig: 7, 5
+  offset: 0, 0
+  index: -1
+enemy
+  rotate: false
+  xy: 62, 16
+  size: 29, 44
+  orig: 29, 44
+  offset: 0, 0
+  index: -1
+explosion-large
+  rotate: false
+  xy: 402, 43
+  size: 17, 17
+  orig: 17, 17
+  offset: 0, 0
+  index: -1
+explosion-medium
+  rotate: false
+  xy: 402, 28
+  size: 13, 13
+  orig: 13, 13
+  offset: 0, 0
+  index: -1
+explosion-small
+  rotate: false
+  xy: 62, 5
+  size: 9, 9
+  orig: 9, 9
+  offset: 0, 0
+  index: -1
+jumping-left
+  rotate: false
+  xy: 255, 25
+  size: 29, 35
+  orig: 29, 35
+  offset: 0, 0
+  index: -1
+jumping-right
+  rotate: false
+  xy: 159, 25
+  size: 30, 35
+  orig: 30, 35
+  offset: 0, 0
+  index: -1
+platform
+  rotate: false
+  xy: 2, 2
+  size: 58, 58
+  orig: 58, 58
+  offset: 0, 0
+  index: -1
+powerup
+  rotate: false
+  xy: 421, 43
+  size: 15, 17
+  orig: 15, 17
+  offset: 0, 0
+  index: -1
+standing-left
+  rotate: false
+  xy: 286, 25
+  size: 28, 35
+  orig: 28, 35
+  offset: 0, 0
+  index: -1
+standing-right
+  rotate: false
+  xy: 93, 25
+  size: 31, 35
+  orig: 31, 35
+  offset: 0, 0
+  index: -1
+walk-1-left
+  rotate: false
+  xy: 346, 25
+  size: 27, 35
+  orig: 27, 35
+  offset: 0, 0
+  index: -1
+walk-1-right
+  rotate: false
+  xy: 191, 25
+  size: 30, 35
+  orig: 30, 35
+  offset: 0, 0
+  index: -1
+walk-2-left
+  rotate: false
+  xy: 375, 25
+  size: 25, 35
+  orig: 25, 35
+  offset: 0, 0
+  index: -1
+walk-2-right
+  rotate: false
+  xy: 223, 25
+  size: 30, 35
+  orig: 30, 35
+  offset: 0, 0
+  index: -1
+walk-3-left
+  rotate: false
+  xy: 316, 25
+  size: 28, 35
+  orig: 28, 35
+  offset: 0, 0
+  index: -1
+walk-3-right
+  rotate: false
+  xy: 126, 25
+  size: 31, 35
+  orig: 31, 35
+  offset: 0, 0
+  index: -1
