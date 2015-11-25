@@ -4,8 +4,8 @@ import com.badlogic.gdx.Game;
 
 public class FirstDemoGame extends Game {
 
-	@Override
-	public void create () {
-		this.setScreen(new UdacityScreen());
-	}
+    @Override
+    public void create() {
+        this.setScreen(new UdacityScreen());
+    }
 }
