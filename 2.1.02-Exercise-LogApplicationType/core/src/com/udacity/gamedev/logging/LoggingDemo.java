@@ -33,5 +33,6 @@ public class LoggingDemo extends ApplicationAdapter {
         batch.end();
     }
 
-
+    // TODO: Run the Desktop app and find your log message
+    // TODO: Run the Android app and find your log message
 }
