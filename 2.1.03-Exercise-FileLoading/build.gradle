@@ -90,6 +90,7 @@ project(":core") {
 
     dependencies {
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"
+        compile 'commons-codec:commons-codec:1.5'
     }
 }
 

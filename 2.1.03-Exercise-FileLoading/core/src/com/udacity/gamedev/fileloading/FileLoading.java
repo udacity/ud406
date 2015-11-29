@@ -6,13 +6,12 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import org.apache.commons.codec.binary.Base64;
+
 import java.security.Key;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
-
-import sun.misc.BASE64Decoder;
-import sun.misc.BASE64Encoder;
 
 
 public class FileLoading extends ApplicationAdapter {
@@ -29,8 +28,8 @@ public class FileLoading extends ApplicationAdapter {
             Cipher cipher = Cipher.getInstance("AES");
             cipher.init(Cipher.ENCRYPT_MODE, key);
             byte[] encryptedBytes = cipher.doFinal(message.getBytes());
-            return new BASE64Encoder().encode(encryptedBytes);
-        } catch (Exception e){
+            return Base64.encodeBase64String(encryptedBytes);
+        } catch (Exception e) {
             Gdx.app.error(TAG, "Couldn't encrypt message: " + message, e);
         }
         return "Failed";
@@ -40,9 +39,9 @@ public class FileLoading extends ApplicationAdapter {
         try {
             Cipher cipher = Cipher.getInstance("AES");
             cipher.init(Cipher.DECRYPT_MODE, key);
-            byte[] encryptedBytes = new BASE64Decoder().decodeBuffer(encrypted);
+            byte[] encryptedBytes = Base64.decodeBase64(encrypted);
             return new String(cipher.doFinal(encryptedBytes));
-        } catch (Exception e){
+        } catch (Exception e) {
             Gdx.app.error(TAG, "Couldn't decrypt message: " + encrypted, e);
         }
         return "Failed";
@@ -53,7 +52,8 @@ public class FileLoading extends ApplicationAdapter {
         batch = new SpriteBatch();
         img = new Texture("badlogic.jpg");
 
-        Gdx.app.log(TAG, "How does GigaGal tie her shoe laces when her arms are cannons?");
+
+        Gdx.app.log(TAG, "How does GigaGal tie her shoelaces when her arms are cannons?");
 
         // TODO: Go find the text file in the android/assets directory
         // TODO: Get a FileHandle using Gdx.files.internal()
