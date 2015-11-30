@@ -8,6 +8,8 @@ import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
+
+// TODO: Check it out!
 public class Filtering extends ApplicationAdapter {
 
     private static final float SCALE = 6.0f;
@@ -37,16 +39,16 @@ public class Filtering extends ApplicationAdapter {
 
         batch.setProjectionMatrix(viewport.getCamera().combined);
         batch.begin();
-        renderTextureCentered(batch, nearest, viewport.getWorldWidth() * 1.5f / 6, viewport.getWorldHeight() * 1/ 2, SCALE);
+        renderTextureCentered(batch, nearest, viewport.getWorldWidth() * 1.5f / 6, viewport.getWorldHeight() * 1 / 2, SCALE);
         renderTextureCentered(batch, nearest, viewport.getWorldWidth() * 3 / 6, viewport.getWorldHeight() * 1 / 2, 1.0f);
         renderTextureCentered(batch, linear, viewport.getWorldWidth() * 4.5f / 6, viewport.getWorldHeight() * 1 / 2, SCALE);
         batch.end();
     }
 
-    private void renderTextureCentered(SpriteBatch batch, Texture texture, float x, float y, float scale){
+    private void renderTextureCentered(SpriteBatch batch, Texture texture, float x, float y, float scale) {
         float scaledWidth = texture.getWidth() * scale;
         float scaledHeight = texture.getHeight() * scale;
-        batch.draw(texture, x - scaledWidth / 2, y - scaledHeight / 2, scaledWidth, scaledHeight );
+        batch.draw(texture, x - scaledWidth / 2, y - scaledHeight / 2, scaledWidth, scaledHeight);
     }
 
     @Override
