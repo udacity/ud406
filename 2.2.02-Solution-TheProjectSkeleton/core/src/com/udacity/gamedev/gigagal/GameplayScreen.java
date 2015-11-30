@@ -2,7 +2,7 @@ package com.udacity.gamedev.gigagal;
 
 import com.badlogic.gdx.ScreenAdapter;
 
-
+// TODO: Create GameplayScreen
 public class GameplayScreen extends ScreenAdapter {
 
     public static final String TAG = GameplayScreen.class.getName();

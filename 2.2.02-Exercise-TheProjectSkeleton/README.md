@@ -31,4 +31,18 @@ Once all the entities contained in the `Level` have updated themselves, `GamePla
 
 # Create the Project skeleton
 
-Check out the TODOs to see the skeleton of the classes specified above.
+Create the following classes as specified above. Don't worry about adding any functionality yet.
+
+TODO: Create GigaGalGame
+TODO: Create GameplayScreen
+TODO: Create Level
+
+## util package
+
+TODO: Create GigaGal
+TODO: Create Platform
+
+## entities package
+
+TODO: Create Assets
+TODO: Create Constants
