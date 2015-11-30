@@ -99,7 +99,7 @@ project(":core") {
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"
     }
 
-
+    // TODO: Define packTextures task
     task packTextures << {
         def pack = new File("android/assets/images/gigagal.pack.png")
         pack.delete()

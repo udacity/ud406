@@ -4,12 +4,8 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.assets.AssetErrorListener;
-import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 
 public class TextureAtlasExercise extends ApplicationAdapter implements AssetErrorListener {
 
@@ -18,25 +14,35 @@ public class TextureAtlasExercise extends ApplicationAdapter implements AssetErr
     private static final String ATLAS = "images/gigagal.pack.atlas";
     private static final String STANDING_RIGHT = "standing-right";
 
-    private AssetManager assetManager;
+    // TODO: Add an AssetManager
+
 
     SpriteBatch batch;
-    Texture img;
 
-    AtlasRegion standingRight;
+    // TODO: Add an AtlasRegion to hold the standing right sprite
+
 
     @Override
     public void create() {
         batch = new SpriteBatch();
-        img = new Texture("badlogic.jpg");
-        assetManager = new AssetManager();
-        assetManager.setErrorListener(this);
-        assetManager.load(ATLAS, TextureAtlas.class);
-        assetManager.finishLoading();
-        TextureAtlas atlas = assetManager.get(ATLAS);
+
+        // TODO: Initialize your AssetManager
 
 
-        standingRight = atlas.findRegion(STANDING_RIGHT);
+        // TODO: Set this as the AssetManager's error listener
+
+
+        // TODO: tell the AssetManager to load the TextureAtlas with name ATLAS
+
+
+        // TODO: Call finishLoading() on your AssetManager
+
+
+        // TODO: Get the TextureAtlas from the asset manager
+
+
+        // TODO: Populate your AtlasRegion using findRegion() on your Atlas
+
     }
 
     @Override
@@ -45,28 +51,12 @@ public class TextureAtlasExercise extends ApplicationAdapter implements AssetErr
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.begin();
 
-        //
-        batch.draw(standingRight.getTexture(), 0, 0);
 
+        // TODO: Draw the standing right AtlasRegion
+        // Hint, you need to use the somewhat horrific version of draw with signature:
+        // draw (Texture texture, float x, float y, float originX, float originY, float width, float height, float scaleX,
+        // float scaleY, float rotation, int srcX, int srcY, int srcWidth, int srcHeight, boolean flipX, boolean flipY)
 
-
-        batch.draw(
-                standingRight.getTexture(),
-                0,
-                0,
-                0,
-                0,
-                standingRight.getRegionWidth(),
-                standingRight.getRegionHeight(),
-                1,
-                1,
-                0,
-                standingRight.getRegionX(),
-                standingRight.getRegionY(),
-                standingRight.getRegionWidth(),
-                standingRight.getRegionHeight(),
-                false,
-                false);
         batch.end();
     }
 
@@ -78,6 +68,7 @@ public class TextureAtlasExercise extends ApplicationAdapter implements AssetErr
     @Override
     public void dispose() {
         batch.dispose();
-        assetManager.dispose();
+        // TODO: Dispose of the AssetManager
+
     }
 }
