@@ -7,3 +7,5 @@ You can download this code using the gray "Download ZIP" button.
 Instructions for importing and running these projects can be found in the [2.1.01-Demo-ImportAndRunAProject](https://github.com/udacity/ud406/tree/master/2.1.01-Demo-ImportAndRunAProject) folder.
 
 Issues and pull requests welcome!
+
+## Stay tuned for further polishing of 2.2 and 2.3 content!
