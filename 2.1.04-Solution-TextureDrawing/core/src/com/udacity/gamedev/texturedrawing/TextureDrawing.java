@@ -29,7 +29,7 @@ public class TextureDrawing extends ApplicationAdapter {
         // TODO: Initialize the SpriteBatch
         batch = new SpriteBatch();
 
-        // TODO: Load the Udacity logo Texture
+        // TODO: Load the Udacity logo Texture (look in android/assets)
         udacityLogo = new Texture("udacity_logo_white.png");
     }
 
