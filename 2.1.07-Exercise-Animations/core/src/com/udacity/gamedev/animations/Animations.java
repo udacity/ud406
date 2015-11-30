@@ -36,13 +36,24 @@ public class Animations extends ApplicationAdapter {
     public void create() {
         batch = new SpriteBatch();
         viewport = new ExtendViewport(100, 100);
-        startTime = TimeUtils.nanoTime();
+
+        // TODO: Set startTime using TimeUtils.nanoTime()
+
 
         Array<TextureRegion> walkLoopTextures = new Array<TextureRegion>();
-        walkLoopTextures.add(new TextureRegion(new Texture("walk-1-right.png")));
-        walkLoopTextures.add(new TextureRegion(new Texture("walk-2-right.png")));
-        walkLoopTextures.add(new TextureRegion(new Texture("walk-3-right.png")));
-        walkLoop = new Animation(WALK_LOOP_FRAME_DURATION, walkLoopTextures, PlayMode.LOOP_PINGPONG);
+
+        // TODO: Add walk-1-right.png to walkLoopTextures
+
+
+        // TODO: Add walk-2-right.png to walkLoopTextures
+
+
+        // TODO: Add walk-2-right.png to walkLoopTextures
+
+
+        // TODO: Initialize walkLoop with a new animation in LOOP_PINGPONG mode
+        // Use WALK_LOOP_FRAME_DURATION
+
 
         Array<TextureRegion> explosionTextures = new Array<TextureRegion>();
         explosionTextures.add(new TextureRegion(new Texture("explosion-large.png")));
@@ -61,21 +72,22 @@ public class Animations extends ApplicationAdapter {
     @Override
     public void render() {
         updateExplosions();
-
         viewport.apply();
-
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         batch.setProjectionMatrix(viewport.getCamera().combined);
-
         batch.begin();
 
-        float elapsedTime = MathUtils.nanoToSec * (TimeUtils.nanoTime() - startTime);
+        // TODO: Compute the elapsed time in seconds since startTime
+
+
+        // TODO: User getKeyFrame() to get the right frame from the walk loop
+        TextureRegion walkLoopTexture = new TextureRegion(new Texture("walk-1-right.png"));
 
         drawRegionCentered(
                 batch,
-                walkLoop.getKeyFrame(elapsedTime),
+                walkLoopTexture,
                 viewport.getWorldWidth() / 2,
                 viewport.getWorldHeight() / 2
         );
@@ -108,6 +120,8 @@ public class Animations extends ApplicationAdapter {
     }
 
     private void updateExplosions() {
+
+        // Remove explosions that are done
         explosions.begin();
         for (int i = 0; i < explosions.size; i++) {
             if (explosions.get(i).isAnimationFinished()) {
@@ -116,6 +130,7 @@ public class Animations extends ApplicationAdapter {
         }
         explosions.end();
 
+        // Randomly spawn a new explosion
         if (MathUtils.random() < Gdx.graphics.getDeltaTime() * EXPLOSION_SPAWN_RATE) {
             Vector2 position = new Vector2(
                     MathUtils.random(viewport.getWorldWidth()),
@@ -123,8 +138,6 @@ public class Animations extends ApplicationAdapter {
             );
             explosions.add(new OneShotAnimation(explosion, position, TimeUtils.nanoTime()));
         }
-
-
     }
 
 
