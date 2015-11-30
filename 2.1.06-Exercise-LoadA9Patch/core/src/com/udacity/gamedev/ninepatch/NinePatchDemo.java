@@ -18,7 +18,10 @@ public class NinePatchDemo extends ApplicationAdapter {
     SpriteBatch batch;
     FitViewport viewport;
 
+    // TODO: Add a Texture for the raw platform image
     Texture platformTexture;
+
+    // TODO: Add a NinePatch
     NinePatch platformNinePatch;
 
     @Override
@@ -26,9 +29,11 @@ public class NinePatchDemo extends ApplicationAdapter {
         batch = new SpriteBatch();
         viewport = new FitViewport(WORLD_SIZE, WORLD_SIZE);
 
-        platformTexture = new Texture("platform.png");
+        // TODO: Load the platform texture (Look for the file in android/assets)
 
-        platformNinePatch = new NinePatch(platformTexture, EDGE, EDGE, EDGE, EDGE);
+
+        // TODO: Initialize the NinePatch using the texture and the EDGE constant
+
     }
 
     @Override
@@ -46,26 +51,22 @@ public class NinePatchDemo extends ApplicationAdapter {
         batch.setProjectionMatrix(viewport.getCamera().combined);
         batch.begin();
 
-        batch.draw(platformTexture,
-                WORLD_SIZE * 1 / 4 - TEST_SIZE_1 / 2, WORLD_SIZE * 1 / 4 - TEST_SIZE_1 / 2,
-                TEST_SIZE_1, TEST_SIZE_1);
-        batch.draw(platformTexture,
-                WORLD_SIZE * 3 / 4 - TEST_SIZE_2 / 2, WORLD_SIZE * 1 / 4 - TEST_SIZE_2 / 2,
-                TEST_SIZE_2, TEST_SIZE_2);
+        // TODO: Draw the platform texture at TEST_SIZE_1
 
+        // TODO: Draw the platform texture at TEST_SIZE_2
 
-        platformNinePatch.draw(batch,
-                WORLD_SIZE * 1 / 4 - TEST_SIZE_1 / 2, WORLD_SIZE * 3 / 4 - TEST_SIZE_1 / 2,
-                TEST_SIZE_1, TEST_SIZE_1);
-        platformNinePatch.draw(batch,
-                WORLD_SIZE * 3 / 4 - TEST_SIZE_2 / 2, WORLD_SIZE * 3 / 4 - TEST_SIZE_2 / 2,
-                TEST_SIZE_2, TEST_SIZE_2);
+        // TODO: Draw the nine patch at TEST_SIZE_1
+
+        // TODO: Draw the nine patch at TEST_SIZE_2
 
         batch.end();
     }
 
     @Override
     public void dispose() {
-        super.dispose();
+        batch.dispose();
+        // TODO: Dispose of the texture
+
+
     }
 }
