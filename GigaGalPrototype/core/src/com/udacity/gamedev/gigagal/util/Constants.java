@@ -31,25 +31,35 @@ public class Constants {
     public static final Vector2 GIGAGAL_CANNON_OFFSET = new Vector2(12, -7);
 
 
-
     public static final float GIGAGAL_EYE_HEIGHT = 16.0f;
     public static final float GIGAGAL_STANCE_WIDTH = 21.0f;
 
-    public static final float GIGAGAL_MOVE_SPEED = WORLD_SIZE / 2;
+    public static final float GIGAGAL_MOVE_SPEED = 50;
 
-    public static final float JUMP_SPEED = 1.5f * WORLD_SIZE;
+    public static final float JUMP_SPEED = 200;
     public static final float MAX_JUMP_DURATION = .1f;
 
-    public static final float GRAVITY = WORLD_SIZE / 10;
+    public static final float GRAVITY = 10;
 
     public static final float CHASE_CAM_MOVE_SPEED = WORLD_SIZE;
 
-    public static final float BULLET_MOVE_SPEED = 2 * WORLD_SIZE;
+    public static final float BULLET_MOVE_SPEED = 150;
     public static final Vector2 BULLET_CENTER = new Vector2(3, 2);
     public static final String BULLET_SPRITE = "bullet";
 
     public static final String ENEMY_SPRITE = "enemy";
     public static final Vector2 ENEMY_CENTER = new Vector2(14, 22);
+
+    public static final String EXPLOSION_LARGE = "explosion-large";
+    public static final String EXPLOSION_MEDIUM = "explosion-medium";
+    public static final String EXPLOSION_SMALL = "explosion-small";
+
+    public static final Vector2 EXPLOSION_CENTER = new Vector2(8, 8);
+    public static final float EXPLOSION_DURATION = 0.5f;
+    public static final float ENEMY_MOVEMENT_SPEED = 10;
+    public static final float ENEMY_BOB_AMPLITUDE = 3;
+    public static final float ENEMY_BOB_PERIOD = 3.0f;
+    public static final int ENEMY_HEALTH = 5;
 
 
 }

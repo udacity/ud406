@@ -22,6 +22,7 @@ public class Assets implements Disposable, AssetErrorListener {
     public PlatformAssets platformAssets;
     public BulletAssets bulletAssets;
     public EnemyAssets enemyAssets;
+    public ExplosionAssets explosionAssets;
 
     private AssetManager assetManager;
 
@@ -40,6 +41,7 @@ public class Assets implements Disposable, AssetErrorListener {
         platformAssets = new PlatformAssets(atlas);
         bulletAssets = new BulletAssets(atlas);
         enemyAssets = new EnemyAssets(atlas);
+        explosionAssets = new ExplosionAssets(atlas);
     }
 
     @Override
@@ -117,6 +119,26 @@ public class Assets implements Disposable, AssetErrorListener {
 
         public EnemyAssets(TextureAtlas atlas){
             enemy = atlas.findRegion(Constants.ENEMY_SPRITE);
+        }
+    }
+
+    public class ExplosionAssets {
+
+        public final Animation explosion;
+
+        public ExplosionAssets(TextureAtlas atlas) {
+
+            Array<AtlasRegion> explosionRegions = new Array<AtlasRegion>();
+            explosionRegions.add(atlas.findRegion(Constants.EXPLOSION_LARGE));
+            explosionRegions.add(atlas.findRegion(Constants.EXPLOSION_MEDIUM));
+            explosionRegions.add(atlas.findRegion(Constants.EXPLOSION_SMALL));
+
+            explosion = new Animation(Constants.EXPLOSION_DURATION / explosionRegions.size,
+                    explosionRegions, PlayMode.NORMAL);
+
+
+
+
         }
     }
 

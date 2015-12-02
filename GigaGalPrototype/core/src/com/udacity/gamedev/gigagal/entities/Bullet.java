@@ -3,6 +3,7 @@ package com.udacity.gamedev.gigagal.entities;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Array;
 import com.udacity.gamedev.gigagal.util.Assets;
 import com.udacity.gamedev.gigagal.util.Constants;
 import com.udacity.gamedev.gigagal.util.Enums.Direction;
@@ -27,9 +28,16 @@ public class Bullet {
 
     }
 
-    public void update(float delta){
+    public void update(float delta, Array<Enemy> enemies){
 
         position.mulAdd(velocity, delta);
+
+//        for (Enemy enemy : enemies){
+//
+//
+//
+//            if (position)
+//        }
 
 
     }
