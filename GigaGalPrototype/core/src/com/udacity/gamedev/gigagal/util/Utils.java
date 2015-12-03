@@ -12,12 +12,14 @@ import com.badlogic.gdx.utils.TimeUtils;
 public class Utils {
 
 
+    public static void drawTextureRegion(SpriteBatch batch, TextureRegion region, Vector2 position, Vector2 offset) {
 
-    public static void drawTextureRegion(TextureRegion region, Vector2 position,  Vector2 offset){
+        drawTextureRegion(batch, region, position.x - offset.x, position.y - offset.y);
+
 
     }
 
-    public static void drawTextureRegion(SpriteBatch batch, TextureRegion region, float x, float y){
+    public static void drawTextureRegion(SpriteBatch batch, TextureRegion region, float x, float y) {
 
         batch.draw(
                 region.getTexture(),
@@ -38,7 +40,7 @@ public class Utils {
                 false);
     }
 
-    public static float secondsSince(long timeNanos){
+    public static float secondsSince(long timeNanos) {
         return MathUtils.nanoToSec * (TimeUtils.nanoTime() - timeNanos);
     }
 

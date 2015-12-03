@@ -8,25 +8,27 @@ import com.badlogic.gdx.utils.TimeUtils;
 import com.udacity.gamedev.gigagal.util.Assets;
 import com.udacity.gamedev.gigagal.util.Constants;
 import com.udacity.gamedev.gigagal.util.Enums.Direction;
+import com.udacity.gamedev.gigagal.util.Utils;
 
-/**
- * Created by silver on 11/20/15.
- */
+
 public class Enemy {
 
 
-    Vector2 position;
+    public Vector2 position;
     Platform platform;
 
     Direction direction;
+
+    public int health;
 
     long startTime;
 
     public Enemy(Platform platform) {
         this.platform = platform;
         direction = Direction.RIGHT;
-        position = new Vector2(platform.left, platform.top);
+        position = new Vector2(platform.left, platform.top + Constants.ENEMY_CENTER.y);
         startTime = TimeUtils.nanoTime();
+        health = Constants.ENEMY_HEALTH;
     }
 
     public void update(float delta) {
@@ -47,7 +49,8 @@ public class Enemy {
         }
 
         float elapsedTime = MathUtils.nanoToSec * (TimeUtils.nanoTime() - startTime);
-        position.y = platform.top + Constants.ENEMY_BOB_AMPLITUDE * (1 + MathUtils.sin(MathUtils.PI2 * elapsedTime / Constants.ENEMY_BOB_PERIOD));
+        position.y = platform.top + Constants.ENEMY_CENTER.y
+                + Constants.ENEMY_BOB_AMPLITUDE * (1 + MathUtils.sin(MathUtils.PI2 * elapsedTime / Constants.ENEMY_BOB_PERIOD));
 
 
     }
@@ -56,24 +59,7 @@ public class Enemy {
 
         TextureRegion region = Assets.instance.enemyAssets.enemy;
 
-        batch.draw(
-                region.getTexture(),
-                position.x - Constants.ENEMY_CENTER.x,
-                position.y,
-                0,
-                0,
-                region.getRegionWidth(),
-                region.getRegionHeight(),
-                1,
-                1,
-                0,
-                region.getRegionX(),
-                region.getRegionY(),
-                region.getRegionWidth(),
-                region.getRegionHeight(),
-                false,
-                false);
-
+        Utils.drawTextureRegion(batch, region, position, Constants.ENEMY_CENTER);
 
     }
 

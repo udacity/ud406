@@ -1,10 +1,10 @@
 package com.udacity.gamedev.gigagal;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.DelayedRemovalArray;
+import com.badlogic.gdx.utils.viewport.Viewport;
 import com.udacity.gamedev.gigagal.entities.Bullet;
 import com.udacity.gamedev.gigagal.entities.Enemy;
 import com.udacity.gamedev.gigagal.entities.Explosion;
@@ -14,20 +14,21 @@ import com.udacity.gamedev.gigagal.util.Enums.Direction;
 
 public class Level {
 
+    public Viewport viewport;
+    public DelayedRemovalArray<Enemy> enemies;
     GigaGal gigaGal;
-
     Array<Platform> platforms;
-    Array<Bullet> bullets;
-    Array<Enemy> enemies;
+    DelayedRemovalArray<Bullet> bullets;
     DelayedRemovalArray<Explosion> explosions;
 
-    public Level() {
-        gigaGal = new GigaGal(new Vector2(20, 20), this);
+    public Level(Viewport viewport) {
+        this.viewport = viewport;
+
         platforms = new Array<Platform>();
-        bullets = new Array<Bullet>();
-        enemies = new Array<Enemy>();
+        bullets = new DelayedRemovalArray<Bullet>();
+        enemies = new DelayedRemovalArray<Enemy>();
         explosions = new DelayedRemovalArray<Explosion>();
-        addDebugPlatforms();
+        initializeDebugLevel();
     }
 
     public Array<Bullet> getBullets() {
@@ -37,27 +38,39 @@ public class Level {
     public void update(float delta) {
         gigaGal.update(delta, platforms);
 
-        explosions.begin();
+        // Update Bullets
 
-        for (int i = 0; i < explosions.size; i++){
-            if (explosions.get(i).isFinished()){
+        bullets.begin();
+        for (Bullet bullet : bullets) {
+            bullet.update(delta);
+            if (!bullet.active) {
+                bullets.removeValue(bullet, false);
+            }
+        }
+        bullets.end();
+
+        // Update Enemies
+
+        enemies.begin();
+        for (int i = 0; i < enemies.size; i++) {
+            Enemy enemy = enemies.get(i);
+            enemy.update(delta);
+            if (enemy.health < 1) {
+                spawnExplosion(enemy.position);
+                enemies.removeIndex(i);
+            }
+        }
+        enemies.end();
+        // Update Explosions
+
+        explosions.begin();
+        for (int i = 0; i < explosions.size; i++) {
+            if (explosions.get(i).isFinished()) {
                 explosions.removeIndex(i);
             }
         }
         explosions.end();
 
-        spawnExplosion(new Vector2(MathUtils.random(0, 100), MathUtils.random(0, 100)));
-
-
-
-
-        for (Bullet bullet : bullets) {
-            bullet.update(delta, enemies);
-        }
-
-        for (Enemy enemy : enemies) {
-            enemy.update(delta);
-        }
     }
 
     public void render(SpriteBatch batch) {
@@ -77,14 +90,14 @@ public class Level {
             bullet.render(batch);
         }
 
-        for (Explosion explosion : explosions){
+        for (Explosion explosion : explosions) {
             explosion.render(batch);
         }
 
         batch.end();
     }
 
-    private void addDebugPlatforms() {
+    private void initializeDebugLevel() {
         platforms.add(new Platform(15, 100, 30, 20));
 
         Platform enemyPlatform = new Platform(75, 90, 100, 65);
@@ -95,14 +108,16 @@ public class Level {
         platforms.add(new Platform(35, 55, 50, 20));
         platforms.add(new Platform(10, 20, 20, 9));
 
+        gigaGal = new GigaGal(new Vector2(15, 40), this);
+
 
     }
 
-    public void spawnBullet(Vector2 position, Direction direction){
-        bullets.add( new Bullet(position, direction));
+    public void spawnBullet(Vector2 position, Direction direction) {
+        bullets.add(new Bullet(this, position, direction));
     }
 
-    public void spawnExplosion(Vector2 position){
+    public void spawnExplosion(Vector2 position) {
         explosions.add(new Explosion(position));
     }
 }
