@@ -1,3 +1,5 @@
+// TODO: import com.badlogic.gdx.tools.texturepacker.TexturePacker
+
 import com.badlogic.gdx.tools.texturepacker.TexturePacker
 
 buildscript {
@@ -10,7 +12,8 @@ buildscript {
         classpath 'de.richsource.gradle.plugins:gwt-gradle-plugin:0.6'
         classpath 'com.android.tools.build:gradle:1.2.3'
         classpath 'org.robovm:robovm-gradle-plugin:1.8.0'
-        classpath "com.badlogicgames.gdx:gdx-tools:1.7.0"
+        // TODO: Add a classpath dependency on com.badlogicgames.gdx:gdx-tools:1.7.0
+        classpath 'com.badlogicgames.gdx:gdx-tools:1.7.0'
     }
 }
 
@@ -94,6 +97,8 @@ project(":core") {
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"
     }
 
+
+    // TODO: Uncomment the following definition of the packTextures task
     task packTextures {
         def pack = new File("android/assets/images/gigagal.pack.png")
         def atlas = new File("android/assets/images/gigagal.pack.atlas")
@@ -105,6 +110,7 @@ project(":core") {
         }
     }
 
+    // TODO: Uncomment the following line declaring a dependency between compileJava and packTextures
     project.tasks.compileJava.dependsOn packTextures
 }
 

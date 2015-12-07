@@ -7,7 +7,7 @@ public class Constants {
 
     public static final Color BACKGROUND_COLOR = Color.SKY;
 
-    public static final float WORLD_SIZE = 128;
+    public static final float WORLD_SIZE = 160;
     public static final float KILL_PLANE = -100;
 
 
