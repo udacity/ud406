@@ -21,6 +21,9 @@ import com.udacity.gamedev.gigagal.util.Utils;
 public class GigaGal {
 
     public final static String TAG = GigaGal.class.getName();
+
+    Vector2 spawnLocation;
+
     Vector2 position;
     Vector2 lastFramePosition;
     Vector2 velocity;
@@ -32,11 +35,20 @@ public class GigaGal {
 
     Level level;
 
-    public GigaGal(Vector2 position, Level level) {
-        this.position = position;
+    public GigaGal(Vector2 spawnLocation, Level level) {
+        this.spawnLocation = spawnLocation;
         this.level = level;
-        lastFramePosition = new Vector2(position);
+        position = new Vector2();
+        lastFramePosition = new Vector2();
         velocity = new Vector2();
+        init();
+    }
+
+
+    public void init(){
+        position.set(spawnLocation);
+        lastFramePosition.set(spawnLocation);
+        velocity.setZero();
         jumpState = Enums.JumpState.FALLING;
         facing = Direction.RIGHT;
         walkState = Enums.WalkState.STANDING;
@@ -51,6 +63,11 @@ public class GigaGal {
         lastFramePosition.set(position);
         velocity.y -= Constants.GRAVITY;
         position.mulAdd(velocity, delta);
+
+
+        if (position.y < Constants.KILL_PLANE){
+            init();
+        }
 
         // Land on/fall off platforms
 
@@ -229,10 +246,13 @@ public class GigaGal {
             region = Assets.instance.gigaGalAssets.walkingLeftAnimation.getKeyFrame(walkTimeSeconds);
         }
 
+        batch.setColor(1, 1, 1, 0.5f);
         Utils.drawTextureRegion(batch, region,
                 position.x - Constants.GIGAGAL_EYE_POSITION.x,
                 position.y - Constants.GIGAGAL_EYE_POSITION.y
         );
+
+        batch.setColor(1, 1, 1, 1);
     }
 
 }
