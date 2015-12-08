@@ -102,6 +102,7 @@ public class GigaGal {
     public void render(SpriteBatch batch) {
         TextureRegion region = Assets.instance.gigaGalAssets.standingRight;
 
+        // TODO: Select the correct region based on facing and jumpState
         if (facing == Facing.RIGHT && jumpState != JumpState.GROUNDED) {
             region = Assets.instance.gigaGalAssets.jumpingRight;
         } else if (facing == Facing.RIGHT) {
