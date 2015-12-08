@@ -5,20 +5,22 @@ import com.udacity.gamedev.gigagal.entities.GigaGal;
 
 public class Level {
 
+    // TODO: Add a GigaGal member variable
     GigaGal gigaGal;
 
     public Level() {
+        // TODO: Initialize GigaGal
         gigaGal = new GigaGal();
     }
 
     public void update(float delta) {
+        // TODO: Update GigaGal
         gigaGal.update(delta);
     }
 
     public void render(SpriteBatch batch) {
-        batch.begin();
+        // TODO: Render GigaGal
         gigaGal.render(batch);
-        batch.end();
     }
 
 }

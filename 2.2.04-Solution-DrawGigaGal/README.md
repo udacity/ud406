@@ -1,29 +1,16 @@
-# GigaGal!
+# Draw GigaGal
 
-So here's my crack at creating a specification for what the game is going to look like.
+Let's pull our drawing logic out of `GameplayScreen` and into `GigaGal` herself. We'll also start to flesh out the `GigaGal` and `Level` classes.
 
-I don't think we're going to add multiple screens, nor multiple levels. The game will just consist of a single level, which the player will navigate from beginning to end.
+The only tricky thing we need to deal with is the relationship between GigaGal's position and where we draw her sprite. We're going to be drawing GigaGal using a bunch of different sprites (for jumping, walking, standing, etc.), and we want to make sure that it doesn't look like she's moving around when we switch sprites. Therefore, GigaGal's `position` is a `Vector2` that defines not the location of her feet or her bottem left corner, but rather the center of her head. Actually, her eye is a convinient reference point.
 
+We've designed all GigaGal's sprites such that her eye is in the exact same place in the image. That way, when we go to draw GigaGal, we can draw all the sprites in the same way. Check out the TODOs in the course code to see what we mean.
 
-## Assets
+We recommend tacking the TODOs in the following order:
 
-The game requires a number of 
-
-## The Level Loader
-
-The Level loader will load a level specified in a PNG file, with elements 
-
-## The Player
-
-GigaGal can walk left and right, and can jump. She has a three element walk loop while moving on the ground, and an alternative sprite when she's in midair. She can fire bullets, which play a three element explosion animation when they hit something.
-
-## The Bullets
-
-## The Platforms
-
-The platforms wi 
+1. Constants
+2. GigaGal
+3. Level
+4. GameplayScreen
 
 
-## The enemies
-
-Enemies can be spawned on top of platforms, and will walk back and forth at a constant rate, turning around if they reach the end of a platform or run into another enemy. 

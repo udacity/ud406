@@ -10,24 +10,21 @@ public class GigaGal {
 
     public final static String TAG = GigaGal.class.getName();
 
+    // TODO: Add a position
     Vector2 position;
-    Vector2 lastFramePosition;
-    Vector2 velocity;
 
     public GigaGal() {
+        // TODO: Initialize GigaGal's position with height = GIGAGAL_EYE_HEIGHT
         position = new Vector2(20, Constants.GIGAGAL_EYE_HEIGHT);
-        lastFramePosition = new Vector2(position);
-        velocity = new Vector2();
     }
 
-    public void update(float delta) {
-        lastFramePosition.set(position);
-        position.mulAdd(velocity, delta);
-    }
+    public void update(float delta){
 
+    }
 
     public void render(SpriteBatch batch) {
 
+        // TODO: Draw GigaGal's standing-right sprite at position - GIGAGAL_EYE_POSITION
         TextureRegion region = Assets.instance.gigaGalAssets.standingRight;
 
         batch.draw(

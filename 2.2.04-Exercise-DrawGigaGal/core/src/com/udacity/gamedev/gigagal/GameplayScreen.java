@@ -5,7 +5,6 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.udacity.gamedev.gigagal.util.Assets;
 import com.udacity.gamedev.gigagal.util.Constants;
@@ -15,7 +14,8 @@ public class GameplayScreen extends ScreenAdapter {
 
     public static final String TAG = GameplayScreen.class.getName();
 
-    Level level;
+    // TODO: Add a Level
+
     SpriteBatch batch;
     ExtendViewport viewport;
 
@@ -23,7 +23,9 @@ public class GameplayScreen extends ScreenAdapter {
     public void show() {
         AssetManager am = new AssetManager();
         Assets.instance.init(am);
-        level = new Level();
+
+        // TODO: Initialize Level
+
         batch = new SpriteBatch();
         viewport = new ExtendViewport(Constants.WORLD_SIZE, Constants.WORLD_SIZE);
     }
@@ -40,7 +42,8 @@ public class GameplayScreen extends ScreenAdapter {
 
     @Override
     public void render(float delta) {
-        level.update(delta);
+        // TODO: Call update() on the Level
+
         viewport.apply();
         Gdx.gl.glClearColor(
                 Constants.BACKGROUND_COLOR.r,
@@ -51,26 +54,8 @@ public class GameplayScreen extends ScreenAdapter {
 
         batch.setProjectionMatrix(viewport.getCamera().combined);
         batch.begin();
+        // TODO: Render the Level
 
-        TextureRegion region = Assets.instance.gigaGalAssets.standingRight;
-
-        batch.draw(
-                region.getTexture(),
-                50,
-                50,
-                0,
-                0,
-                region.getRegionWidth(),
-                region.getRegionHeight(),
-                1,
-                1,
-                0,
-                region.getRegionX(),
-                region.getRegionY(),
-                region.getRegionWidth(),
-                region.getRegionHeight(),
-                false,
-                false);
         batch.end();
     }
 }
