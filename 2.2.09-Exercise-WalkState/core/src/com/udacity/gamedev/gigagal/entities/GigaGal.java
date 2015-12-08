@@ -15,24 +15,27 @@ public class GigaGal {
     public final static String TAG = GigaGal.class.getName();
 
     Vector2 position;
-    Vector2 lastFramePosition;
     Vector2 velocity;
 
     Facing facing;
     JumpState jumpState;
 
+    // TODO: Add WalkState member
+
+
     long jumpStartTime;
 
     public GigaGal() {
         position = new Vector2(20, 20);
-        lastFramePosition = new Vector2(position);
         velocity = new Vector2();
         jumpState = JumpState.FALLING;
         facing = Facing.RIGHT;
+
+        // TODO: Initialize walkState
+
     }
 
     public void update(float delta) {
-        lastFramePosition.set(position);
         velocity.y -= Constants.GRAVITY;
         position.mulAdd(velocity, delta);
 
@@ -51,6 +54,9 @@ public class GigaGal {
             moveLeft(delta);
         } else if (Gdx.input.isKeyPressed(Keys.RIGHT)) {
             moveRight(delta);
+        } else {
+            // TODO: Set walkState to STANDING
+
         }
 
         if (Gdx.input.isKeyPressed(Keys.Z)) {
@@ -67,11 +73,15 @@ public class GigaGal {
     }
 
     private void moveLeft(float delta) {
+        // TODO: Set walkState to WALKING
+
         facing = Facing.LEFT;
         position.x -= delta * Constants.GIGAGAL_MOVE_SPEED;
     }
 
     private void moveRight(float delta) {
+        // TODO: Set walkState to WALKING
+
         facing = Facing.RIGHT;
         position.x += delta * Constants.GIGAGAL_MOVE_SPEED;
     }
@@ -102,11 +112,13 @@ public class GigaGal {
     public void render(SpriteBatch batch) {
         TextureRegion region = Assets.instance.gigaGalAssets.standingRight;
 
+
+        // TODO: Select the correct sprite based on facing, jumpState, and walkState
         if (facing == Facing.RIGHT && jumpState != JumpState.GROUNDED) {
             region = Assets.instance.gigaGalAssets.jumpingRight;
         } else if (facing == Facing.RIGHT) {
             region = Assets.instance.gigaGalAssets.standingRight;
-        } else if (facing == Facing.LEFT && jumpState != JumpState.GROUNDED) {
+        }  else if (facing == Facing.LEFT && jumpState != JumpState.GROUNDED) {
             region = Assets.instance.gigaGalAssets.jumpingLeft;
         } else if (facing == Facing.LEFT) {
             region = Assets.instance.gigaGalAssets.standingLeft;
@@ -140,5 +152,12 @@ public class GigaGal {
     enum Facing {
         LEFT,
         RIGHT
+    }
+
+
+    // TODO: Do this first!!! Add WalkState enum containing STANDING and WALKING
+    enum WalkState {
+        STANDING,
+        WALKING
     }
 }

@@ -15,26 +15,27 @@ public class GigaGal {
     public final static String TAG = GigaGal.class.getName();
 
     Vector2 position;
-    Vector2 lastFramePosition;
     Vector2 velocity;
 
     Facing facing;
     JumpState jumpState;
+
+    // TODO: Add WalkState member
     WalkState walkState;
 
     long jumpStartTime;
 
     public GigaGal() {
         position = new Vector2(20, 20);
-        lastFramePosition = new Vector2(position);
         velocity = new Vector2();
         jumpState = JumpState.FALLING;
         facing = Facing.RIGHT;
+
+        // TODO: Initialize walkState
         walkState = WalkState.STANDING;
     }
 
     public void update(float delta) {
-        lastFramePosition.set(position);
         velocity.y -= Constants.GRAVITY;
         position.mulAdd(velocity, delta);
 
@@ -54,6 +55,7 @@ public class GigaGal {
         } else if (Gdx.input.isKeyPressed(Keys.RIGHT)) {
             moveRight(delta);
         } else {
+            // TODO: Set walkState to STANDING
             walkState = WalkState.STANDING;
         }
 
@@ -71,12 +73,14 @@ public class GigaGal {
     }
 
     private void moveLeft(float delta) {
+        // TODO: Set walkState to WALKING
         walkState = WalkState.WALKING;
         facing = Facing.LEFT;
         position.x -= delta * Constants.GIGAGAL_MOVE_SPEED;
     }
 
     private void moveRight(float delta) {
+        // TODO: Set walkState to WALKING
         walkState = WalkState.WALKING;
         facing = Facing.RIGHT;
         position.x += delta * Constants.GIGAGAL_MOVE_SPEED;
@@ -108,6 +112,8 @@ public class GigaGal {
     public void render(SpriteBatch batch) {
         TextureRegion region = Assets.instance.gigaGalAssets.standingRight;
 
+
+        // TODO: Select the correct sprite based on facing, jumpState, and walkState
         if (facing == Facing.RIGHT && jumpState != JumpState.GROUNDED) {
             region = Assets.instance.gigaGalAssets.jumpingRight;
         } else if (facing == Facing.RIGHT && walkState == WalkState.STANDING) {
@@ -152,6 +158,8 @@ public class GigaGal {
         RIGHT
     }
 
+
+    // TODO: Do this first!!! Add WalkState enum containing STANDING and WALKING
     enum WalkState {
         STANDING,
         WALKING
