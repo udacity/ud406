@@ -111,6 +111,7 @@ public class GigaGal {
     }
 
     private void continueJump() {
+        // TODO: First, check if we're JUMPING, if not, just return
         if (jumpState == JumpState.JUMPING) {
             // TODO: Find out how long we've been jumping
             float jumpDuration = MathUtils.nanoToSec * (TimeUtils.nanoTime() - jumpStartTime);

@@ -15,7 +15,18 @@ public class Constants {
 
     public static final Vector2 GIGAGAL_EYE_POSITION = new Vector2(16, 24);
     public static final float GIGAGAL_EYE_HEIGHT = 16.0f;
-    public static final float GIGAGAL_STANCE_WIDTH = 21.0f;
 
     public static final float GIGAGAL_MOVE_SPEED = WORLD_SIZE / 2;
+
+    // TODO: Add constant for GigaGal's jump speed
+    // Something around 250 works well.
+
+
+    // TODO: Add constant for GigaGal's max jump duration
+    // Meaning how long you can hold the jump key to continue to jump higher. 0.15 seconds works well
+
+
+    // TODO: Add constant for acceleration due to gravity
+    // Something like 1000 works well.
+
 }
