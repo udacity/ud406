@@ -1,29 +1,5 @@
-# GigaGal!
+# Jump Sprites!
 
-So here's my crack at creating a specification for what the game is going to look like.
+Here's a bit of an easier exercise after the jumping marathon. Right now GigaGal doesn't look like she's jumping, we just keep displaying the standing sprites. Let's fix that by adding the jumping-left and jumping-right sprites to our asset loading system, and then in GigaGal's render callback, let's pick the right sprite to display based on both her facing direction and jumpState!
 
-I don't think we're going to add multiple screens, nor multiple levels. The game will just consist of a single level, which the player will navigate from beginning to end.
-
-
-## Assets
-
-The game requires a number of 
-
-## The Level Loader
-
-The Level loader will load a level specified in a PNG file, with elements 
-
-## The Player
-
-GigaGal can walk left and right, and can jump. She has a three element walk loop while moving on the ground, and an alternative sprite when she's in midair. She can fire bullets, which play a three element explosion animation when they hit something.
-
-## The Bullets
-
-## The Platforms
-
-The platforms wi 
-
-
-## The enemies
-
-Enemies can be spawned on top of platforms, and will walk back and forth at a constant rate, turning around if they reach the end of a platform or run into another enemy. 
+Check out the TODOs in `Constants.java`, `Assets.java`, and `GigaGal.java`.
