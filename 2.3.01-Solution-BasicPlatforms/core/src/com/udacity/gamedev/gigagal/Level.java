@@ -10,12 +10,17 @@ import com.udacity.gamedev.gigagal.entities.Platform;
 public class Level {
 
     GigaGal gigaGal;
+
+    // TODO: Add an Array of Platforms
     Array<Platform> platforms;
 
     public Level() {
         gigaGal = new GigaGal();
+
+        // TODO: Initialize the platform array
         platforms = new Array<Platform>();
 
+        // TODO: Add a test platform
         platforms.add(new Platform(70, 30, 20, 20));
     }
 
@@ -26,6 +31,7 @@ public class Level {
     public void render(SpriteBatch batch, ShapeRenderer renderer) {
 
         renderer.begin(ShapeType.Filled);
+        // TODO: Render all platforms in the platform array
         for (Platform platform : platforms) {
             platform.render(renderer);
         }
