@@ -14,12 +14,20 @@ public class Constants {
     public static final String STANDING_LEFT = "standing-left";
     public static final String JUMPING_RIGHT = "jumping-right";
     public static final String JUMPING_LEFT = "jumping-left";
+
     public static final String WALKING_RIGHT_2 = "walk-2-right";
     public static final String WALKING_LEFT_2 = "walk-2-left";
 
+
+    // TODO: Add constants for the 4 other walking sprites
+
+
+    // TODO: Add constant for walk loop duration
+    // Something like 0.25 works well.
+
+
     public static final Vector2 GIGAGAL_EYE_POSITION = new Vector2(16, 24);
     public static final float GIGAGAL_EYE_HEIGHT = 16.0f;
-    public static final float GIGAGAL_STANCE_WIDTH = 21.0f;
 
     public static final float GIGAGAL_MOVE_SPEED = WORLD_SIZE / 2;
 

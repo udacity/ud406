@@ -51,6 +51,7 @@ public class Assets implements Disposable, AssetErrorListener {
         public final AtlasRegion jumpingLeft;
         public final AtlasRegion jumpingRight;
 
+        // TODO: Add animations for walking left and walking right
         public final Animation walkingLeftAnimation;
         public final Animation walkingRightAnimation;
 
@@ -64,13 +65,20 @@ public class Assets implements Disposable, AssetErrorListener {
             jumpingLeft = atlas.findRegion(Constants.JUMPING_LEFT);
             jumpingRight = atlas.findRegion(Constants.JUMPING_RIGHT);
 
+
+            // TODO: Create an Array of AtlasRegions to hold the walking left frames
             Array<AtlasRegion> walkingLeftFrames = new Array<AtlasRegion>();
+
+            // TODO: Add the proper frames to the array
             walkingLeftFrames.add(atlas.findRegion(Constants.WALKING_LEFT_2));
             walkingLeftFrames.add(atlas.findRegion(Constants.WALKING_LEFT_1));
             walkingLeftFrames.add(atlas.findRegion(Constants.WALKING_LEFT_2));
             walkingLeftFrames.add(atlas.findRegion(Constants.WALKING_LEFT_3));
+
+            // TODO: Create the walking left animation
             walkingLeftAnimation = new Animation(Constants.WALK_LOOP_DURATION, walkingLeftFrames, PlayMode.LOOP);
 
+            // TODO: Do the same with the walking right frames
             Array<AtlasRegion> walkingRightFrames = new Array<AtlasRegion>();
             walkingRightFrames.add(atlas.findRegion(Constants.WALKING_RIGHT_2));
             walkingRightFrames.add(atlas.findRegion(Constants.WALKING_RIGHT_1));

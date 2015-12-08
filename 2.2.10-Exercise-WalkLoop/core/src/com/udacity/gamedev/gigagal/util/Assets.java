@@ -48,6 +48,10 @@ public class Assets implements Disposable, AssetErrorListener {
         public final AtlasRegion jumpingLeft;
         public final AtlasRegion jumpingRight;
 
+        // TODO: Add animations for walking left and walking right
+
+
+
 
         public GigaGalAssets(TextureAtlas atlas) {
             standingLeft = atlas.findRegion(Constants.STANDING_LEFT);
@@ -57,6 +61,18 @@ public class Assets implements Disposable, AssetErrorListener {
 
             jumpingLeft = atlas.findRegion(Constants.JUMPING_LEFT);
             jumpingRight = atlas.findRegion(Constants.JUMPING_RIGHT);
+
+
+            // TODO: Create an Array of AtlasRegions to hold the walking left frames
+
+
+            // TODO: Add the proper frames to the array
+
+
+            // TODO: Create the walking left animation
+
+
+            // TODO: Do the same with the walking right frames
         }
     }
 }

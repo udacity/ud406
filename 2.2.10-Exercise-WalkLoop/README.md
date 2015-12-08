@@ -1,29 +1,17 @@
-# GigaGal!
+# Walk Loop
 
-So here's my crack at creating a specification for what the game is going to look like.
+Let's Give GigaGal an awesome walk animation! First we need to load up the rest of the walking sprites and package them into an Animation.
 
-I don't think we're going to add multiple screens, nor multiple levels. The game will just consist of a single level, which the player will navigate from beginning to end.
+Then we need to modify GigaGal to keep track of how long she's been walking, and finally we can fetch and render the correct frame as GigaGal walks.
 
+The only trick is figuring out how we want to structure our Animation. When GigaGal is facing right, we have a frame with GigaGal's left foot forward, a frame with both her feet together, and a frame with her right foot forward. We want to display a sequence with her feet going like: together, right, together, left, together, and so on. We could use a PINGPONG animation (right, together, left) for this, but it looks most natural for the first frame of the walk animation to be the one with GigaGal's feet together. Therefore it's actually easier to make a normal looping animation (together, right, together, left).
+ 
+Check out the TODOs to make it happen!
+ 
+As usual, the suggested order is:
 
-## Assets
-
-The game requires a number of 
-
-## The Level Loader
-
-The Level loader will load a level specified in a PNG file, with elements 
-
-## The Player
-
-GigaGal can walk left and right, and can jump. She has a three element walk loop while moving on the ground, and an alternative sprite when she's in midair. She can fire bullets, which play a three element explosion animation when they hit something.
-
-## The Bullets
-
-## The Platforms
-
-The platforms wi 
+1. `Constants.java`
+2. `Assets.java`
+3. `GigaGal.java`
 
 
-## The enemies
-
-Enemies can be spawned on top of platforms, and will walk back and forth at a constant rate, turning around if they reach the end of a platform or run into another enemy. 

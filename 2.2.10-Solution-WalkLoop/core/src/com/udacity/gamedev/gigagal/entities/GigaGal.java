@@ -22,8 +22,11 @@ public class GigaGal {
     JumpState jumpState;
     WalkState walkState;
 
-    long walkStartTime;
+
     long jumpStartTime;
+
+    // TODO: Add a walkStartTime
+    long walkStartTime;
 
     public GigaGal() {
         position = new Vector2(20, 20);
@@ -72,6 +75,7 @@ public class GigaGal {
     }
 
     private void moveLeft(float delta) {
+        // TODO: If we're GROUNDED and not WALKING, save the walkStartTime
         if (jumpState == JumpState.GROUNDED && walkState != WalkState.WALKING) {
             walkStartTime = TimeUtils.nanoTime();
         }
@@ -81,6 +85,7 @@ public class GigaGal {
     }
 
     private void moveRight(float delta) {
+        // TODO: If we're GROUNDED and not WALKING, save the walkStartTime
         if (jumpState == JumpState.GROUNDED && walkState != WalkState.WALKING) {
             walkStartTime = TimeUtils.nanoTime();
         }
@@ -120,14 +125,22 @@ public class GigaGal {
         } else if (facing == Facing.RIGHT && walkState == WalkState.STANDING) {
             region = Assets.instance.gigaGalAssets.standingRight;
         } else if (facing == Facing.RIGHT && walkState == WalkState.WALKING) {
+
+            // TODO: Calculate how long we've been walking in seconds
             float walkTimeSeconds = MathUtils.nanoToSec * (TimeUtils.nanoTime() - walkStartTime);
+
+            // TODO: Select the correct frame from the walking right animation
             region = Assets.instance.gigaGalAssets.walkingRightAnimation.getKeyFrame(walkTimeSeconds);
         } else if (facing == Facing.LEFT && jumpState != JumpState.GROUNDED) {
             region = Assets.instance.gigaGalAssets.jumpingLeft;
         } else if (facing == Facing.LEFT && walkState == WalkState.STANDING) {
             region = Assets.instance.gigaGalAssets.standingLeft;
         } else if (facing == Facing.LEFT && walkState == WalkState.WALKING) {
+
+            // TODO: Calculate how long we've been walking in seconds
             float walkTimeSeconds = MathUtils.nanoToSec * (TimeUtils.nanoTime() - walkStartTime);
+
+            // TODO: Select the correct frame from the walking left animation
             region = Assets.instance.gigaGalAssets.walkingLeftAnimation.getKeyFrame(walkTimeSeconds);
         }
 
