@@ -13,31 +13,33 @@ public class GigaGal {
     public final static String TAG = GigaGal.class.getName();
 
     Vector2 position;
-    Vector2 lastFramePosition;
-    Vector2 velocity;
 
     public GigaGal() {
         position = new Vector2(20, Constants.GIGAGAL_EYE_HEIGHT);
-        lastFramePosition = new Vector2(position);
-        velocity = new Vector2();
     }
 
     public void update(float delta) {
-        lastFramePosition.set(position);
-        position.mulAdd(velocity, delta);
+
+        // TODO: Use Gdx.input.isKeyPressed() to check if the left arrow key is pressed
+        // TODO: If so, call moveLeft()
 
         if (Gdx.input.isKeyPressed(Keys.LEFT)) {
             moveLeft(delta);
-        } else if (Gdx.input.isKeyPressed(Keys.RIGHT)) {
+        }
+
+        // TODO: Do the same with the right ArrowKey
+        if (Gdx.input.isKeyPressed(Keys.RIGHT)) {
             moveRight(delta);
         }
     }
 
     private void moveLeft(float delta) {
+        // TODO: Move GigaGal left by delta * movement speed
         position.x -= delta * Constants.GIGAGAL_MOVE_SPEED;
     }
 
     private void moveRight(float delta) {
+        // TODO: Same for moving GigaGal right
         position.x += delta * Constants.GIGAGAL_MOVE_SPEED;
     }
 
