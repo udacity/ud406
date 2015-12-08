@@ -1,29 +1,13 @@
-# GigaGal!
+# Jumping!
 
-So here's my crack at creating a specification for what the game is going to look like.
+Now that we can move, let's let GigaGal jump, and let's design her jumping system so she can vary how high she goes.
 
-I don't think we're going to add multiple screens, nor multiple levels. The game will just consist of a single level, which the player will navigate from beginning to end.
+Here's how jumping will work. GigaGal can be in one of three possible JumpStates. She can be on the ground (which we'll call GROUNDED), she can be FALLING, or she can be in the process of JUMPING.
 
+If she's GROUNDED, and the player hits the jump button, three things happen. First, we set GigaGals's JumpState to JUMPING. Second, we set GigaGal's vertical speed to some pre-definied value. Third, we save the time at which the jump starts.
 
-## Assets
+When GigaGal is in the JUMPING JumpState, every frame we check to see if the jump button is still pressed. If not, we set JumpState to FALLING. If the jump button is still pressed, we then check how long it's been since the jump started. If it's been longer than some predetermined time, the jump is over, and it's also time to set GigaGal's state to FALLING. Otherwise, we again set her vertical velocity to the same predetermined jump speed.
 
-The game requires a number of 
+Finally, when GigaGal is falling, we simply apply gravitational acceleration, and ignore the jump button.
 
-## The Level Loader
-
-The Level loader will load a level specified in a PNG file, with elements 
-
-## The Player
-
-GigaGal can walk left and right, and can jump. She has a three element walk loop while moving on the ground, and an alternative sprite when she's in midair. She can fire bullets, which play a three element explosion animation when they hit something.
-
-## The Bullets
-
-## The Platforms
-
-The platforms wi 
-
-
-## The enemies
-
-Enemies can be spawned on top of platforms, and will walk back and forth at a constant rate, turning around if they reach the end of a platform or run into another enemy. 
+Check out the TODOs to make GigaGal bouncy! Note that you'll probably want to set up the constants and JumpState enum first.
