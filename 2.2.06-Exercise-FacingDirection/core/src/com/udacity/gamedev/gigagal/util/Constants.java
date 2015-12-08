@@ -12,9 +12,12 @@ public class Constants {
 
     public static final String STANDING_RIGHT = "standing-right";
 
+    // TODO: Add a constant for the name of the standing-left sprite
+
+
     public static final Vector2 GIGAGAL_EYE_POSITION = new Vector2(16, 24);
     public static final float GIGAGAL_EYE_HEIGHT = 16.0f;
-    public static final float GIGAGAL_STANCE_WIDTH = 21.0f;
+
 
     public static final float GIGAGAL_MOVE_SPEED = WORLD_SIZE / 2;
 }
