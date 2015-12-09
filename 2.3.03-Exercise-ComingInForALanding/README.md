@@ -1,29 +1,11 @@
-# GigaGal!
+# Landing on Platforms
 
-So here's my crack at creating a specification for what the game is going to look like.
+Let's think about the logic that GigaGal will use for determining if she has landed on a particular platform. First, let's say that the area between the toes of her sprite is her "stance", and if any part of her stance is on top of a platform, she's standing on it. That means she can be standing on the tip of her toes, but still won't fall.
 
-I don't think we're going to add multiple screens, nor multiple levels. The game will just consist of a single level, which the player will navigate from beginning to end.
+So first, how to we make GigaGal switch from Falling to Grounded when her stance lands on top of a platform? And how can we also make sure that she falls off again when she walks off the edge of a platform?
 
+Here's the approach we're going to take. First, we'll need to start keeping track of GigaGal's position in the previous frame. Then, for each platform, we check if the y position of GigaGal's feet was at or above the platform's top in the previous frame, and below the platform's top this frame. If so, we know we may have landed on the platform. However, that'll be true even if the platform whose top we fell past is way off on the other side of the level.
 
-## Assets
+Next we need to check if GigaGal's stance intersects with the horizontal reach of the platform she fell past. There are three cases where this is so. Either her left toe is on the platform, and/or her right toe in on the platform, or she's straddling the platform. We can check each of those cases with a couple inequalities. If one or more of those cases is true, we've landed on the platform!
 
-The game requires a number of 
-
-## The Level Loader
-
-The Level loader will load a level specified in a PNG file, with elements 
-
-## The Player
-
-GigaGal can walk left and right, and can jump. She has a three element walk loop while moving on the ground, and an alternative sprite when she's in midair. She can fire bullets, which play a three element explosion animation when they hit something.
-
-## The Bullets
-
-## The Platforms
-
-The platforms wi 
-
-
-## The enemies
-
-Enemies can be spawned on top of platforms, and will walk back and forth at a constant rate, turning around if they reach the end of a platform or run into another enemy. 
+Check out the TODOs to get GigaGal jumping on top of stuff! Remember to set your constants first!

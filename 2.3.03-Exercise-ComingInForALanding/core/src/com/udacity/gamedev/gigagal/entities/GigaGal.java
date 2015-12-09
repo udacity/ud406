@@ -6,16 +6,36 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.udacity.gamedev.gigagal.util.Assets;
 import com.udacity.gamedev.gigagal.util.Constants;
+
+enum JumpState {
+    JUMPING,
+    FALLING,
+    GROUNDED
+}
+
+enum Facing {
+    LEFT,
+    RIGHT
+}
+
+enum WalkState {
+    STANDING,
+    WALKING
+}
 
 public class GigaGal {
 
     public final static String TAG = GigaGal.class.getName();
 
     Vector2 position;
-    Vector2 lastFramePosition;
+
+    // TODO: Add Vector2 to hold GigaGal's postion last frame
+
+
     Vector2 velocity;
 
     Facing facing;
@@ -27,15 +47,22 @@ public class GigaGal {
 
     public GigaGal() {
         position = new Vector2(20, 20);
-        lastFramePosition = new Vector2(position);
+
+        // TODO: Initialize a new Vector2 for lastFramePosition
+
+
         velocity = new Vector2();
         jumpState = JumpState.FALLING;
         facing = Facing.RIGHT;
         walkState = WalkState.STANDING;
     }
 
-    public void update(float delta) {
-        lastFramePosition.set(position);
+    // Note that we're now passing in the platform array to GigaGal's update method
+    public void update(float delta, Array<Platform> platforms) {
+        // TODO: Update lastFramePosition
+        // You'll want to use Vector2.set()
+
+
         velocity.y -= Constants.GRAVITY;
         position.mulAdd(velocity, delta);
 
@@ -47,6 +74,18 @@ public class GigaGal {
                 position.y = Constants.GIGAGAL_EYE_HEIGHT;
                 velocity.y = 0;
             }
+
+            // TODO: For each platform, call landedOnPlatform()
+
+
+            // TODO: If true, set jumpState to GROUNDED
+
+
+            // TODO: Zero vertical velocity
+
+
+            // TODO: Make sure GigaGal's feet aren't sticking into the platform
+
 
         }
 
@@ -71,6 +110,26 @@ public class GigaGal {
         }
     }
 
+
+    boolean landedOnPlatform(Platform platform) {
+
+        // TODO: First check if GigaGal's feet were above the platform top last frame and below the platform top this frame
+
+
+        // TODO: If so, find the position of GigaGal's left and right toes
+
+
+        // TODO: See if either of GigaGal's toes are on the platform
+
+
+        // TODO: See if GigaGal is straddling the platform
+
+
+        // TODO: Return whether or not GigaGal had landed on the platform
+        return false;
+    }
+
+
     private void moveLeft(float delta) {
         if (jumpState == JumpState.GROUNDED && walkState != WalkState.WALKING) {
             walkStartTime = TimeUtils.nanoTime();
@@ -80,6 +139,7 @@ public class GigaGal {
         position.x -= delta * Constants.GIGAGAL_MOVE_SPEED;
     }
 
+
     private void moveRight(float delta) {
         if (jumpState == JumpState.GROUNDED && walkState != WalkState.WALKING) {
             walkStartTime = TimeUtils.nanoTime();
@@ -88,6 +148,7 @@ public class GigaGal {
         facing = Facing.RIGHT;
         position.x += delta * Constants.GIGAGAL_MOVE_SPEED;
     }
+
 
     private void startJump() {
         jumpState = JumpState.JUMPING;
@@ -148,21 +209,5 @@ public class GigaGal {
                 region.getRegionHeight(),
                 false,
                 false);
-    }
-
-    enum JumpState {
-        JUMPING,
-        FALLING,
-        GROUNDED
-    }
-
-    enum Facing {
-        LEFT,
-        RIGHT
-    }
-
-    enum WalkState {
-        STANDING,
-        WALKING
     }
 }
