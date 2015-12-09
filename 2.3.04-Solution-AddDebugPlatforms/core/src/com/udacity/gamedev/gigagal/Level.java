@@ -29,10 +29,14 @@ public class Level {
         batch.end();
     }
 
+    /**
+     * TODO: Add more platforms to create a fun jumping challenge!
+     *
+     * Note that you'll want to add the platforms in the order you want them drawn. That'll
+     * generally mean you want the platforms at the top of the screen to be rendered before the ones
+     * lower down.
+     */
     private void addDebugPlatforms() {
-        platforms.add(new Platform(15, 100, 30, 20));
-        platforms.add(new Platform(75, 90, 100, 65));
-        platforms.add(new Platform(35, 55, 50, 20));
         platforms.add(new Platform(10, 20, 20, 9));
     }
 }
