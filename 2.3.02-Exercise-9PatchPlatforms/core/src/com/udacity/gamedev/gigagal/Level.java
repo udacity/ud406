@@ -1,8 +1,6 @@
 package com.udacity.gamedev.gigagal;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.utils.Array;
 import com.udacity.gamedev.gigagal.entities.GigaGal;
 import com.udacity.gamedev.gigagal.entities.Platform;
@@ -23,15 +21,11 @@ public class Level {
         gigaGal.update(delta);
     }
 
-    public void render(SpriteBatch batch, ShapeRenderer renderer) {
-
-        renderer.begin(ShapeType.Filled);
-        for (Platform platform : platforms) {
-            platform.render(renderer);
-        }
-        renderer.end();
-
+    public void render(SpriteBatch batch) {
         batch.begin();
+        for (Platform platform : platforms) {
+            platform.render(batch);
+        }
         gigaGal.render(batch);
         batch.end();
     }

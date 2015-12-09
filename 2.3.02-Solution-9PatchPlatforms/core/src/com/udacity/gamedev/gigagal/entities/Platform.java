@@ -20,6 +20,8 @@ public class Platform {
     public void render(SpriteBatch batch) {
         float width = right - left;
         float height = top - bottom;
+
+        // TODO: Draw the platform using the NinePatch
         Assets.instance.platformAssets.platformNinePatch.draw(batch, left - 1, bottom - 1, width + 2, height + 2);
     }
 

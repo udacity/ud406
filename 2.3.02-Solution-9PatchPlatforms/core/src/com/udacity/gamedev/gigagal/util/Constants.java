@@ -24,12 +24,17 @@ public class Constants {
 
     public static final float WALK_LOOP_DURATION = 0.25f;
 
+
+    // TODO: Add String constant for the name of the platform sprite
     public static final String PLATFORM_SPRITE = "platform";
+
+    // TODO: Add a constant holding the size of the stretchable edges in the platform 9 patch
+    // (8 pixels)
     public static final int PLATFORM_EDGE = 8;
 
     public static final Vector2 GIGAGAL_EYE_POSITION = new Vector2(16, 24);
     public static final float GIGAGAL_EYE_HEIGHT = 16.0f;
-    public static final float GIGAGAL_STANCE_WIDTH = 21.0f;
+
 
     public static final float GIGAGAL_MOVE_SPEED = WORLD_SIZE / 2;
 

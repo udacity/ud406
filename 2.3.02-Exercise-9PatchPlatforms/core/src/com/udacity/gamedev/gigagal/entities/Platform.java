@@ -1,7 +1,6 @@
 package com.udacity.gamedev.gigagal.entities;
 
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class Platform {
 
@@ -17,12 +16,11 @@ public class Platform {
         this.right = left + width;
     }
 
-    public void render(ShapeRenderer renderer) {
+    public void render(SpriteBatch batch) {
         float width = right - left;
         float height = top - bottom;
 
-        renderer.setColor(Color.BLUE);
-        renderer.rect(left, bottom, width, height);
+        // TODO: Draw the platform using the NinePatch
 
     }
 

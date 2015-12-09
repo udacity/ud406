@@ -17,6 +17,10 @@ public class Assets implements Disposable, AssetErrorListener {
     public static final String TAG = Assets.class.getName();
     public static final Assets instance = new Assets();
     public GigaGalAssets gigaGalAssets;
+
+    // TODO: Add a PlatformAssets member
+
+
     private AssetManager assetManager;
 
     private Assets() {
@@ -30,6 +34,9 @@ public class Assets implements Disposable, AssetErrorListener {
 
         TextureAtlas atlas = assetManager.get(Constants.TEXTURE_ATLAS);
         gigaGalAssets = new GigaGalAssets(atlas);
+
+        // TODO: Initialize platformAssets, passing in the atlas
+
     }
 
     @Override
@@ -77,6 +84,22 @@ public class Assets implements Disposable, AssetErrorListener {
             walkingRightFrames.add(atlas.findRegion(Constants.WALKING_RIGHT_2));
             walkingRightFrames.add(atlas.findRegion(Constants.WALKING_RIGHT_3));
             walkingRightAnimation = new Animation(Constants.WALK_LOOP_DURATION, walkingRightFrames, PlayMode.LOOP);
+        }
+    }
+
+    public class PlatformAssets {
+
+        // TODO: Add a NinePatch member
+
+
+        public PlatformAssets(TextureAtlas atlas) {
+
+            // TODO: Find the AtlasRegion holding the platform
+
+
+            // TODO: Turn that AtlasRegion into a NinePatch using the edge constant you defined
+
+
         }
     }
 }
