@@ -9,20 +9,15 @@ import com.udacity.gamedev.gigagal.util.Utils;
 
 public class Explosion {
 
+    private final Vector2 position;
+    private final long startTime;
 
-    Vector2 position;
-
-    long startTime;
-
-    public Explosion(Vector2 position){
+    public Explosion(Vector2 position) {
         this.position = position;
         startTime = TimeUtils.nanoTime();
-
-
     }
 
-    public void render(SpriteBatch batch){
-
+    public void render(SpriteBatch batch) {
         Utils.drawTextureRegion(
                 batch,
                 Assets.instance.explosionAssets.explosion.getKeyFrame(Utils.secondsSince(startTime)),
@@ -31,14 +26,8 @@ public class Explosion {
         );
     }
 
-    public boolean isFinished(){
+    public boolean isFinished() {
         float elapsedTime = Utils.secondsSince(startTime);
         return Assets.instance.explosionAssets.explosion.isAnimationFinished(elapsedTime);
     }
-
-
-
-
-
-
 }

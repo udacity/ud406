@@ -14,12 +14,14 @@ import com.udacity.gamedev.gigagal.util.Enums.Direction;
 
 public class Level {
 
+    public static final String TAG = Level.class.getName();
+
     public Viewport viewport;
     public DelayedRemovalArray<Enemy> enemies;
-    GigaGal gigaGal;
-    Array<Platform> platforms;
-    DelayedRemovalArray<Bullet> bullets;
-    DelayedRemovalArray<Explosion> explosions;
+    public GigaGal gigaGal;
+    public Array<Platform> platforms;
+    public DelayedRemovalArray<Bullet> bullets;
+    public DelayedRemovalArray<Explosion> explosions;
 
     public Level(Viewport viewport) {
         this.viewport = viewport;
@@ -36,10 +38,12 @@ public class Level {
     }
 
     public void update(float delta) {
+
+        // Update GigaGal
         gigaGal.update(delta, platforms);
 
-        // Update Bullets
 
+        // Update Bullets
         bullets.begin();
         for (Bullet bullet : bullets) {
             bullet.update(delta);
@@ -50,7 +54,6 @@ public class Level {
         bullets.end();
 
         // Update Enemies
-
         enemies.begin();
         for (int i = 0; i < enemies.size; i++) {
             Enemy enemy = enemies.get(i);
@@ -61,8 +64,8 @@ public class Level {
             }
         }
         enemies.end();
-        // Update Explosions
 
+        // Update Explosions
         explosions.begin();
         for (int i = 0; i < explosions.size; i++) {
             if (explosions.get(i).isFinished()) {

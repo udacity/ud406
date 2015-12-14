@@ -5,7 +5,6 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.udacity.gamedev.gigagal.util.Assets;
 import com.udacity.gamedev.gigagal.util.ChaseCam;
@@ -30,7 +29,7 @@ public class GameplayScreen extends ScreenAdapter {
         viewport = new ExtendViewport(Constants.WORLD_SIZE, Constants.WORLD_SIZE);
 
         level = new Level(viewport);
-        chaseCam = new ChaseCam(viewport.getCamera(), new Rectangle(), level.gigaGal);
+        chaseCam = new ChaseCam(viewport.getCamera(), level.gigaGal);
     }
 
     @Override
@@ -57,5 +56,9 @@ public class GameplayScreen extends ScreenAdapter {
 
         batch.setProjectionMatrix(viewport.getCamera().combined);
         level.render(batch);
+    }
+
+    public void levelComplete(){
+
     }
 }
