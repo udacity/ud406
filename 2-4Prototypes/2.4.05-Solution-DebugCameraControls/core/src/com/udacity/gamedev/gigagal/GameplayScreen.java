@@ -19,7 +19,6 @@ public class GameplayScreen extends ScreenAdapter {
     SpriteBatch batch;
     ExtendViewport viewport;
 
-    // TODO: Add a ChaseCam
     private ChaseCam chaseCam;
 
     @Override
@@ -29,8 +28,6 @@ public class GameplayScreen extends ScreenAdapter {
         level = new Level();
         batch = new SpriteBatch();
         viewport = new ExtendViewport(Constants.WORLD_SIZE, Constants.WORLD_SIZE);
-
-        // TODO: Initialize chaseCam, getting the Camera from the Viewport and GigaGal from the Level
         chaseCam = new ChaseCam(viewport.getCamera(), level.gigaGal);
     }
 
@@ -48,7 +45,7 @@ public class GameplayScreen extends ScreenAdapter {
     public void render(float delta) {
         level.update(delta);
 
-        // TODO: Update the ChaseCam
+        // TODO: Make sure that the camera update call is getting the delta time
         chaseCam.update(delta);
 
         viewport.apply();

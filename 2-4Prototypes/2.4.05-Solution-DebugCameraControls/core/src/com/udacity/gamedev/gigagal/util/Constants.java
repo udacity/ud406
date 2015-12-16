@@ -40,5 +40,6 @@ public class Constants {
 
     public static final float GRAVITY = WORLD_SIZE / 10;
 
+    // TODO: Add a chase cam move speed constant
     public static final float CHASE_CAM_MOVE_SPEED = 128;
 }
