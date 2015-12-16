@@ -67,4 +67,10 @@ public class Constants {
     public static final int ENEMY_HEALTH = 5;
     public static final float ENEMY_RADIUS = 15;
 
+    public static final String POWERUP_SPRITE = "powerup";
+    public static final Vector2 POWERUP_CENTER = new Vector2(7, 5);
+
+    public static final String EXIT_PORTAL_SPRITE = "exit-portal";
+    public static final Vector2 EXIT_PORTAL_CENTER = new Vector2(31, 31);
+
 }

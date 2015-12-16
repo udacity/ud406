@@ -6,17 +6,10 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.TimeUtils;
 
-/**
- * Created by silver on 12/1/15.
- */
 public class Utils {
 
-
     public static void drawTextureRegion(SpriteBatch batch, TextureRegion region, Vector2 position, Vector2 offset) {
-
         drawTextureRegion(batch, region, position.x - offset.x, position.y - offset.y);
-
-
     }
 
     public static void drawTextureRegion(SpriteBatch batch, TextureRegion region, float x, float y) {
