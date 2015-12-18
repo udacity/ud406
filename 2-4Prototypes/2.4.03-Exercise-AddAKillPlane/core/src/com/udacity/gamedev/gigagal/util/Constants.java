@@ -10,7 +10,7 @@ public class Constants {
     public static final float WORLD_SIZE = 128;
 
     // TODO: Set the height of the kill plane. Something like -100 works fine.
-    public static final float KILL_PLANE = -100;
+
     public static final String TEXTURE_ATLAS = "images/gigagal.pack.atlas";
 
     public static final String STANDING_RIGHT = "standing-right";
