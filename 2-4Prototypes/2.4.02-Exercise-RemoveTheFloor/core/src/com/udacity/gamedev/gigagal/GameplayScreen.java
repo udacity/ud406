@@ -18,7 +18,6 @@ public class GameplayScreen extends ScreenAdapter {
     Level level;
     SpriteBatch batch;
     ExtendViewport viewport;
-
     private ChaseCam chaseCam;
 
     @Override
