@@ -31,21 +31,31 @@ public class ChaseCam {
             following = ! following;
         }
 
-        // TODO: If following, update the camera's position to match the target
-        // TODO: If not following
         if (following) {
+
+            // TODO: If following, update the camera's position to match the target
             camera.position.x = target.position.x;
             camera.position.y = target.position.y;
         } else {
+
+            // TODO: If not following, check if Gdx.input.isKeyPressed(Keys.A)
             if (Gdx.input.isKeyPressed(Keys.A)) {
+
+                // TODO: If so, move the camera in the -x direction by delta * camera move speed
                 camera.position.x -= delta * Constants.CHASE_CAM_MOVE_SPEED;
             }
+
+            // TODO: Move the camera right if D is pressed
             if (Gdx.input.isKeyPressed(Keys.D)) {
                 camera.position.x += delta * Constants.CHASE_CAM_MOVE_SPEED;
             }
+
+            // TODO: Move the camera up if W is pressed
             if (Gdx.input.isKeyPressed(Keys.W)) {
                 camera.position.y += delta * Constants.CHASE_CAM_MOVE_SPEED;
             }
+
+            // TODO: Move the camera down if S is pressed
             if (Gdx.input.isKeyPressed(Keys.S)) {
                 camera.position.y -= delta * Constants.CHASE_CAM_MOVE_SPEED;
             }

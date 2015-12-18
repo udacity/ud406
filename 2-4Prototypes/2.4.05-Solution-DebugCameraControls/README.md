@@ -1,4 +1,8 @@
-# Add Debug Platforms
+# Add Debug Camera Controls
 
-After the challenge of letting GigaGal land on platforms, it's time to give GigaGal something more interesting to jump on. Follow the TODOs to add more platforms to the game and create your own jumping challenge!
+So now we can build levels that are as large as we want, but it's a bit of a pain that if we want to check out the bits of the level that are far away from GigaGal's spawn point, we need to actually walk GigaGal over there.
+
+Let's fix that by adding some debug camera controls to allow the camera to move independently of GigaGal.
+
+Check out the TODOs in the course code to add debug camera controls!
 
