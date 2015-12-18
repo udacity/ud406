@@ -35,6 +35,7 @@ public class Level {
         platforms.add(new Platform(35, 55, 50, 20));
         platforms.add(new Platform(10, 20, 20, 9));
 
+        // TODO: Make sure GigaGal spawns on a platform
         gigaGal = new GigaGal(new Vector2(15, 40));
 
     }
