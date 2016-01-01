@@ -48,7 +48,7 @@ public class Animations extends ApplicationAdapter {
         // TODO: Add walk-2-right.png to walkLoopTextures
 
 
-        // TODO: Add walk-2-right.png to walkLoopTextures
+        // TODO: Add walk-3-right.png to walkLoopTextures
 
 
         // TODO: Initialize walkLoop with a new animation in LOOP_PINGPONG mode
