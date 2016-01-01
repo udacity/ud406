@@ -82,7 +82,7 @@ public class Animations extends ApplicationAdapter {
         // TODO: Compute the elapsed time in seconds since startTime
         float elapsedTime = MathUtils.nanoToSec * (TimeUtils.nanoTime() - startTime);
 
-        // TODO: User getKeyFrame() to get the right frame from the walk loop
+        // TODO: Use getKeyFrame() to get the right frame from the walk loop
         TextureRegion walkLoopTexture = walkLoop.getKeyFrame(elapsedTime);
 
         drawRegionCentered(
