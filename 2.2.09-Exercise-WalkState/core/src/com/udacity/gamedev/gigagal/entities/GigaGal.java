@@ -156,8 +156,5 @@ public class GigaGal {
 
 
     // TODO: Do this first!!! Add WalkState enum containing STANDING and WALKING
-    enum WalkState {
-        STANDING,
-        WALKING
-    }
+
 }
