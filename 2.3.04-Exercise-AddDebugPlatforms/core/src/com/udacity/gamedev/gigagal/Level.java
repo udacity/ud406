@@ -37,9 +37,6 @@ public class Level {
      * lower down.
      */
     private void addDebugPlatforms() {
-        platforms.add(new Platform(15, 100, 30, 20));
-        platforms.add(new Platform(75, 90, 100, 65));
-        platforms.add(new Platform(35, 55, 50, 20));
-        platforms.add(new Platform(10, 20, 20, 9));
+       
     }
 }
