@@ -3,8 +3,6 @@ package com.udacity.gamedev.ninepatch;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
@@ -19,10 +17,8 @@ public class NinePatchDemo extends ApplicationAdapter {
     FitViewport viewport;
 
     // TODO: Add a Texture for the raw platform image
-    Texture platformTexture;
 
     // TODO: Add a NinePatch
-    NinePatch platformNinePatch;
 
     @Override
     public void create() {
