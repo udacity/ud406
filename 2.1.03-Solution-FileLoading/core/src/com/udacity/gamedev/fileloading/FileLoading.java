@@ -1,5 +1,6 @@
 package com.udacity.gamedev.fileloading;
 
+import com.badlogic.gdx.Application.ApplicationType;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
@@ -29,6 +30,9 @@ public class FileLoading extends ApplicationAdapter {
             Cipher cipher = Cipher.getInstance("AES");
             cipher.init(Cipher.ENCRYPT_MODE, key);
             byte[] encryptedBytes = cipher.doFinal(message.getBytes());
+            if (Gdx.app.getType() == ApplicationType.Android){
+                throw new Exception("This demo works only with the desktop backend");
+            }
             return Base64.encodeBase64String(encryptedBytes);
         } catch (Exception e) {
             Gdx.app.error(TAG, "Couldn't encrypt message: " + message, e);
@@ -40,6 +44,9 @@ public class FileLoading extends ApplicationAdapter {
         try {
             Cipher cipher = Cipher.getInstance("AES");
             cipher.init(Cipher.DECRYPT_MODE, key);
+            if (Gdx.app.getType() == ApplicationType.Android){
+                throw new Exception("This demo works only with the desktop backend");
+            }
             byte[] encryptedBytes = Base64.decodeBase64(encrypted);
             return new String(cipher.doFinal(encryptedBytes));
         } catch (Exception e) {

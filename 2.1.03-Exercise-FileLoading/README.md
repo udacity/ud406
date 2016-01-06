@@ -8,6 +8,6 @@ For more information on file handling in LibGDX, check out [this page](https://g
 
 # File Loading Exercise
 
-If you look in the "android/assets" directory you'll find the punchline to a hilarious joke. Unfortunately, it's encrypted, so I guess you'll have to use Gdx.files to read it in to a String, decrypt it, and use Gdx.app to log it.
+If you look in the "android/assets" directory you'll find the punchline to a hilarious joke. Unfortunately, it's encrypted, so I guess you'll have to use Gdx.files to read it in to a String, decrypt it, and use Gdx.app to log it. Note that this exercise only works on the Desktop backend.
 
 Check out the TODOs to get started!
