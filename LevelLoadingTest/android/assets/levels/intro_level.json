@@ -1,0 +1,116 @@
+{
+  "sceneName": "MainScene",
+  "composite": {
+    "sImages": [
+      {
+        "uniqueId": 3,
+        "tags": [],
+        "y": 0.34999996,
+        "scaleY": 0.25,
+        "originX": 0.3625,
+        "originY": 0.3625,
+        "layerName": "Default",
+        "imageName": "platform"
+      },
+      {
+        "uniqueId": 5,
+        "tags": [],
+        "x": 1.0249991,
+        "y": 0.5125,
+        "scaleY": 0.25,
+        "originX": 0.3625,
+        "originY": 0.3625,
+        "zIndex": 1,
+        "layerName": "Default",
+        "imageName": "platform"
+      },
+      {
+        "uniqueId": 6,
+        "tags": [],
+        "x": 2.0874994,
+        "y": 0.875,
+        "scaleY": 0.25,
+        "originX": 0.3625,
+        "originY": 0.3625,
+        "zIndex": 2,
+        "layerName": "Default",
+        "imageName": "platform"
+      },
+      {
+        "uniqueId": 7,
+        "tags": [],
+        "x": 3.1749997,
+        "y": 1.1625,
+        "scaleY": 0.25,
+        "originX": 0.3625,
+        "originY": 0.3625,
+        "zIndex": 3,
+        "layerName": "Default",
+        "imageName": "platform"
+      },
+      {
+        "uniqueId": 8,
+        "tags": [],
+        "x": 4.2125,
+        "y": 1.4625001,
+        "originX": 0.3625,
+        "originY": 0.3625,
+        "zIndex": 4,
+        "layerName": "Default",
+        "imageName": "platform"
+      },
+      {
+        "uniqueId": 9,
+        "tags": [],
+        "x": 4.575,
+        "y": 1.85,
+        "originX": 0.3625,
+        "originY": 0.3625,
+        "zIndex": 5,
+        "layerName": "Default",
+        "imageName": "platform"
+      },
+      {
+        "uniqueId": 10,
+        "tags": [],
+        "x": 5.5125,
+        "y": 1.8000001,
+        "scaleY": 0.5,
+        "originX": 0.3625,
+        "originY": 0.3625,
+        "zIndex": 6,
+        "layerName": "Default",
+        "imageName": "platform"
+      },
+      {
+        "uniqueId": 11,
+        "tags": [],
+        "x": 2.0249999,
+        "y": 2.8125,
+        "originX": 0.3625,
+        "originY": 0.3625,
+        "zIndex": 7,
+        "layerName": "Default",
+        "imageName": "platform"
+      },
+      {
+        "uniqueId": 12,
+        "tags": [],
+        "x": 3.1375,
+        "y": 2.65,
+        "originX": 0.3625,
+        "originY": 0.3625,
+        "zIndex": 8,
+        "layerName": "Default",
+        "imageName": "platform"
+      }
+    ],
+    "layers": [
+      {
+        "layerName": "Default",
+        "isVisible": true
+      }
+    ]
+  },
+  "physicsPropertiesVO": {}
+}
