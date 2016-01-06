@@ -232,7 +232,7 @@ public class GigaGal {
         if (direction == Direction.LEFT) {
             velocity.x = -Constants.KNOCKBACK_VELOCITY.x;
         } else {
-            velocity.x = Constants.KNOCKBACK_VELOCITY.y;
+            velocity.x = Constants.KNOCKBACK_VELOCITY.x;
         }
     }
 

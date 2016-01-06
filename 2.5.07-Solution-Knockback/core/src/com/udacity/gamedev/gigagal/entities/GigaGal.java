@@ -212,7 +212,7 @@ public class GigaGal {
         if (direction == Direction.LEFT) {
             velocity.x = -Constants.KNOCKBACK_VELOCITY.x;
         } else {
-            velocity.x = Constants.KNOCKBACK_VELOCITY.y;
+            velocity.x = Constants.KNOCKBACK_VELOCITY.x;
         }
     }
 
@@ -235,11 +235,8 @@ public class GigaGal {
             region = Assets.instance.gigaGalAssets.walkingLeftAnimation.getKeyFrame(walkTimeSeconds);
         }
 
-
         Utils.drawTextureRegion(batch, region, position, Constants.GIGAGAL_EYE_POSITION
 
         );
-
     }
-
 }
