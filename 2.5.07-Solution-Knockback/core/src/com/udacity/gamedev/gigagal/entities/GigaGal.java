@@ -94,7 +94,7 @@ public class GigaGal {
                 Constants.GIGAGAL_STANCE_WIDTH,
                 Constants.GIGAGAL_HEIGHT);
 
-        for (Enemy enemy : level.getEnemies()) {
+        for (Enemy enemy : level.enemies) {
             Rectangle enemyBounds = new Rectangle(
                     enemy.position.x - Constants.ENEMY_COLLISION_RADIUS,
                     enemy.position.y - Constants.ENEMY_COLLISION_RADIUS,
@@ -139,26 +139,6 @@ public class GigaGal {
             endJump();
         }
 
-        // Shoot
-
-        if (Gdx.input.isKeyJustPressed(Keys.X)) {
-
-            Vector2 bulletPosition;
-
-            if (facing == Direction.RIGHT) {
-                bulletPosition = new Vector2(
-                        position.x + Constants.GIGAGAL_CANNON_OFFSET.x,
-                        position.y + Constants.GIGAGAL_CANNON_OFFSET.y
-                );
-            } else {
-                bulletPosition = new Vector2(
-                        position.x - Constants.GIGAGAL_CANNON_OFFSET.x,
-                        position.y + Constants.GIGAGAL_CANNON_OFFSET.y
-                );
-            }
-
-            level.spawnBullet(bulletPosition, facing);
-        }
 
     }
 
@@ -255,13 +235,8 @@ public class GigaGal {
             region = Assets.instance.gigaGalAssets.walkingLeftAnimation.getKeyFrame(walkTimeSeconds);
         }
 
-        batch.setColor(1, 1, 1, 0.5f);
-        Utils.drawTextureRegion(batch, region,
-                position.x - Constants.GIGAGAL_EYE_POSITION.x,
-                position.y - Constants.GIGAGAL_EYE_POSITION.y
+        Utils.drawTextureRegion(batch, region, position, Constants.GIGAGAL_EYE_POSITION
+
         );
-
-        batch.setColor(1, 1, 1, 1);
     }
-
 }

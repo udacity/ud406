@@ -33,8 +33,13 @@ public class Bullet {
                 break;
         }
 
+<<<<<<< HEAD
         for (Enemy enemy : level.getEnemies()) {
             if (position.dst(enemy.position) < Constants.ENEMY_RADIUS) {
+=======
+        for (Enemy enemy : level.enemies) {
+            if (position.dst(enemy.position) < Constants.ENEMY_SHOT_RADIUS) {
+>>>>>>> origin/master
                 level.spawnExplosion(position);
                 active = false;
                 enemy.health -= 1;
