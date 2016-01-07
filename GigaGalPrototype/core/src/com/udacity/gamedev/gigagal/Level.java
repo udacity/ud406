@@ -13,30 +13,38 @@ import com.udacity.gamedev.gigagal.entities.GigaGal;
 import com.udacity.gamedev.gigagal.entities.Platform;
 import com.udacity.gamedev.gigagal.entities.Powerup;
 import com.udacity.gamedev.gigagal.util.Enums.Direction;
+import com.udacity.gamedev.gigagal.util.LevelLoader;
 
 public class Level {
 
     public static final String TAG = Level.class.getName();
 
-    public Viewport viewport;
+    private Viewport viewport;
 
-    public GigaGal gigaGal;
-    public ExitPortal exitPortal;
-    public Array<Platform> platforms;
-    public DelayedRemovalArray<Enemy> enemies;
-    public DelayedRemovalArray<Bullet> bullets;
-    public DelayedRemovalArray<Explosion> explosions;
-    public DelayedRemovalArray<Powerup> powerups;
+    private GigaGal gigaGal;
+    private ExitPortal exitPortal;
+    private Array<Platform> platforms;
+    private DelayedRemovalArray<Enemy> enemies;
+    private DelayedRemovalArray<Bullet> bullets;
+    private DelayedRemovalArray<Explosion> explosions;
+    private DelayedRemovalArray<Powerup> powerups;
 
-    public Level(Viewport viewport, String levelFileName) {
+    public Level() {
+        gigaGal = new GigaGal(new Vector2(50,50), this);
+        platforms = new Array<Platform>();
+        enemies = new DelayedRemovalArray<Enemy>();
+        bullets = new DelayedRemovalArray<Bullet>();
+        explosions = new DelayedRemovalArray<Explosion>();
+        powerups = new DelayedRemovalArray<Powerup>();
+        exitPortal = new ExitPortal(new Vector2(200,200));
+    }
 
+    public Level(Viewport viewport) {
+        this();
         this.viewport = viewport;
 
-        if (!levelFileName.isEmpty()) {
-            loadLevel(levelFileName);
-        } else {
-            initializeDebugLevel();
-        }
+        initializeDebugLevel();
+
     }
 
     public Array<Bullet> getBullets() {
@@ -138,10 +146,33 @@ public class Level {
 
     }
 
-    private void loadLevel(String fileName) {
-        // TODO: Add level loading
+    public Array<Platform> getPlatforms() {
+        return platforms;
     }
 
+    public DelayedRemovalArray<Enemy> getEnemies() {
+        return enemies;
+    }
+
+    public DelayedRemovalArray<Powerup> getPowerups() {
+        return powerups;
+    }
+
+    public ExitPortal getExitPortal() {
+        return exitPortal;
+    }
+
+    public Viewport getViewport() {
+        return viewport;
+    }
+
+    public void setViewport(Viewport viewport) {
+        this.viewport = viewport;
+    }
+
+    public GigaGal getGigaGal() {
+        return gigaGal;
+    }
 
     public void spawnBullet(Vector2 position, Direction direction) {
         bullets.add(new Bullet(this, position, direction));

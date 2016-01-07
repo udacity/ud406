@@ -33,7 +33,7 @@ public class Bullet {
                 break;
         }
 
-        for (Enemy enemy : level.enemies) {
+        for (Enemy enemy : level.getEnemies()) {
             if (position.dst(enemy.position) < Constants.ENEMY_RADIUS) {
                 level.spawnExplosion(position);
                 active = false;
@@ -41,8 +41,8 @@ public class Bullet {
             }
         }
 
-        final float worldWidth = level.viewport.getWorldWidth();
-        final float cameraX = level.viewport.getCamera().position.x;
+        final float worldWidth = level.getViewport().getWorldWidth();
+        final float cameraX = level.getViewport().getCamera().position.x;
 
         if (position.x < cameraX - worldWidth / 2 || position.x > cameraX + worldWidth / 2) {
             active = false;

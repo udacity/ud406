@@ -9,6 +9,8 @@ public class Platform {
     float bottom;
     float left;
     float right;
+    // This is used by the level loading code to link enemies and platforms.
+    String identifier;
 
     public Platform(float left, float top, float width, float height) {
         this.top = top;
@@ -23,4 +25,11 @@ public class Platform {
         Assets.instance.platformAssets.platformNinePatch.draw(batch, left - 1, bottom - 1, width + 2, height + 2);
     }
 
+    public String getIdentifier() {
+        return identifier;
+    }
+
+    public void setIdentifier(String identifier) {
+        this.identifier = identifier;
+    }
 }

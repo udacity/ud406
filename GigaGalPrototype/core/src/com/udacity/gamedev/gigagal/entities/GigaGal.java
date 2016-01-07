@@ -94,7 +94,7 @@ public class GigaGal {
                 Constants.GIGAGAL_STANCE_WIDTH,
                 Constants.GIGAGAL_HEIGHT);
 
-        for (Enemy enemy : level.enemies) {
+        for (Enemy enemy : level.getEnemies()) {
             Rectangle enemyBounds = new Rectangle(
                     enemy.position.x - Constants.ENEMY_RADIUS,
                     enemy.position.y - Constants.ENEMY_RADIUS,
