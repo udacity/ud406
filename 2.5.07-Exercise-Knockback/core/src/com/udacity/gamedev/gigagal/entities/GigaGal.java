@@ -44,7 +44,6 @@ public class GigaGal {
         init();
     }
 
-
     public void init() {
         position.set(spawnLocation);
         lastFramePosition.set(spawnLocation);
@@ -102,13 +101,6 @@ public class GigaGal {
                     2 * Constants.ENEMY_COLLISION_RADIUS
             );
             if (gigaGalBounds.overlaps(enemyBounds)) {
-
-                if (position.x < enemy.position.x) {
-                    recoilFromEnemy(Direction.LEFT);
-                } else {
-                    recoilFromEnemy(Direction.RIGHT);
-                }
-
                 Gdx.app.log(TAG, "Hit by enemy");
             }
         }
@@ -206,14 +198,8 @@ public class GigaGal {
 
     private void recoilFromEnemy(Direction direction) {
 
-        jumpState = JumpState.FALLING;
-        velocity.y = Constants.KNOCKBACK_VELOCITY.y;
 
-        if (direction == Direction.LEFT) {
-            velocity.x = -Constants.KNOCKBACK_VELOCITY.x;
-        } else {
-            velocity.x = Constants.KNOCKBACK_VELOCITY.x;
-        }
+
     }
 
     public void render(SpriteBatch batch) {
