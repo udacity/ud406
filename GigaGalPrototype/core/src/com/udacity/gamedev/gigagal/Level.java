@@ -158,6 +158,10 @@ public class Level {
         return powerups;
     }
 
+    public void setExitPortal(ExitPortal exitPortal) {
+        this.exitPortal = exitPortal;
+    }
+
     public ExitPortal getExitPortal() {
         return exitPortal;
     }
@@ -172,6 +176,10 @@ public class Level {
 
     public GigaGal getGigaGal() {
         return gigaGal;
+    }
+
+    public void setGigaGal(GigaGal gigaGal) {
+        this.gigaGal = gigaGal;
     }
 
     public void spawnBullet(Vector2 position, Direction direction) {

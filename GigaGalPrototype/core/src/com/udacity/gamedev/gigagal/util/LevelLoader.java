@@ -4,9 +4,11 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.udacity.gamedev.gigagal.Level;
+import com.udacity.gamedev.gigagal.entities.GigaGal;
 import com.udacity.gamedev.gigagal.entities.Enemy;
 import com.udacity.gamedev.gigagal.entities.Platform;
 import com.udacity.gamedev.gigagal.entities.Powerup;
+import com.udacity.gamedev.gigagal.entities.ExitPortal;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -58,17 +60,37 @@ public class LevelLoader {
 
                     //
                     if (item.get("x") != null)
-                        x = ((Number)item.get("x")).floatValue() * PLATFORM_BASE_SIZE;
+                        x = ((Number)item.get("x")).floatValue();
                     if (item.get("y") != null)
-                        y = ((Number)item.get("y")).floatValue() * PLATFORM_BASE_SIZE;
+                        y = ((Number)item.get("y")).floatValue();
 
                     level.getPowerups().add(new Powerup(new Vector2(x, y)));
                 }
 
-                if (item.get("imageName").equals("exitPortal")) {
-                    // Need graphic of exit portal
+                if (item.get("imageName").equals("exit-portal")) {
+                  Number x = 0f, y = 0f;
+                  if (item.get("x") != null)
+                      x = (Number)item.get("x");
+                  if (item.get("y") != null)
+                      y = (Number)item.get("y");
+                    ExitPortal exitPortal = new ExitPortal(new Vector2(x.floatValue(), y.floatValue()));
+                    level.setExitPortal(exitPortal);
 
                 }
+
+                // Load GigaGal
+                if (item.get("imageName").equals("standing-right")) {
+                  Number x = 0f, y = 0f;
+                  if (item.get("x") != null)
+                      x = (Number)item.get("x");
+                  if (item.get("y") != null)
+                      y = (Number)item.get("y");
+                      // Additional y value is so that GG falls onto the starting spawn point.
+                      GigaGal gigaGal = new GigaGal(new Vector2(x.floatValue(), y.floatValue()+ 25), level);
+                      level.setGigaGal(gigaGal);
+
+                }
+
             }
 
         } catch(Exception ex) {
@@ -130,8 +152,8 @@ public class LevelLoader {
         if (o.get("itemIdentifier") != null)
             identifier = (String)o.get("itemIdentifier");
 
-        Platform platform = new Platform(left.floatValue() * 50f,
-                top.floatValue() * 50f,
+        Platform platform = new Platform(left.floatValue(),
+                top.floatValue(),
                 PLATFORM_BASE_SIZE * scaleX.floatValue(), PLATFORM_BASE_SIZE * scaleY.floatValue());
 
         if (identifier != null) {
@@ -141,4 +163,3 @@ public class LevelLoader {
         return platform;
     }
 }
-

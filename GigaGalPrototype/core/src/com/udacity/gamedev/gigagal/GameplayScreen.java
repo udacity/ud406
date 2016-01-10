@@ -30,7 +30,7 @@ public class GameplayScreen extends ScreenAdapter {
         viewport = new ExtendViewport(Constants.WORLD_SIZE, Constants.WORLD_SIZE);
 
         //level = new Level(viewport);
-        level = LevelLoader.load("levels/intro_level.json", viewport);
+        level = LevelLoader.load("levels/level2.json", viewport);
         chaseCam = new ChaseCam(viewport.getCamera(), level.getGigaGal());
     }
 
