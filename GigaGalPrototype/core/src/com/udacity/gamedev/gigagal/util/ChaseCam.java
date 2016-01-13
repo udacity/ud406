@@ -8,8 +8,8 @@ import com.udacity.gamedev.gigagal.entities.GigaGal;
 
 public class ChaseCam {
 
-    private Camera camera;
-    private GigaGal target;
+    private final Camera camera;
+    private final GigaGal target;
     private Boolean following;
 
 
@@ -20,10 +20,10 @@ public class ChaseCam {
     }
 
 
-    public void update(float delta){
+    public void update(float delta) {
 
-        if (Gdx.input.isKeyJustPressed(Keys.SPACE)){
-            following = ! following;
+        if (Gdx.input.isKeyJustPressed(Keys.SPACE)) {
+            following = !following;
         }
 
         if (following) {

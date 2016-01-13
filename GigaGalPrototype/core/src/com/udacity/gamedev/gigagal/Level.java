@@ -13,7 +13,6 @@ import com.udacity.gamedev.gigagal.entities.GigaGal;
 import com.udacity.gamedev.gigagal.entities.Platform;
 import com.udacity.gamedev.gigagal.entities.Powerup;
 import com.udacity.gamedev.gigagal.util.Enums.Direction;
-import com.udacity.gamedev.gigagal.util.LevelLoader;
 
 public class Level {
 
@@ -47,15 +46,9 @@ public class Level {
 
     }
 
-    public Array<Bullet> getBullets() {
-        return bullets;
-    }
-
     public void update(float delta) {
-
         // Update GigaGal
         gigaGal.update(delta, platforms);
-
 
         // Update Bullets
         bullets.begin();
@@ -91,7 +84,7 @@ public class Level {
     }
 
     public void render(SpriteBatch batch) {
-        batch.begin();
+
         for (Platform platform : platforms) {
             platform.render(batch);
         }
@@ -115,7 +108,6 @@ public class Level {
             explosion.render(batch);
         }
 
-        batch.end();
     }
 
     private void initializeDebugLevel() {

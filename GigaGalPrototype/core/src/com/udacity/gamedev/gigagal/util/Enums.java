@@ -16,7 +16,7 @@ public class Enums {
     }
 
     public enum WalkState {
-        STANDING,
+        NOT_WALKING,
         WALKING
     }
 }

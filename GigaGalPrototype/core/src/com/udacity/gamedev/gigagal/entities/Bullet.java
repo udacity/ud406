@@ -33,7 +33,6 @@ public class Bullet {
                 break;
         }
 
-
         for (Enemy enemy : level.getEnemies()) {
             if (position.dst(enemy.position) < Constants.ENEMY_SHOT_RADIUS) {
                 level.spawnExplosion(position);

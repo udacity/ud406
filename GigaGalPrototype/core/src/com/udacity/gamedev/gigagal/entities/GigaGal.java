@@ -4,10 +4,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.DelayedRemovalArray;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.udacity.gamedev.gigagal.Level;
 import com.udacity.gamedev.gigagal.util.Assets;
@@ -23,15 +23,17 @@ public class GigaGal {
     public final static String TAG = GigaGal.class.getName();
 
     Vector2 spawnLocation;
-
     Vector2 position;
     Vector2 lastFramePosition;
     Vector2 velocity;
+
     Direction facing;
     JumpState jumpState;
     WalkState walkState;
+
     long walkStartTime;
     long jumpStartTime;
+    int ammo;
 
     Level level;
 
@@ -51,7 +53,8 @@ public class GigaGal {
         velocity.setZero();
         jumpState = Enums.JumpState.FALLING;
         facing = Direction.RIGHT;
-        walkState = Enums.WalkState.STANDING;
+        walkState = Enums.WalkState.NOT_WALKING;
+        ammo = Constants.INTIAL_AMMO;
     }
 
     public Vector2 getPosition() {
@@ -64,13 +67,11 @@ public class GigaGal {
         velocity.y -= Constants.GRAVITY;
         position.mulAdd(velocity, delta);
 
-
         if (position.y < Constants.KILL_PLANE) {
             init();
         }
 
         // Land on/fall off platforms
-
         if (jumpState != Enums.JumpState.JUMPING) {
             if (jumpState != JumpState.RECOILING) {
                 jumpState = Enums.JumpState.FALLING;
@@ -108,25 +109,21 @@ public class GigaGal {
                 } else {
                     recoilFromEnemy(Direction.RIGHT);
                 }
-
-                Gdx.app.log(TAG, "Hit by enemy");
             }
         }
 
         // Move left/right
-
         if (jumpState != JumpState.RECOILING) {
             if (Gdx.input.isKeyPressed(Keys.LEFT)) {
                 moveLeft(delta);
             } else if (Gdx.input.isKeyPressed(Keys.RIGHT)) {
                 moveRight(delta);
             } else {
-                walkState = Enums.WalkState.STANDING;
+                walkState = Enums.WalkState.NOT_WALKING;
             }
         }
 
         // Jump
-
         if (Gdx.input.isKeyPressed(Keys.Z)) {
             switch (jumpState) {
                 case GROUNDED:
@@ -139,10 +136,28 @@ public class GigaGal {
             endJump();
         }
 
+        // Check powerups
+        DelayedRemovalArray<Powerup> powerups = level.getPowerups();
+        powerups.begin();
+        for (int i = 0; i < powerups.size; i++) {
+            Powerup powerup = powerups.get(i);
+            Rectangle powerupBounds = new Rectangle(
+                    powerup.position.x - Constants.POWERUP_CENTER.x,
+                    powerup.position.y - Constants.POWERUP_CENTER.y,
+                    Assets.instance.powerupAssets.powerup.getRegionWidth(),
+                    Assets.instance.powerupAssets.powerup.getRegionHeight()
+            );
+            if (gigaGalBounds.overlaps(powerupBounds)) {
+                ammo += Constants.POWERUP_AMMO;
+                powerups.removeIndex(i);
+            }
+        }
+        powerups.end();
+
         // Shoot
+        if (Gdx.input.isKeyJustPressed(Keys.X) && ammo > 0) {
 
-        if (Gdx.input.isKeyJustPressed(Keys.X)) {
-
+            ammo--;
             Vector2 bulletPosition;
 
             if (facing == Direction.RIGHT) {
@@ -156,10 +171,8 @@ public class GigaGal {
                         position.y + Constants.GIGAGAL_CANNON_OFFSET.y
                 );
             }
-
             level.spawnBullet(bulletPosition, facing);
         }
-
     }
 
     boolean landedOnPlatform(Platform platform) {
@@ -190,7 +203,6 @@ public class GigaGal {
         position.x -= delta * Constants.GIGAGAL_MOVE_SPEED;
     }
 
-
     private void moveRight(float delta) {
         if (jumpState == Enums.JumpState.GROUNDED && walkState != Enums.WalkState.WALKING) {
             walkStartTime = TimeUtils.nanoTime();
@@ -200,7 +212,6 @@ public class GigaGal {
         position.x += delta * Constants.GIGAGAL_MOVE_SPEED;
     }
 
-
     private void startJump() {
         jumpState = Enums.JumpState.JUMPING;
         jumpStartTime = TimeUtils.nanoTime();
@@ -209,8 +220,7 @@ public class GigaGal {
 
     private void continueJump() {
         if (jumpState == Enums.JumpState.JUMPING) {
-            float jumpDuration = MathUtils.nanoToSec * (TimeUtils.nanoTime() - jumpStartTime);
-            if (jumpDuration < Constants.MAX_JUMP_DURATION) {
+            if (Utils.secondsSince(jumpStartTime) < Constants.MAX_JUMP_DURATION) {
                 velocity.y = Constants.JUMP_SPEED;
             } else {
                 endJump();
@@ -241,27 +251,25 @@ public class GigaGal {
 
         if (facing == Direction.RIGHT && jumpState != Enums.JumpState.GROUNDED) {
             region = Assets.instance.gigaGalAssets.jumpingRight;
-        } else if (facing == Direction.RIGHT && walkState == Enums.WalkState.STANDING) {
+        } else if (facing == Direction.RIGHT && walkState == Enums.WalkState.NOT_WALKING) {
             region = Assets.instance.gigaGalAssets.standingRight;
         } else if (facing == Direction.RIGHT && walkState == Enums.WalkState.WALKING) {
-            float walkTimeSeconds = MathUtils.nanoToSec * (TimeUtils.nanoTime() - walkStartTime);
+            float walkTimeSeconds = Utils.secondsSince(walkStartTime);
             region = Assets.instance.gigaGalAssets.walkingRightAnimation.getKeyFrame(walkTimeSeconds);
         } else if (facing == Direction.LEFT && jumpState != Enums.JumpState.GROUNDED) {
             region = Assets.instance.gigaGalAssets.jumpingLeft;
-        } else if (facing == Direction.LEFT && walkState == Enums.WalkState.STANDING) {
+        } else if (facing == Direction.LEFT && walkState == Enums.WalkState.NOT_WALKING) {
             region = Assets.instance.gigaGalAssets.standingLeft;
         } else if (facing == Direction.LEFT && walkState == Enums.WalkState.WALKING) {
-            float walkTimeSeconds = MathUtils.nanoToSec * (TimeUtils.nanoTime() - walkStartTime);
+            float walkTimeSeconds = Utils.secondsSince(walkStartTime);
             region = Assets.instance.gigaGalAssets.walkingLeftAnimation.getKeyFrame(walkTimeSeconds);
         }
 
-        batch.setColor(1, 1, 1, 0.5f);
         Utils.drawTextureRegion(batch, region,
                 position.x - Constants.GIGAGAL_EYE_POSITION.x,
                 position.y - Constants.GIGAGAL_EYE_POSITION.y
         );
 
-        batch.setColor(1, 1, 1, 1);
     }
 
 }

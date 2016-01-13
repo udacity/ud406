@@ -9,7 +9,6 @@ import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.udacity.gamedev.gigagal.util.Assets;
 import com.udacity.gamedev.gigagal.util.ChaseCam;
 import com.udacity.gamedev.gigagal.util.Constants;
-import com.udacity.gamedev.gigagal.util.LevelLoader;
 
 
 public class GameplayScreen extends ScreenAdapter {
@@ -17,9 +16,14 @@ public class GameplayScreen extends ScreenAdapter {
     public static final String TAG = GameplayScreen.class.getName();
 
     Level level;
+    ExtendViewport gameplayViewport;
+
+    GigaGalHud hud;
+    ExtendViewport hudViewport;
     SpriteBatch batch;
-    ExtendViewport viewport;
+
     ChaseCam chaseCam;
+
 
     @Override
     public void show() {
@@ -27,16 +31,26 @@ public class GameplayScreen extends ScreenAdapter {
         Assets.instance.init(am);
 
         batch = new SpriteBatch();
-        viewport = new ExtendViewport(Constants.WORLD_SIZE, Constants.WORLD_SIZE);
+        gameplayViewport = new ExtendViewport(Constants.WORLD_SIZE, Constants.WORLD_SIZE);
 
+        level = new Level(gameplayViewport);
+        //        level = LevelLoader.load("levels/intro_level.json", gameplayViewport);
+        chaseCam = new ChaseCam(gameplayViewport.getCamera(), level.getGigaGal());
+
+        hudViewport = new ExtendViewport(Constants.HUD_VIEWPORT_WIDTH, Constants.HUD_VIEWPORT_HEIGHT);
+        hud = new GigaGalHud(hudViewport);
+
+<<<<<<< Updated upstream
         //level = new Level(viewport);
         level = LevelLoader.load("levels/level2.json", viewport);
         chaseCam = new ChaseCam(viewport.getCamera(), level.getGigaGal());
+=======
+>>>>>>> Stashed changes
     }
 
     @Override
     public void resize(int width, int height) {
-        viewport.update(width, height, true);
+        gameplayViewport.update(width, height, true);
     }
 
     @Override
@@ -48,7 +62,7 @@ public class GameplayScreen extends ScreenAdapter {
     public void render(float delta) {
         level.update(delta);
         chaseCam.update(delta);
-        viewport.apply();
+        gameplayViewport.apply();
         Gdx.gl.glClearColor(
                 Constants.BACKGROUND_COLOR.r,
                 Constants.BACKGROUND_COLOR.g,
@@ -56,8 +70,23 @@ public class GameplayScreen extends ScreenAdapter {
                 Constants.BACKGROUND_COLOR.a);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        batch.setProjectionMatrix(viewport.getCamera().combined);
+        batch.setProjectionMatrix(gameplayViewport.getCamera().combined);
+        batch.begin();
         level.render(batch);
+
+        batch.end();
+
+
+        hudViewport.apply();
+//        batch.setProjectionMatrix(hudViewport.getCamera().combined);
+        batch.begin();
+        hud.render(batch);
+
+        batch.end();
+
+
+
+
     }
 
     public void levelComplete(){

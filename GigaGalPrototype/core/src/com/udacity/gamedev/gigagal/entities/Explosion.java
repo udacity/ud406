@@ -27,7 +27,7 @@ public class Explosion {
     }
 
     public boolean isFinished() {
-        float elapsedTime = Utils.secondsSince(startTime);
+        final float elapsedTime = Utils.secondsSince(startTime);
         return Assets.instance.explosionAssets.explosion.isAnimationFinished(elapsedTime);
     }
 }
