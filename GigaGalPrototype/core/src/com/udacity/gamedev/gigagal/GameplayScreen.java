@@ -39,18 +39,12 @@ public class GameplayScreen extends ScreenAdapter {
 
         hudViewport = new ExtendViewport(Constants.HUD_VIEWPORT_WIDTH, Constants.HUD_VIEWPORT_HEIGHT);
         hud = new GigaGalHud(hudViewport);
-
-<<<<<<< Updated upstream
-        //level = new Level(viewport);
-        level = LevelLoader.load("levels/level2.json", viewport);
-        chaseCam = new ChaseCam(viewport.getCamera(), level.getGigaGal());
-=======
->>>>>>> Stashed changes
     }
 
     @Override
     public void resize(int width, int height) {
         gameplayViewport.update(width, height, true);
+        hudViewport.update(width, height,true);
     }
 
     @Override
@@ -78,7 +72,7 @@ public class GameplayScreen extends ScreenAdapter {
 
 
         hudViewport.apply();
-//        batch.setProjectionMatrix(hudViewport.getCamera().combined);
+        batch.setProjectionMatrix(hudViewport.getCamera().combined);
         batch.begin();
         hud.render(batch);
 
