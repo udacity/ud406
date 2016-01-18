@@ -20,10 +20,7 @@ public class Assets implements Disposable, AssetErrorListener {
 
     public GigaGalAssets gigaGalAssets;
     public PlatformAssets platformAssets;
-    public BulletAssets bulletAssets;
     public EnemyAssets enemyAssets;
-    public ExplosionAssets explosionAssets;
-    public PowerupAssets powerupAssets;
 
     private AssetManager assetManager;
 
@@ -40,10 +37,7 @@ public class Assets implements Disposable, AssetErrorListener {
         TextureAtlas atlas = assetManager.get(Constants.TEXTURE_ATLAS);
         gigaGalAssets = new GigaGalAssets(atlas);
         platformAssets = new PlatformAssets(atlas);
-        bulletAssets = new BulletAssets(atlas);
         enemyAssets = new EnemyAssets(atlas);
-        explosionAssets = new ExplosionAssets(atlas);
-        powerupAssets = new PowerupAssets(atlas);
     }
 
     @Override
@@ -105,15 +99,6 @@ public class Assets implements Disposable, AssetErrorListener {
         }
     }
 
-    public class BulletAssets {
-
-        public final AtlasRegion bullet;
-
-        public BulletAssets(TextureAtlas atlas) {
-            bullet = atlas.findRegion(Constants.BULLET_SPRITE);
-        }
-
-    }
 
     public class EnemyAssets {
 
@@ -123,30 +108,5 @@ public class Assets implements Disposable, AssetErrorListener {
             enemy = atlas.findRegion(Constants.ENEMY_SPRITE);
         }
     }
-
-    public class ExplosionAssets {
-
-        public final Animation explosion;
-
-        public ExplosionAssets(TextureAtlas atlas) {
-
-            Array<AtlasRegion> explosionRegions = new Array<AtlasRegion>();
-            explosionRegions.add(atlas.findRegion(Constants.EXPLOSION_LARGE));
-            explosionRegions.add(atlas.findRegion(Constants.EXPLOSION_MEDIUM));
-            explosionRegions.add(atlas.findRegion(Constants.EXPLOSION_SMALL));
-
-            explosion = new Animation(Constants.EXPLOSION_DURATION / explosionRegions.size,
-                    explosionRegions, PlayMode.NORMAL);
-        }
-    }
-
-    public class PowerupAssets {
-        public final AtlasRegion powerup;
-
-        public PowerupAssets(TextureAtlas atlas) {
-            powerup = atlas.findRegion(Constants.POWERUP_SPRITE);
-        }
-    }
-
 
 }
