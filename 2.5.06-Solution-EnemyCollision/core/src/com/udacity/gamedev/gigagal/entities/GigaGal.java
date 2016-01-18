@@ -100,11 +100,10 @@ public class GigaGal {
                     2 * Constants.ENEMY_COLLISION_RADIUS
             );
             if (gigaGalBounds.overlaps(enemyBounds)) {
-
                 if (position.x < enemy.position.x) {
-                    recoilFromEnemy(Direction.LEFT);
+                    Gdx.app.log(TAG, "Hit an enemy from the left");
                 } else {
-                    recoilFromEnemy(Direction.RIGHT);
+                    Gdx.app.log(TAG, "Hit an enemy from the right");
                 }
             }
         }
@@ -192,18 +191,6 @@ public class GigaGal {
     private void endJump() {
         if (jumpState == Enums.JumpState.JUMPING) {
             jumpState = Enums.JumpState.FALLING;
-        }
-    }
-
-    private void recoilFromEnemy(Direction direction) {
-
-
-        velocity.y = Constants.KNOCKBACK_VELOCITY.y;
-
-        if (direction == Direction.LEFT) {
-            velocity.x = -Constants.KNOCKBACK_VELOCITY.x;
-        } else {
-            velocity.x = Constants.KNOCKBACK_VELOCITY.x;
         }
     }
 
