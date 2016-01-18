@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.DelayedRemovalArray;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.udacity.gamedev.gigagal.Level;
 import com.udacity.gamedev.gigagal.util.Assets;
@@ -33,7 +32,6 @@ public class GigaGal {
 
     long walkStartTime;
     long jumpStartTime;
-    int ammo;
 
     Level level;
 
@@ -54,7 +52,6 @@ public class GigaGal {
         jumpState = Enums.JumpState.FALLING;
         facing = Direction.RIGHT;
         walkState = Enums.WalkState.NOT_WALKING;
-        ammo = Constants.INTIAL_AMMO;
     }
 
     public Vector2 getPosition() {
@@ -136,28 +133,10 @@ public class GigaGal {
             endJump();
         }
 
-        // Check powerups
-        DelayedRemovalArray<Powerup> powerups = level.getPowerups();
-        powerups.begin();
-        for (int i = 0; i < powerups.size; i++) {
-            Powerup powerup = powerups.get(i);
-            Rectangle powerupBounds = new Rectangle(
-                    powerup.position.x - Constants.POWERUP_CENTER.x,
-                    powerup.position.y - Constants.POWERUP_CENTER.y,
-                    Assets.instance.powerupAssets.powerup.getRegionWidth(),
-                    Assets.instance.powerupAssets.powerup.getRegionHeight()
-            );
-            if (gigaGalBounds.overlaps(powerupBounds)) {
-                ammo += Constants.POWERUP_AMMO;
-                powerups.removeIndex(i);
-            }
-        }
-        powerups.end();
 
         // Shoot
-        if (Gdx.input.isKeyJustPressed(Keys.X) && ammo > 0) {
+        if (Gdx.input.isKeyJustPressed(Keys.X)) {
 
-            ammo--;
             Vector2 bulletPosition;
 
             if (facing == Direction.RIGHT) {

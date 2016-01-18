@@ -26,7 +26,6 @@ public class Constants {
     public static final float JUMP_SPEED = 200;
     public static final Vector2 KNOCKBACK_VELOCITY = new Vector2(200, 200);
     public static final float MAX_JUMP_DURATION = .1f;
-    public static final int INTIAL_AMMO = 10;
 
     public static final String STANDING_RIGHT = "standing-right";
     public static final String STANDING_LEFT = "standing-left";
@@ -69,15 +68,5 @@ public class Constants {
 
     // Powerup
     public static final String POWERUP_SPRITE = "powerup";
-    public static final Vector2 POWERUP_CENTER = new Vector2(7, 5);
-    public static final int POWERUP_AMMO = 10;
-
-    // Exit Portal
-    public static final String EXIT_PORTAL_SPRITE = "exit-portal";
-    public static final Vector2 EXIT_PORTAL_CENTER = new Vector2(31, 31);
-
-    // HUD
-    public static final float HUD_VIEWPORT_WIDTH = 640;
-    public static final float HUD_VIEWPORT_HEIGHT = 480;
 
 }

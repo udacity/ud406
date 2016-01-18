@@ -59,7 +59,6 @@ public class Constants {
     public static final float BULLET_MOVE_SPEED = 150;
     public static final Vector2 BULLET_CENTER = new Vector2(3, 2);
 
-
     // Explosion
     public static final String EXPLOSION_LARGE = "explosion-large";
     public static final String EXPLOSION_MEDIUM = "explosion-medium";
@@ -71,13 +70,5 @@ public class Constants {
     public static final String POWERUP_SPRITE = "powerup";
     public static final Vector2 POWERUP_CENTER = new Vector2(7, 5);
     public static final int POWERUP_AMMO = 10;
-
-    // Exit Portal
-    public static final String EXIT_PORTAL_SPRITE = "exit-portal";
-    public static final Vector2 EXIT_PORTAL_CENTER = new Vector2(31, 31);
-
-    // HUD
-    public static final float HUD_VIEWPORT_WIDTH = 640;
-    public static final float HUD_VIEWPORT_HEIGHT = 480;
 
 }

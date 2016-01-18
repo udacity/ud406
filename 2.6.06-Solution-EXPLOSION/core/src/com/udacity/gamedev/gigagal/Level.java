@@ -10,7 +10,6 @@ import com.udacity.gamedev.gigagal.entities.Enemy;
 import com.udacity.gamedev.gigagal.entities.Explosion;
 import com.udacity.gamedev.gigagal.entities.GigaGal;
 import com.udacity.gamedev.gigagal.entities.Platform;
-import com.udacity.gamedev.gigagal.entities.Powerup;
 import com.udacity.gamedev.gigagal.util.Enums.Direction;
 
 public class Level {
@@ -23,8 +22,9 @@ public class Level {
     private Array<Platform> platforms;
     private DelayedRemovalArray<Enemy> enemies;
     private DelayedRemovalArray<Bullet> bullets;
+
+    // TODO: Add a DelayedRemovalArray of Explosions
     private DelayedRemovalArray<Explosion> explosions;
-    private DelayedRemovalArray<Powerup> powerups;
 
     public Level(Viewport viewport) {
         this.viewport = viewport;
@@ -51,13 +51,14 @@ public class Level {
             Enemy enemy = enemies.get(i);
             enemy.update(delta);
             if (enemy.health < 1) {
+                // TODO: Spawn an explosion at the enemy position
                 spawnExplosion(enemy.position);
                 enemies.removeIndex(i);
             }
         }
         enemies.end();
 
-        // Update Explosions
+        // TODO: Remove any explosions that are finished
         explosions.begin();
         for (int i = 0; i < explosions.size; i++) {
             if (explosions.get(i).isFinished()) {
@@ -74,9 +75,6 @@ public class Level {
             platform.render(batch);
         }
 
-        for (Powerup powerup : powerups) {
-            powerup.render(batch);
-        }
 
         for (Enemy enemy : enemies) {
             enemy.render(batch);
@@ -88,6 +86,7 @@ public class Level {
             bullet.render(batch);
         }
 
+        // TODO: Render the explosions
         for (Explosion explosion : explosions) {
             explosion.render(batch);
         }
@@ -101,9 +100,9 @@ public class Level {
         platforms = new Array<Platform>();
         bullets = new DelayedRemovalArray<Bullet>();
         enemies = new DelayedRemovalArray<Enemy>();
-        explosions = new DelayedRemovalArray<Explosion>();
-        powerups = new DelayedRemovalArray<Powerup>();
 
+        // TODO: Initialize explosions collection
+        explosions = new DelayedRemovalArray<Explosion>();
 
         platforms.add(new Platform(15, 100, 30, 20));
 
@@ -115,7 +114,6 @@ public class Level {
         platforms.add(new Platform(35, 55, 50, 20));
         platforms.add(new Platform(10, 20, 20, 9));
 
-        powerups.add(new Powerup(new Vector2(20, 110)));
     }
 
     public Array<Platform> getPlatforms() {
@@ -124,10 +122,6 @@ public class Level {
 
     public DelayedRemovalArray<Enemy> getEnemies() {
         return enemies;
-    }
-
-    public DelayedRemovalArray<Powerup> getPowerups() {
-        return powerups;
     }
 
     public Viewport getViewport() {
@@ -151,6 +145,7 @@ public class Level {
     }
 
     public void spawnExplosion(Vector2 position) {
+        // TODO: Add a new explosion at the specified position
         explosions.add(new Explosion(position));
     }
 }
