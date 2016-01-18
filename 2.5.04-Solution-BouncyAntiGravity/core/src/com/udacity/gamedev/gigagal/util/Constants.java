@@ -47,5 +47,5 @@ public class Constants {
     public static final float ENEMY_MOVEMENT_SPEED = 10;
     public static final float ENEMY_BOB_AMPLITUDE = 2;
     public static final float ENEMY_BOB_PERIOD = 3.0f;
-    public static final float ENEMY_COLLISION_RADIUS = 15;
+
 }
