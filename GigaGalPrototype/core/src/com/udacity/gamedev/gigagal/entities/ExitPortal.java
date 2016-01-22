@@ -16,7 +16,7 @@ public class ExitPortal {
     }
 
     public void render(SpriteBatch batch) {
-        TextureRegion region = Assets.instance.exitPortalAssets.exitPortal;
+        TextureRegion region = Assets.instance.exitPortalAssets.exitPortal1;
         Utils.drawTextureRegion(batch, region, position, Constants.EXIT_PORTAL_CENTER);
     }
 }

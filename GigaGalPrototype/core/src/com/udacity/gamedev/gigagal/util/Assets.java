@@ -151,10 +151,14 @@ public class Assets implements Disposable, AssetErrorListener {
     }
 
     public class ExitPortalAssets {
-        public final AtlasRegion exitPortal;
+        public final AtlasRegion exitPortal1;
+        public final AtlasRegion exitPortal2;
+        public final AtlasRegion exitPortal3;
 
         public ExitPortalAssets(TextureAtlas atlas) {
-            exitPortal = atlas.findRegion(Constants.EXIT_PORTAL_SPRITE);
+            exitPortal1 = atlas.findRegion(Constants.EXIT_PORTAL_SPRITE_1);
+            exitPortal2 = atlas.findRegion(Constants.EXIT_PORTAL_SPRITE_2);
+            exitPortal3 = atlas.findRegion(Constants.EXIT_PORTAL_SPRITE_3);
         }
     }
 

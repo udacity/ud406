@@ -73,7 +73,9 @@ public class Constants {
     public static final int POWERUP_AMMO = 10;
 
     // Exit Portal
-    public static final String EXIT_PORTAL_SPRITE = "exit-portal";
+    public static final String EXIT_PORTAL_SPRITE_1 = "exit-portal";
+    public static final String EXIT_PORTAL_SPRITE_2 = "exit-portal";
+    public static final String EXIT_PORTAL_SPRITE_3 = "exit-portal";
     public static final Vector2 EXIT_PORTAL_CENTER = new Vector2(31, 31);
 
     // HUD
