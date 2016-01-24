@@ -25,16 +25,51 @@ enemy
   orig: 29, 44
   offset: 0, 0
   index: -1
-exit-portal
+exit-portal-1
   rotate: false
   xy: 68, 62
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
+exit-portal-2
+  rotate: false
+  xy: 134, 62
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+exit-portal-3
+  rotate: false
+  xy: 200, 62
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+exit-portal-4
+  rotate: false
+  xy: 266, 62
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+exit-portal-5
+  rotate: false
+  xy: 332, 62
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+exit-portal-6
+  rotate: false
+  xy: 398, 62
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
 explosion-large
   rotate: false
-  xy: 134, 90
+  xy: 464, 90
   size: 36, 36
   orig: 36, 36
   offset: 0, 0
@@ -48,21 +83,21 @@ explosion-medium
   index: -1
 explosion-small
   rotate: false
-  xy: 172, 90
+  xy: 131, 24
   size: 36, 36
   orig: 36, 36
   offset: 0, 0
   index: -1
 jumping-left
   rotate: false
-  xy: 372, 91
+  xy: 331, 25
   size: 29, 35
   orig: 29, 35
   offset: 0, 0
   index: -1
 jumping-right
   rotate: false
-  xy: 276, 91
+  xy: 235, 25
   size: 30, 35
   orig: 30, 35
   offset: 0, 0
@@ -76,63 +111,63 @@ platform
   index: -1
 powerup
   rotate: false
-  xy: 492, 109
+  xy: 491, 71
   size: 15, 17
   orig: 15, 17
   offset: 0, 0
   index: -1
 standing-left
   rotate: false
-  xy: 403, 91
+  xy: 362, 25
   size: 28, 35
   orig: 28, 35
   offset: 0, 0
   index: -1
 standing-right
   rotate: false
-  xy: 210, 91
+  xy: 169, 25
   size: 31, 35
   orig: 31, 35
   offset: 0, 0
   index: -1
 walk-1-left
   rotate: false
-  xy: 463, 91
+  xy: 422, 25
   size: 27, 35
   orig: 27, 35
   offset: 0, 0
   index: -1
 walk-1-right
   rotate: false
-  xy: 308, 91
+  xy: 267, 25
   size: 30, 35
   orig: 30, 35
   offset: 0, 0
   index: -1
 walk-2-left
   rotate: false
-  xy: 134, 53
+  xy: 464, 53
   size: 25, 35
   orig: 25, 35
   offset: 0, 0
   index: -1
 walk-2-right
   rotate: false
-  xy: 340, 91
+  xy: 299, 25
   size: 30, 35
   orig: 30, 35
   offset: 0, 0
   index: -1
 walk-3-left
   rotate: false
-  xy: 433, 91
+  xy: 392, 25
   size: 28, 35
   orig: 28, 35
   offset: 0, 0
   index: -1
 walk-3-right
   rotate: false
-  xy: 243, 91
+  xy: 202, 25
   size: 31, 35
   orig: 31, 35
   offset: 0, 0
