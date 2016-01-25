@@ -85,20 +85,26 @@ public class Constants {
 
     // HUD
     public static final float HUD_VIEWPORT_SIZE = 480;
-    public static final float HUD_MARGIN = 480;
+    public static final float HUD_MARGIN = 20;
+    public static final String HUD_AMMO_LABEL = "Ammo: ";
+    public static final String HUD_SCORE_LABEL = "Score: ";
+
 
 
 
     // Onscreen Controls
-    public static final float ONSCREEN_CONTROLS_VIEWPORT_SIZE = 160;
+    public static final float ONSCREEN_CONTROLS_VIEWPORT_SIZE = 256;
 
 
-    public static final String MOVE_LEFT_BUTTON = "move-left-button";
-    public static final String MOVE_RIGHT_BUTTON = "move-right-button";
-    public static final String SHOOT_BUTTON = "shoot-button";
-    public static final String JUMP_BUTTON = "jump-button";
+    public static final String MOVE_LEFT_BUTTON = "button-move-left";
+    public static final String MOVE_RIGHT_BUTTON = "button-move-right";
+    public static final String SHOOT_BUTTON = "button-shoot";
+    public static final String JUMP_BUTTON = "button-jump";
+    public static final Vector2 BUTTON_CENTER = new Vector2(15, 15);
+    public static final int BUTTON_SIZE = 32;
 
-    public static final Vector2 BUTTON_CENTER = new Vector2(16, 16);
-    public static final Vector2 MOVE_RIGHT_CENTER = new Vector2(20, 30);
+
+
+
 
 }

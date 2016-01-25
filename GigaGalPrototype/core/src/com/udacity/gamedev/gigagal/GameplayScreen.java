@@ -87,11 +87,14 @@ public class GameplayScreen extends ScreenAdapter {
         hudViewport.apply();
         batch.setProjectionMatrix(hudViewport.getCamera().combined);
         batch.begin();
-        hud.render(batch);
+        hud.render(batch, level.getGigaGal().getLives(),  level.getGigaGal().getAmmo(), 100);
         batch.end();
 
         onscreenControlsViewport.apply();
-
+        batch.setProjectionMatrix(onscreenControlsViewport.getCamera().combined);
+        batch.begin();
+        onscreenControls.render(batch);
+        batch.end();
 
     }
 

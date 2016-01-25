@@ -52,14 +52,19 @@ public class GigaGal {
     }
 
     public void init() {
+        ammo = Constants.INITIAL_AMMO;
+        lives = Constants.INITIAL_LIVES;
+        respawn();
+    }
+
+    private void respawn(){
         position.set(spawnLocation);
         lastFramePosition.set(spawnLocation);
         velocity.setZero();
         jumpState = Enums.JumpState.FALLING;
         facing = Direction.RIGHT;
         walkState = Enums.WalkState.NOT_WALKING;
-        ammo = Constants.INITIAL_AMMO;
-        lives = Constants.INITIAL_LIVES;
+
     }
 
     public Vector2 getPosition() {
@@ -73,7 +78,8 @@ public class GigaGal {
         position.mulAdd(velocity, delta);
 
         if (position.y < Constants.KILL_PLANE) {
-            init();
+            lives--;
+            respawn();
         }
 
         // Land on/fall off platforms

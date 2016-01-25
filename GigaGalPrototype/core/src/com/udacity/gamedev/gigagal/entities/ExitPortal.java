@@ -22,14 +22,9 @@ public class ExitPortal {
     }
 
     public void render(SpriteBatch batch) {
-
         final float elapsedTime = Utils.secondsSince(startTime);
         final TextureRegion region = Assets.instance.exitPortalAssets.exitPortal.getKeyFrame(elapsedTime, true);
-
-
         Utils.drawTextureRegion(batch, region, position, Constants.EXIT_PORTAL_CENTER);
-
-
     }
 }
 

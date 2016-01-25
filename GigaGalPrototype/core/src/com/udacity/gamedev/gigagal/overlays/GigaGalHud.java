@@ -3,12 +3,17 @@ package com.udacity.gamedev.gigagal.overlays;
 
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.udacity.gamedev.gigagal.util.Assets;
+import com.udacity.gamedev.gigagal.util.Constants;
+import com.udacity.gamedev.gigagal.util.Utils;
 
 public class GigaGalHud {
 
-    BitmapFont font;
-    private Viewport viewport;
+    final BitmapFont font;
+    private final Viewport viewport;
 
     public GigaGalHud(Viewport viewport) {
         this.viewport = viewport;
@@ -20,11 +25,29 @@ public class GigaGalHud {
     }
 
 
-    public void render(SpriteBatch batch) {
+    public void render(SpriteBatch batch, int lives, int ammo, int score) {
 
-        font.draw(batch, "I'm totally drawing some shit", viewport.getWorldWidth() / 2, viewport.getWorldHeight() / 2);
-        font.draw(batch, "I'm totally drawing some shit", viewport.getWorldWidth() / 4, viewport.getWorldHeight() / 4);
-        font.draw(batch, "I'm totally drawing some shit", viewport.getWorldWidth() / 8, viewport.getWorldHeight() / 8);
+        final String hudString =
+                Constants.HUD_SCORE_LABEL + score + "\n" +
+                        Constants.HUD_AMMO_LABEL + ammo;
+
+        font.draw(batch, hudString, Constants.HUD_MARGIN, viewport.getWorldHeight() - Constants.HUD_MARGIN);
+
+        final TextureRegion standingRight = Assets.instance.gigaGalAssets.standingRight;
+
+        for (int i = 1; i <= lives; i++) {
+
+            final Vector2 drawPosition = new Vector2(
+                    viewport.getWorldWidth() - i * (Constants.HUD_MARGIN / 2 + standingRight.getRegionWidth()),
+                    viewport.getWorldHeight() - Constants.HUD_MARGIN - standingRight.getRegionHeight()
+            );
+
+            Utils.drawTextureRegion(
+                    batch,
+                    standingRight,
+                    drawPosition
+            );
+        }
 
     }
 

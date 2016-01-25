@@ -8,6 +8,10 @@ import com.badlogic.gdx.utils.TimeUtils;
 
 public class Utils {
 
+    public static void drawTextureRegion(SpriteBatch batch, TextureRegion region, Vector2 position) {
+        drawTextureRegion(batch, region, position.x, position.y);
+    }
+
     public static void drawTextureRegion(SpriteBatch batch, TextureRegion region, Vector2 position, Vector2 offset) {
         drawTextureRegion(batch, region, position.x - offset.x, position.y - offset.y);
     }
