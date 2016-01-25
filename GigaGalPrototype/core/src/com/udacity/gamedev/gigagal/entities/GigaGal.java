@@ -21,21 +21,18 @@ import com.udacity.gamedev.gigagal.util.Utils;
 public class GigaGal {
 
     public final static String TAG = GigaGal.class.getName();
-
-    Vector2 spawnLocation;
-    Vector2 position;
-    Vector2 lastFramePosition;
-    Vector2 velocity;
-
-    Direction facing;
-    JumpState jumpState;
-    WalkState walkState;
-
-    long walkStartTime;
-    long jumpStartTime;
-    int ammo;
-
-    Level level;
+    private Level level;
+    private Vector2 spawnLocation;
+    private Vector2 position;
+    private Vector2 lastFramePosition;
+    private Vector2 velocity;
+    private Direction facing;
+    private JumpState jumpState;
+    private WalkState walkState;
+    private long walkStartTime;
+    private long jumpStartTime;
+    private int ammo;
+    private int lives;
 
     public GigaGal(Vector2 spawnLocation, Level level) {
         this.spawnLocation = spawnLocation;
@@ -46,6 +43,13 @@ public class GigaGal {
         init();
     }
 
+    public int getAmmo() {
+        return ammo;
+    }
+
+    public int getLives() {
+        return lives;
+    }
 
     public void init() {
         position.set(spawnLocation);
@@ -54,7 +58,8 @@ public class GigaGal {
         jumpState = Enums.JumpState.FALLING;
         facing = Direction.RIGHT;
         walkState = Enums.WalkState.NOT_WALKING;
-        ammo = Constants.INTIAL_AMMO;
+        ammo = Constants.INITIAL_AMMO;
+        lives = Constants.INITIAL_LIVES;
     }
 
     public Vector2 getPosition() {
@@ -88,7 +93,6 @@ public class GigaGal {
         }
 
         // Collide with enemies
-
         Rectangle gigaGalBounds = new Rectangle(
                 position.x - Constants.GIGAGAL_STANCE_WIDTH / 2,
                 position.y - Constants.GIGAGAL_EYE_HEIGHT,
@@ -265,10 +269,7 @@ public class GigaGal {
             region = Assets.instance.gigaGalAssets.walkingLeftAnimation.getKeyFrame(walkTimeSeconds);
         }
 
-        Utils.drawTextureRegion(batch, region,
-                position.x - Constants.GIGAGAL_EYE_POSITION.x,
-                position.y - Constants.GIGAGAL_EYE_POSITION.y
-        );
+        Utils.drawTextureRegion(batch, region, position, Constants.GIGAGAL_EYE_POSITION);
 
     }
 
