@@ -26,7 +26,8 @@ public class Constants {
     public static final float JUMP_SPEED = 200;
     public static final Vector2 KNOCKBACK_VELOCITY = new Vector2(200, 200);
     public static final float MAX_JUMP_DURATION = .1f;
-    public static final int INTIAL_AMMO = 10;
+    public static final int INITIAL_AMMO = 10;
+    public static final int INITIAL_LIVES = 3;
 
     public static final String STANDING_RIGHT = "standing-right";
     public static final String STANDING_LEFT = "standing-left";
@@ -84,6 +85,8 @@ public class Constants {
 
     // HUD
     public static final float HUD_VIEWPORT_SIZE = 480;
+    public static final float HUD_MARGIN = 480;
+
 
 
     // Onscreen Controls

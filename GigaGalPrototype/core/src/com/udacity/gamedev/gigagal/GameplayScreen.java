@@ -45,7 +45,7 @@ public class GameplayScreen extends ScreenAdapter {
         hudViewport = new ExtendViewport(Constants.HUD_VIEWPORT_SIZE, Constants.HUD_VIEWPORT_SIZE);
         hud = new GigaGalHud(hudViewport);
 
-        ExtendViewport onscreenControlsViewport = new ExtendViewport(
+        onscreenControlsViewport = new ExtendViewport(
                 Constants.ONSCREEN_CONTROLS_VIEWPORT_SIZE,
                 Constants.ONSCREEN_CONTROLS_VIEWPORT_SIZE);
 
