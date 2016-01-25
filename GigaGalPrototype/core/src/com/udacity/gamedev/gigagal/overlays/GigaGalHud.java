@@ -1,4 +1,4 @@
-package com.udacity.gamedev.gigagal;
+package com.udacity.gamedev.gigagal.overlays;
 
 
 import com.badlogic.gdx.graphics.g2d.BitmapFont;

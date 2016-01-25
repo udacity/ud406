@@ -25,6 +25,7 @@ public class Assets implements Disposable, AssetErrorListener {
     public ExplosionAssets explosionAssets;
     public PowerupAssets powerupAssets;
     public ExitPortalAssets exitPortalAssets;
+    public OnscreenControlsAssets onscreenControlsAssets;
 
     private AssetManager assetManager;
 
@@ -46,6 +47,7 @@ public class Assets implements Disposable, AssetErrorListener {
         explosionAssets = new ExplosionAssets(atlas);
         powerupAssets = new PowerupAssets(atlas);
         exitPortalAssets = new ExitPortalAssets(atlas);
+        onscreenControlsAssets = new OnscreenControlsAssets(atlas);
     }
 
     @Override
@@ -167,6 +169,17 @@ public class Assets implements Disposable, AssetErrorListener {
 
             exitPortal = new Animation(Constants.EXIT_PORTAL_FRAME_DURATION, exitPortalFrames);
         }
+    }
+
+    public class OnscreenControlsAssets {
+
+        public final AtlasRegion moveRight;
+
+        public OnscreenControlsAssets(TextureAtlas atlas){
+            moveRight = atlas.findRegion(Constants.MOVE_RIGHT_BUTTON);
+        }
+
+
     }
 
 }

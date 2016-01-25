@@ -9,20 +9,25 @@ import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.udacity.gamedev.gigagal.util.Assets;
 import com.udacity.gamedev.gigagal.util.ChaseCam;
 import com.udacity.gamedev.gigagal.util.Constants;
+import com.udacity.gamedev.gigagal.overlays.GigaGalHud;
+import com.udacity.gamedev.gigagal.overlays.OnscreenControls;
 
 
 public class GameplayScreen extends ScreenAdapter {
 
     public static final String TAG = GameplayScreen.class.getName();
 
-    Level level;
     ExtendViewport gameplayViewport;
-
-    GigaGalHud hud;
-    ExtendViewport hudViewport;
-    SpriteBatch batch;
-
+    Level level;
     ChaseCam chaseCam;
+
+    ExtendViewport hudViewport;
+    GigaGalHud hud;
+
+    ExtendViewport onscreenControlsViewport;
+    OnscreenControls onscreenControls;
+
+    SpriteBatch batch;
 
 
     @Override
@@ -37,14 +42,22 @@ public class GameplayScreen extends ScreenAdapter {
         //        level = LevelLoader.load("levels/intro_level.json", gameplayViewport);
         chaseCam = new ChaseCam(gameplayViewport.getCamera(), level.getGigaGal());
 
-        hudViewport = new ExtendViewport(Constants.HUD_VIEWPORT_WIDTH, Constants.HUD_VIEWPORT_HEIGHT);
+        hudViewport = new ExtendViewport(Constants.HUD_VIEWPORT_SIZE, Constants.HUD_VIEWPORT_SIZE);
         hud = new GigaGalHud(hudViewport);
+
+        ExtendViewport onscreenControlsViewport = new ExtendViewport(
+                Constants.ONSCREEN_CONTROLS_VIEWPORT_SIZE,
+                Constants.ONSCREEN_CONTROLS_VIEWPORT_SIZE);
+
+
+        onscreenControls = new OnscreenControls(onscreenControlsViewport);
     }
 
     @Override
     public void resize(int width, int height) {
         gameplayViewport.update(width, height, true);
-        hudViewport.update(width, height,true);
+        hudViewport.update(width, height, true);
+        onscreenControlsViewport.update(width, height, true);
     }
 
     @Override
@@ -75,15 +88,14 @@ public class GameplayScreen extends ScreenAdapter {
         batch.setProjectionMatrix(hudViewport.getCamera().combined);
         batch.begin();
         hud.render(batch);
-
         batch.end();
 
-
+        onscreenControlsViewport.apply();
 
 
     }
 
-    public void levelComplete(){
+    public void levelComplete() {
 
     }
 }

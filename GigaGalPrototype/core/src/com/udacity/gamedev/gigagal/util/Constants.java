@@ -8,7 +8,7 @@ public class Constants {
     // World/Camera
     public static final Color BACKGROUND_COLOR = Color.SKY;
     public static final float WORLD_SIZE = 160;
-    public static final float KILL_PLANE = -100;
+    public static final float KILL_PLANE = -200;
     public static final float GRAVITY = 10;
     public static final float CHASE_CAM_MOVE_SPEED = WORLD_SIZE;
 
@@ -18,7 +18,7 @@ public class Constants {
     // GigaGal
     public static final Vector2 GIGAGAL_EYE_POSITION = new Vector2(16, 24);
     public static final float GIGAGAL_EYE_HEIGHT = 16.0f;
-    public static final float GIGAGAL_STANCE_WIDTH = 21.0f;
+    public static final float GIGAGAL_STANCE_WIDTH = 19.0f;
     public static final Vector2 GIGAGAL_CANNON_OFFSET = new Vector2(12, -7);
     public static final float GIGAGAL_HEIGHT = 23.0f;
     public static final float GIGAGAL_MOVE_SPEED = 100;
@@ -83,15 +83,19 @@ public class Constants {
     public static final float EXIT_PORTAL_FRAME_DURATION = 0.1f;
 
     // HUD
-    public static final float HUD_VIEWPORT_WIDTH = 640;
-    public static final float HUD_VIEWPORT_HEIGHT = 480;
-
+    public static final float HUD_VIEWPORT_SIZE = 480;
 
 
     // Onscreen Controls
+    public static final float ONSCREEN_CONTROLS_VIEWPORT_SIZE = 160;
+
+
     public static final String MOVE_LEFT_BUTTON = "move-left-button";
     public static final String MOVE_RIGHT_BUTTON = "move-right-button";
     public static final String SHOOT_BUTTON = "shoot-button";
     public static final String JUMP_BUTTON = "jump-button";
+
+    public static final Vector2 BUTTON_CENTER = new Vector2(16, 16);
+    public static final Vector2 MOVE_RIGHT_CENTER = new Vector2(20, 30);
 
 }

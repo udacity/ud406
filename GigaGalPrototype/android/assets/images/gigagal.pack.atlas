@@ -11,13 +11,6 @@ bullet
   orig: 7, 5
   offset: 0, 0
   index: -1
-button
-  rotate: false
-  xy: 2, 62
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: -1
 enemy
   rotate: false
   xy: 62, 16
@@ -27,42 +20,42 @@ enemy
   index: -1
 exit-portal-1
   rotate: false
-  xy: 68, 62
+  xy: 2, 62
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 exit-portal-2
   rotate: false
-  xy: 134, 62
+  xy: 68, 62
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 exit-portal-3
   rotate: false
-  xy: 200, 62
+  xy: 134, 62
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 exit-portal-4
   rotate: false
-  xy: 266, 62
+  xy: 200, 62
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 exit-portal-5
   rotate: false
-  xy: 332, 62
+  xy: 266, 62
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 exit-portal-6
   rotate: false
-  xy: 398, 62
+  xy: 332, 62
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
@@ -100,6 +93,13 @@ jumping-right
   xy: 235, 25
   size: 30, 35
   orig: 30, 35
+  offset: 0, 0
+  index: -1
+move-right-button
+  rotate: false
+  xy: 398, 62
+  size: 64, 64
+  orig: 64, 64
   offset: 0, 0
   index: -1
 platform
