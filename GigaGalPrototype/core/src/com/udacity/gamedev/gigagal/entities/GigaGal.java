@@ -79,6 +79,9 @@ public class GigaGal {
 
         if (position.y < Constants.KILL_PLANE) {
             lives--;
+            if (lives < 0){
+//                level.gameOver();
+            }
             respawn();
         }
 

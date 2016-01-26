@@ -28,6 +28,9 @@ public class Level {
     private DelayedRemovalArray<Explosion> explosions;
     private DelayedRemovalArray<Powerup> powerups;
 
+    public boolean gameOver;
+    public boolean victory;
+
     public Level() {
         gigaGal = new GigaGal(new Vector2(50,50), this);
         platforms = new Array<Platform>();
@@ -36,6 +39,9 @@ public class Level {
         explosions = new DelayedRemovalArray<Explosion>();
         powerups = new DelayedRemovalArray<Powerup>();
         exitPortal = new ExitPortal(new Vector2(200,200));
+
+        gameOver = false;
+        victory = false;
     }
 
     public Level(Viewport viewport) {
@@ -137,6 +143,8 @@ public class Level {
 
 
     }
+
+
 
     public Array<Platform> getPlatforms() {
         return platforms;

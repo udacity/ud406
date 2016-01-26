@@ -93,7 +93,7 @@ public class Constants {
 
 
     // Onscreen Controls
-    public static final float ONSCREEN_CONTROLS_VIEWPORT_SIZE = 256;
+    public static final float ONSCREEN_CONTROLS_VIEWPORT_SIZE = 200;
 
 
     public static final String MOVE_LEFT_BUTTON = "button-move-left";

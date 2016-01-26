@@ -58,6 +58,7 @@ public class GameplayScreen extends ScreenAdapter {
         gameplayViewport.update(width, height, true);
         hudViewport.update(width, height, true);
         onscreenControlsViewport.update(width, height, true);
+        onscreenControls.recalculateButtonPositions();
     }
 
     @Override

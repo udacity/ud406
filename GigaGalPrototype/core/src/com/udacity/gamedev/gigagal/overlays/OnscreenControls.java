@@ -44,21 +44,21 @@ public class OnscreenControls extends InputAdapter {
 
         Utils.drawTextureRegion(
                 batch,
-                Assets.instance.onscreenControlsAssets.moveRight,
+                Assets.instance.onscreenControlsAssets.moveLeft,
                 moveRightCenter,
                 Constants.BUTTON_CENTER
         );
 
         Utils.drawTextureRegion(
                 batch,
-                Assets.instance.onscreenControlsAssets.moveRight,
+                Assets.instance.onscreenControlsAssets.shoot,
                 shootCenter,
                 Constants.BUTTON_CENTER
         );
 
         Utils.drawTextureRegion(
                 batch,
-                Assets.instance.onscreenControlsAssets.moveRight,
+                Assets.instance.onscreenControlsAssets.jump,
                 jumpCenter,
                 Constants.BUTTON_CENTER
         );
@@ -70,9 +70,17 @@ public class OnscreenControls extends InputAdapter {
 
 
         moveLeftCenter.set(Constants.BUTTON_SIZE * 3 / 4 , Constants.BUTTON_SIZE);
+        moveRightCenter.set(Constants.BUTTON_SIZE * 2, Constants.BUTTON_SIZE * 3/ 4);
 
-        moveRightCenter.set(Constants.BUTTON_SIZE * 1.5f, Constants.BUTTON_SIZE * 3/ 4);
+        shootCenter.set(
+                viewport.getWorldWidth() - Constants.BUTTON_SIZE * 2f,
+                Constants.BUTTON_SIZE * 3/4
+        );
 
+        jumpCenter.set(
+                viewport.getWorldWidth() - Constants.BUTTON_SIZE * 3/4,
+                Constants.BUTTON_SIZE
+        );
 
     }
 
