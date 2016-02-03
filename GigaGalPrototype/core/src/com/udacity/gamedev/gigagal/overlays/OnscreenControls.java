@@ -1,5 +1,6 @@
 package com.udacity.gamedev.gigagal.overlays;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
@@ -11,11 +12,20 @@ import com.udacity.gamedev.gigagal.util.Utils;
 
 public class OnscreenControls extends InputAdapter {
 
+    public static final String TAG = OnscreenControls.class.getName();
+
     private final Viewport viewport;
     private Vector2 moveLeftCenter;
     private Vector2 moveRightCenter;
     private Vector2 shootCenter;
     private Vector2 jumpCenter;
+
+    private int moveLeftPointer;
+    private int moveRightPointer;
+    private int shootPointer;
+    private int jumpPointer;
+
+
     public OnscreenControls(Viewport viewport) {
         this.viewport = viewport;
 
@@ -29,9 +39,17 @@ public class OnscreenControls extends InputAdapter {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+        Gdx.app.log(TAG, "The pointer is: " + pointer);
+
         return super.touchDown(screenX, screenY, pointer, button);
     }
 
+    @Override
+    public boolean touchDragged(int screenX, int screenY, int pointer) {
+        Gdx.app.log(TAG, "The pointer is: " + pointer);
+
+        return super.touchDragged(screenX, screenY, pointer);
+    }
 
     public void render(SpriteBatch batch) {
 
@@ -68,17 +86,16 @@ public class OnscreenControls extends InputAdapter {
     public void recalculateButtonPositions() {
 
 
-
-        moveLeftCenter.set(Constants.BUTTON_SIZE * 3 / 4 , Constants.BUTTON_SIZE);
-        moveRightCenter.set(Constants.BUTTON_SIZE * 2, Constants.BUTTON_SIZE * 3/ 4);
+        moveLeftCenter.set(Constants.BUTTON_SIZE * 3 / 4, Constants.BUTTON_SIZE);
+        moveRightCenter.set(Constants.BUTTON_SIZE * 2, Constants.BUTTON_SIZE * 3 / 4);
 
         shootCenter.set(
                 viewport.getWorldWidth() - Constants.BUTTON_SIZE * 2f,
-                Constants.BUTTON_SIZE * 3/4
+                Constants.BUTTON_SIZE * 3 / 4
         );
 
         jumpCenter.set(
-                viewport.getWorldWidth() - Constants.BUTTON_SIZE * 3/4,
+                viewport.getWorldWidth() - Constants.BUTTON_SIZE * 3 / 4,
                 Constants.BUTTON_SIZE
         );
 

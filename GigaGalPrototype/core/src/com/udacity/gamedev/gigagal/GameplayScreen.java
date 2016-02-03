@@ -51,6 +51,7 @@ public class GameplayScreen extends ScreenAdapter {
 
 
         onscreenControls = new OnscreenControls(onscreenControlsViewport);
+        Gdx.input.setInputProcessor(onscreenControls);
     }
 
     @Override
