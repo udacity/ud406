@@ -8,4 +8,4 @@ Instructions for importing and running these projects can be found in the [2.1.0
 
 Issues and pull requests welcome!
 
-## Stay tuned for further polishing of 2.2 and 2.3 content!
+## Stay tuned for 2.5-2.8!

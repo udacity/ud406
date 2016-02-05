@@ -41,6 +41,12 @@ public class OnscreenControls extends InputAdapter {
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         Gdx.app.log(TAG, "The pointer is: " + pointer);
 
+        Vector2 viewportPosition = viewport.unproject(new Vector2(screenX, screenY));
+
+        if (viewportPosition.dst(shootCenter) < Constants.BUTTON_RAIDUS){
+
+        }
+
         return super.touchDown(screenX, screenY, pointer, button);
     }
 
@@ -86,17 +92,17 @@ public class OnscreenControls extends InputAdapter {
     public void recalculateButtonPositions() {
 
 
-        moveLeftCenter.set(Constants.BUTTON_SIZE * 3 / 4, Constants.BUTTON_SIZE);
-        moveRightCenter.set(Constants.BUTTON_SIZE * 2, Constants.BUTTON_SIZE * 3 / 4);
+        moveLeftCenter.set(Constants.BUTTON_RAIDUS * 3 / 4, Constants.BUTTON_RAIDUS);
+        moveRightCenter.set(Constants.BUTTON_RAIDUS * 2, Constants.BUTTON_RAIDUS * 3 / 4);
 
         shootCenter.set(
-                viewport.getWorldWidth() - Constants.BUTTON_SIZE * 2f,
-                Constants.BUTTON_SIZE * 3 / 4
+                viewport.getWorldWidth() - Constants.BUTTON_RAIDUS * 2f,
+                Constants.BUTTON_RAIDUS * 3 / 4
         );
 
         jumpCenter.set(
-                viewport.getWorldWidth() - Constants.BUTTON_SIZE * 3 / 4,
-                Constants.BUTTON_SIZE
+                viewport.getWorldWidth() - Constants.BUTTON_RAIDUS * 3 / 4,
+                Constants.BUTTON_RAIDUS
         );
 
     }
