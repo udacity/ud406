@@ -10,7 +10,7 @@ import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.badlogic.gdx.utils.Array;
-import com.sun.media.jfxmediaimpl.MediaDisposer.Disposable;
+import com.badlogic.gdx.utils.Disposable;
 
 
 public class Assets implements Disposable, AssetErrorListener {

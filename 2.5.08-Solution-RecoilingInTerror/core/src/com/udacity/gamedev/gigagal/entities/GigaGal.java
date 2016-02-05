@@ -110,6 +110,7 @@ public class GigaGal {
         }
 
         // Move left/right
+        // TODO: Disable left/right movement if
         if (jumpState != JumpState.RECOILING) {
             if (Gdx.input.isKeyPressed(Keys.LEFT)) {
                 moveLeft(delta);

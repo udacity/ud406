@@ -6,7 +6,7 @@ import com.badlogic.gdx.assets.AssetErrorListener;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
-import com.sun.media.jfxmediaimpl.MediaDisposer.Disposable;
+import com.badlogic.gdx.utils.Disposable;
 
 
 public class Assets implements Disposable, AssetErrorListener {
@@ -45,8 +45,6 @@ public class Assets implements Disposable, AssetErrorListener {
         public final AtlasRegion standingRight;
 
         // TODO: Add AtlasRegions for jumping-left and jumping-right
-
-
 
 
         public GigaGalAssets(TextureAtlas atlas) {
