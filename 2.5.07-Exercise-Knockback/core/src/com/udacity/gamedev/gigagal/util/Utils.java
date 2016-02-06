@@ -13,7 +13,6 @@ public class Utils {
     }
 
     public static void drawTextureRegion(SpriteBatch batch, TextureRegion region, float x, float y) {
-
         batch.draw(
                 region.getTexture(),
                 x,
@@ -36,5 +35,4 @@ public class Utils {
     public static float secondsSince(long timeNanos) {
         return MathUtils.nanoToSec * (TimeUtils.nanoTime() - timeNanos);
     }
-
 }

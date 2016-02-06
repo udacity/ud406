@@ -24,6 +24,7 @@ public class Constants {
     public static final float GIGAGAL_MOVE_SPEED = 100;
 
     public static final float JUMP_SPEED = 200;
+    // TODO: Add Vector2 constant for knockback velocity (200, 200 works well)
     public static final Vector2 KNOCKBACK_VELOCITY = new Vector2(200, 200);
     public static final float MAX_JUMP_DURATION = .1f;
 

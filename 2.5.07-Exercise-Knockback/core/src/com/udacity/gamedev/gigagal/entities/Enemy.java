@@ -13,18 +13,16 @@ import com.udacity.gamedev.gigagal.util.Utils;
 
 public class Enemy {
 
-    public Vector2 position;
     private final Platform platform;
-    Direction direction;
-    public int health;
-    long startTime;
+    public Vector2 position;
+    private Direction direction;
+    final long startTime;
 
     public Enemy(Platform platform) {
         this.platform = platform;
         direction = Direction.RIGHT;
         position = new Vector2(platform.left, platform.top + Constants.ENEMY_CENTER.y);
         startTime = TimeUtils.nanoTime();
-        health = Constants.ENEMY_HEALTH;
     }
 
     public void update(float delta) {
@@ -44,15 +42,13 @@ public class Enemy {
             direction = Direction.LEFT;
         }
 
-        float elapsedTime = Utils.secondsSince(startTime);
-        position.y = platform.top + Constants.ENEMY_CENTER.y
-                + Constants.ENEMY_BOB_AMPLITUDE * (1 + MathUtils.sin(MathUtils.PI2 * elapsedTime / Constants.ENEMY_BOB_PERIOD));
-
-
+        final float elapsedTime = Utils.secondsSince(startTime);
+        final float bobMultiplier = 1 + MathUtils.sin(MathUtils.PI2 * elapsedTime / Constants.ENEMY_BOB_PERIOD);
+        position.y = platform.top + Constants.ENEMY_CENTER.y + Constants.ENEMY_BOB_AMPLITUDE * bobMultiplier;
     }
 
     public void render(SpriteBatch batch) {
-        TextureRegion region = Assets.instance.enemyAssets.enemy;
+        final TextureRegion region = Assets.instance.enemyAssets.enemy;
         Utils.drawTextureRegion(batch, region, position, Constants.ENEMY_CENTER);
     }
 }

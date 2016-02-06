@@ -3,6 +3,7 @@ package com.udacity.gamedev.gigagal.util;
 
 public class Enums {
 
+
     public enum Direction {
         LEFT, RIGHT
     }
@@ -10,12 +11,11 @@ public class Enums {
     public enum JumpState {
         JUMPING,
         FALLING,
-        GROUNDED,
-        RECOILING
+        GROUNDED
     }
 
     public enum WalkState {
-        STANDING,
+        NOT_WALKING,
         WALKING
     }
 }

@@ -197,9 +197,10 @@ public class GigaGal {
 
     private void recoilFromEnemy(Direction direction) {
 
-
+        // TODO: Set GigaGal's vertical speed
         velocity.y = Constants.KNOCKBACK_VELOCITY.y;
 
+        // TODO: Set GigaGal's horizontal speed (in the correct direction)
         if (direction == Direction.LEFT) {
             velocity.x = -Constants.KNOCKBACK_VELOCITY.x;
         } else {
