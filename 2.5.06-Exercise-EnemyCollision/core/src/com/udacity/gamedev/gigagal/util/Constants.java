@@ -49,5 +49,5 @@ public class Constants {
     public static final float ENEMY_BOB_PERIOD = 3.0f;
 
     // TODO: Add constant for enemy collision radius (15 is about right)
-    public static final float ENEMY_COLLISION_RADIUS = 15;
+
 }
