@@ -72,7 +72,7 @@ public class RectangleCircleCollisionScreen extends ScreenAdapter {
 
             boolean colliding = false;
             for (Rectangle rectangle : rectangles) {
-                if (colliding(rectangle, circle)) {
+                if (areColliding(rectangle, circle)) {
                     colliding = true;
                     break;
                 }
@@ -94,7 +94,9 @@ public class RectangleCircleCollisionScreen extends ScreenAdapter {
 
     }
 
-    private boolean colliding(Rectangle rectangle, Circle circle) {
+    private boolean areColliding(Rectangle rectangle, Circle circle) {
+
+        // TODO: Complete this function!
 
         boolean containsACorner = circle.contains(rectangle.x, rectangle.y) || // Bottom left
                 circle.contains(rectangle.x + rectangle.width, rectangle.y) || // Bottom right
