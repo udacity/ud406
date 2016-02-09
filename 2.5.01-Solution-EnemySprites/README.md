@@ -1,29 +1,14 @@
-# GigaGal!
+# The Enemies
 
-So here's my crack at creating a specification for what the game is going to look like.
+Let's specify the behavior of our enemies. Each enemy will have a particular platform that they're associated with, and they'll patrol from one end of the platform to the other, then turn around and come back. Since they seem to be floating using some sort of anti-gravity, let's also have them bob up and down a bit as they move.
 
-I don't think we're going to add multiple screens, nor multiple levels. The game will just consist of a single level, which the player will navigate from beginning to end.
-
-
-## Assets
-
-The game requires a number of 
-
-## The Level Loader
-
-The Level loader will load a level specified in a PNG file, with elements 
-
-## The Player
-
-GigaGal can walk left and right, and can jump. She has a three element walk loop while moving on the ground, and an alternative sprite when she's in midair. She can fire bullets, which play a three element explosion animation when they hit something.
-
-## The Bullets
-
-## The Platforms
-
-The platforms wi 
+Next we need to decide how to make our enemies dangerous. We could create some sort of health system, and subtract GigaGal's health when she touches an enemy. What I think would be fun though is for GigaGal to go flying back when she touches an enemy, possibly falling off all the platforms to her certain doom.
 
 
-## The enemies
+# Enemy Sprites Sighted!
 
-Enemies can be spawned on top of platforms, and will walk back and forth at a constant rate, turning around if they reach the end of a platform or run into another enemy. 
+First things first, setting up and drawing the enemy assets.
+
+This process should be familiar at this point. We need to set up a inner class for the EnemyAssets in our Assets singleton, then we'll draw the Enemy sprite in the render method of gameplay screen.
+
+Start off in `Constants.java`, and good luck! Check out the TODOs to find everything you'll need to do.

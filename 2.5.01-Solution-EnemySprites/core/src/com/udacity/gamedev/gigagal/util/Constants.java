@@ -42,7 +42,10 @@ public class Constants {
     public static final int PLATFORM_EDGE = 8;
 
     // Enemy
+    // TODO: Set constant for the filename of the enemy sprite ("enemy")
     public static final String ENEMY_SPRITE = "enemy";
+
+    // TODO: Set constant for the center of the enemy (14, 22)
     public static final Vector2 ENEMY_CENTER = new Vector2(14, 22);
 
 
