@@ -24,6 +24,8 @@ public class Level {
     private DelayedRemovalArray<Enemy> enemies;
     private DelayedRemovalArray<Bullet> bullets;
     private DelayedRemovalArray<Explosion> explosions;
+
+    // TODO: Add a DelayedRemovalArray of Powerups
     private DelayedRemovalArray<Powerup> powerups;
 
     public Level(Viewport viewport) {
@@ -74,6 +76,7 @@ public class Level {
             platform.render(batch);
         }
 
+        // TODO: Render the powerups
         for (Powerup powerup : powerups) {
             powerup.render(batch);
         }
@@ -102,6 +105,8 @@ public class Level {
         bullets = new DelayedRemovalArray<Bullet>();
         enemies = new DelayedRemovalArray<Enemy>();
         explosions = new DelayedRemovalArray<Explosion>();
+
+        // TODO: Initialize powerups array
         powerups = new DelayedRemovalArray<Powerup>();
 
 
@@ -115,6 +120,7 @@ public class Level {
         platforms.add(new Platform(35, 55, 50, 20));
         platforms.add(new Platform(10, 20, 20, 9));
 
+        // TODO: Add some powerups to the level
         powerups.add(new Powerup(new Vector2(20, 110)));
     }
 
@@ -126,6 +132,7 @@ public class Level {
         return enemies;
     }
 
+    // TODO: Create powerups getter
     public DelayedRemovalArray<Powerup> getPowerups() {
         return powerups;
     }

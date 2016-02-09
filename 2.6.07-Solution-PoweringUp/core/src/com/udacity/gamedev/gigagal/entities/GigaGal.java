@@ -33,6 +33,8 @@ public class GigaGal {
 
     long walkStartTime;
     long jumpStartTime;
+
+    // TODO: Add ammo count
     int ammo;
 
     Level level;
@@ -54,6 +56,8 @@ public class GigaGal {
         jumpState = Enums.JumpState.FALLING;
         facing = Direction.RIGHT;
         walkState = Enums.WalkState.NOT_WALKING;
+
+        // TODO: Initialize ammo
         ammo = Constants.INTIAL_AMMO;
     }
 
@@ -136,7 +140,9 @@ public class GigaGal {
             endJump();
         }
 
-        // Check powerups
+        // TODO: Check if GigaGal should pick up a powerup
+        // This is a tough one. Check for overlaps similar to how we detect collisions with enemies, then remove any picked up powerups (and update GigaGal's ammo count)
+        // Remember to check out the solution project if you run into trouble!
         DelayedRemovalArray<Powerup> powerups = level.getPowerups();
         powerups.begin();
         for (int i = 0; i < powerups.size; i++) {
