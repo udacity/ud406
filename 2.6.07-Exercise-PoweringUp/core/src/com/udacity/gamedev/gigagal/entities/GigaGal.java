@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.DelayedRemovalArray;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.udacity.gamedev.gigagal.Level;
 import com.udacity.gamedev.gigagal.util.Assets;
@@ -35,7 +34,7 @@ public class GigaGal {
     long jumpStartTime;
 
     // TODO: Add ammo count
-    int ammo;
+
 
     Level level;
 
@@ -58,7 +57,7 @@ public class GigaGal {
         walkState = Enums.WalkState.NOT_WALKING;
 
         // TODO: Initialize ammo
-        ammo = Constants.INTIAL_AMMO;
+
     }
 
     public Vector2 getPosition() {
@@ -143,29 +142,12 @@ public class GigaGal {
         // TODO: Check if GigaGal should pick up a powerup
         // This is a tough one. Check for overlaps similar to how we detect collisions with enemies, then remove any picked up powerups (and update GigaGal's ammo count)
         // Remember to check out the solution project if you run into trouble!
-        DelayedRemovalArray<Powerup> powerups = level.getPowerups();
-        powerups.begin();
-        for (int i = 0; i < powerups.size; i++) {
-            Powerup powerup = powerups.get(i);
-            Rectangle powerupBounds = new Rectangle(
-                    powerup.position.x - Constants.POWERUP_CENTER.x,
-                    powerup.position.y - Constants.POWERUP_CENTER.y,
-                    Assets.instance.powerupAssets.powerup.getRegionWidth(),
-                    Assets.instance.powerupAssets.powerup.getRegionHeight()
-            );
-            if (gigaGalBounds.overlaps(powerupBounds)) {
-                ammo += Constants.POWERUP_AMMO;
-                powerups.removeIndex(i);
-            }
-        }
-        powerups.end();
 
-        // Shoot
+
         // TODO: Check if GigaGal has any ammo left
-        if (Gdx.input.isKeyJustPressed(Keys.X) && ammo > 0) {
+        if (Gdx.input.isKeyJustPressed(Keys.X)) {
 
             // TODO: Decrement ammo
-            ammo--;
             Vector2 bulletPosition;
 
             if (facing == Direction.RIGHT) {

@@ -1,0 +1,72 @@
+{
+  "sceneName": "MainScene",
+  "composite": {
+    "sImages": [
+      {
+        "uniqueId": 2,
+        "tags": [],
+        "x": 52,
+        "y": 4,
+        "originX": 29,
+        "originY": 29,
+        "layerName": "Default",
+        "imageName": "platform"
+      },
+      {
+        "uniqueId": 3,
+        "itemIdentifier": "longPlatform",
+        "tags": [],
+        "x": 151,
+        "y": 17,
+        "scaleX": 2,
+        "scaleY": 0.5,
+        "originX": 29,
+        "originY": 29,
+        "zIndex": 1,
+        "layerName": "Default",
+        "imageName": "platform"
+      },
+      {
+        "uniqueId": 4,
+        "tags": [],
+        "customVars": "platform:longPlatform",
+        "x": 138,
+        "y": 62,
+        "originX": 14.5,
+        "originY": 22,
+        "zIndex": 2,
+        "layerName": "Default",
+        "imageName": "enemy"
+      },
+      {
+        "uniqueId": 5,
+        "tags": [],
+        "x": 229,
+        "y": 59,
+        "originX": 32,
+        "originY": 32,
+        "zIndex": 3,
+        "layerName": "Default",
+        "imageName": "exit-portal"
+      },
+      {
+        "uniqueId": 6,
+        "tags": [],
+        "x": 47,
+        "y": 52,
+        "originX": 15.5,
+        "originY": 17.5,
+        "zIndex": 4,
+        "layerName": "Default",
+        "imageName": "standing-right"
+      }
+    ],
+    "layers": [
+      {
+        "layerName": "Default",
+        "isVisible": true
+      }
+    ]
+  },
+  "physicsPropertiesVO": {}
+}
