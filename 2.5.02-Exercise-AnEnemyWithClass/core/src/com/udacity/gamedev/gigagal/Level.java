@@ -3,9 +3,7 @@ package com.udacity.gamedev.gigagal;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.DelayedRemovalArray;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.udacity.gamedev.gigagal.entities.Enemy;
 import com.udacity.gamedev.gigagal.entities.GigaGal;
 import com.udacity.gamedev.gigagal.entities.Platform;
 
@@ -19,7 +17,6 @@ public class Level {
     private Array<Platform> platforms;
 
     // TODO: Add a DelayedRemovalArray of enemies
-    private DelayedRemovalArray<Enemy> enemies;
 
 
     public Level(Viewport viewport) {
@@ -33,10 +30,6 @@ public class Level {
 
 
         // TODO: Update the enemies (doesn't do anything yet)
-        for (int i = 0; i < enemies.size; i++) {
-            Enemy enemy = enemies.get(i);
-            enemy.update(delta);
-        }
     }
 
     public void render(SpriteBatch batch) {
@@ -46,9 +39,6 @@ public class Level {
         }
 
         // TODO: Render the enemies
-        for (Enemy enemy : enemies) {
-            enemy.render(batch);
-        }
 
         gigaGal.render(batch);
 
@@ -60,7 +50,9 @@ public class Level {
         gigaGal = new GigaGal(new Vector2(15, 40), this);
 
         platforms = new Array<Platform>();
-        enemies = new DelayedRemovalArray<Enemy>();
+
+        // TODO: Initialize enemies array
+
 
         platforms.add(new Platform(15, 100, 30, 20));
 
@@ -69,7 +61,6 @@ public class Level {
 
         // TODO: Add an enemy sitting on enemyPlatform
 
-        enemies.add(new Enemy(enemyPlatform));
 
         platforms.add(enemyPlatform);
         platforms.add(new Platform(35, 55, 50, 20));
@@ -79,10 +70,6 @@ public class Level {
 
     public Array<Platform> getPlatforms() {
         return platforms;
-    }
-
-    public DelayedRemovalArray<Enemy> getEnemies() {
-        return enemies;
     }
 
     public Viewport getViewport() {
@@ -100,6 +87,5 @@ public class Level {
     public void setGigaGal(GigaGal gigaGal) {
         this.gigaGal = gigaGal;
     }
-
 
 }

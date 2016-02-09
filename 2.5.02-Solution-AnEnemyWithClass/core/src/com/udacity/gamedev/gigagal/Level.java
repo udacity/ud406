@@ -60,6 +60,8 @@ public class Level {
         gigaGal = new GigaGal(new Vector2(15, 40), this);
 
         platforms = new Array<Platform>();
+
+        // TODO: Initialize enemies array
         enemies = new DelayedRemovalArray<Enemy>();
 
         platforms.add(new Platform(15, 100, 30, 20));
@@ -81,10 +83,6 @@ public class Level {
         return platforms;
     }
 
-    public DelayedRemovalArray<Enemy> getEnemies() {
-        return enemies;
-    }
-
     public Viewport getViewport() {
         return viewport;
     }
@@ -100,6 +98,5 @@ public class Level {
     public void setGigaGal(GigaGal gigaGal) {
         this.gigaGal = gigaGal;
     }
-
 
 }
