@@ -64,9 +64,7 @@ public class Constants {
     public static final String EXPLOSION_MEDIUM = "explosion-medium";
     public static final String EXPLOSION_SMALL = "explosion-small";
     public static final Vector2 EXPLOSION_CENTER = new Vector2(8, 8);
-
-    // TODO: Add a constant for explosion duration (0.5 works well)
-
+    public static final float EXPLOSION_DURATION = 0.5f;
 
     // Powerup
     public static final String POWERUP_SPRITE = "powerup";
