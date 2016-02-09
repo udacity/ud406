@@ -17,6 +17,8 @@ public class Level {
 
     private GigaGal gigaGal;
     private Array<Platform> platforms;
+
+    // TODO: Add a DelayedRemovalArray of enemies
     private DelayedRemovalArray<Enemy> enemies;
 
 
@@ -30,7 +32,7 @@ public class Level {
         gigaGal.update(delta, platforms);
 
 
-        // Update Enemies
+        // TODO: Update the enemies (doesn't do anything yet)
         for (int i = 0; i < enemies.size; i++) {
             Enemy enemy = enemies.get(i);
             enemy.update(delta);
@@ -43,7 +45,7 @@ public class Level {
             platform.render(batch);
         }
 
-
+        // TODO: Render the enemies
         for (Enemy enemy : enemies) {
             enemy.render(batch);
         }
@@ -62,7 +64,11 @@ public class Level {
 
         platforms.add(new Platform(15, 100, 30, 20));
 
+
         Platform enemyPlatform = new Platform(75, 90, 100, 65);
+
+        // TODO: Add an enemy sitting on enemyPlatform
+
         enemies.add(new Enemy(enemyPlatform));
 
         platforms.add(enemyPlatform);
