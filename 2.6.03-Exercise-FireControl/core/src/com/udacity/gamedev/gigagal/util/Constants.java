@@ -22,7 +22,7 @@ public class Constants {
 
     // TODO: Add constant for offset between GigaGal's eye position, and the barrel of her cannon
     // Looks to be about (12, -7) to me
-    public static final Vector2 GIGAGAL_CANNON_OFFSET = new Vector2(12, -7);
+
     public static final float GIGAGAL_HEIGHT = 23.0f;
     public static final float GIGAGAL_MOVE_SPEED = 100;
 

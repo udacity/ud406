@@ -137,31 +137,19 @@ public class GigaGal {
         // TODO: Check to see if shoot key has been pressed
         // You can make it whatever you want, but I've been using the 'x' key
         // You'll want to use Gdx.input.isKeyJustPressed()
-        if (Gdx.input.isKeyJustPressed(Keys.X)) {
+
 
             // TODO: Create a Vector2 to hold the position of a new bullet
-            Vector2 bulletPosition;
+
 
             // TODO: Set the bullet's position in the case where GigaGal is facing right
             // bullet position =  GigaGal's position + cannon offset
-            if (facing == Direction.RIGHT) {
-                bulletPosition = new Vector2(
-                        position.x + Constants.GIGAGAL_CANNON_OFFSET.x,
-                        position.y + Constants.GIGAGAL_CANNON_OFFSET.y
-                );
-            }
             // TODO: Set the bullet's position in the case where GigaGal is facing left
             // In this case we need to negate the x component of the cannon offset
-            else {
-                bulletPosition = new Vector2(
-                        position.x - Constants.GIGAGAL_CANNON_OFFSET.x,
-                        position.y + Constants.GIGAGAL_CANNON_OFFSET.y
-                );
-            }
 
             // TODO: Ask the Level to spawn the bullet
-            level.spawnBullet(bulletPosition, facing);
-        }
+
+
     }
 
     boolean landedOnPlatform(Platform platform) {
