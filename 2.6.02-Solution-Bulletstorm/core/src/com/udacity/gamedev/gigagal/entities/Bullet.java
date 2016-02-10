@@ -10,17 +10,24 @@ import com.udacity.gamedev.gigagal.util.Utils;
 
 public class Bullet {
 
+    // TODO: Add a Direction
     private final Direction direction;
-    public boolean active;
+
+    // TODO: Add a position
     private Vector2 position;
 
     public Bullet(Vector2 position, Direction direction) {
+
+        // TODO: Set position and direction
         this.position = position;
         this.direction = direction;
-        active = true;
+
     }
 
     public void update(float delta) {
+
+        // TODO: Move the bullet the correct amount in the correction direction
+
         switch (direction) {
             case LEFT:
                 position.x -= delta * Constants.BULLET_MOVE_SPEED;
@@ -33,6 +40,8 @@ public class Bullet {
     }
 
     public void render(SpriteBatch batch) {
+        // TODO: Complete render function
+
         TextureRegion region = Assets.instance.bulletAssets.bullet;
         Utils.drawTextureRegion(batch, region, position, Constants.BULLET_CENTER);
     }

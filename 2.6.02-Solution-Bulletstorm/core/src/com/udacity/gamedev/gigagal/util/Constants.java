@@ -53,8 +53,11 @@ public class Constants {
 
     // Bullet
     public static final String BULLET_SPRITE = "bullet";
-    public static final float BULLET_MOVE_SPEED = 150;
     public static final Vector2 BULLET_CENTER = new Vector2(3, 2);
+
+    // TODO: Create a constant for the bullet move speed
+    // 150 works well
+    public static final float BULLET_MOVE_SPEED = 150;
 
 
     // Explosion
