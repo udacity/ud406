@@ -1,12 +1,10 @@
 package com.udacity.gamedev.gigagal;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.DelayedRemovalArray;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.udacity.gamedev.gigagal.entities.Bullet;
 import com.udacity.gamedev.gigagal.entities.Enemy;
 import com.udacity.gamedev.gigagal.entities.GigaGal;
 import com.udacity.gamedev.gigagal.entities.Platform;
@@ -23,7 +21,6 @@ public class Level {
     private DelayedRemovalArray<Enemy> enemies;
 
     // TODO: Add a DelayedRemovalArray of bullets
-    private DelayedRemovalArray<Bullet> bullets;
 
 
     public Level(Viewport viewport) {
@@ -41,24 +38,8 @@ public class Level {
         // At a position within some reasonable rectangle
         // You'll want to complete the spawnBullet() method below first
 
-        Direction direction;
-        if (MathUtils.randomBoolean()) {
-            direction = Direction.RIGHT;
-        } else {
-            direction = Direction.LEFT;
-        }
-
-        float x = MathUtils.random(viewport.getWorldWidth());
-        float y = MathUtils.random(viewport.getWorldHeight());
-
-        Vector2 position = new Vector2(x, y);
-        spawnBullet(position, direction);
-
 
         // TODO: Update the bullets
-        for (Bullet bullet : bullets) {
-            bullet.update(delta);
-        }
 
 
         // Update Enemies
@@ -82,9 +63,6 @@ public class Level {
         gigaGal.render(batch);
 
         // TODO: Render the bullets
-        for (Bullet bullet : bullets) {
-            bullet.render(batch);
-        }
 
     }
 
@@ -95,7 +73,7 @@ public class Level {
         platforms = new Array<Platform>();
 
         // TODO: Initialize bullets array
-        bullets = new DelayedRemovalArray<Bullet>();
+
 
         enemies = new DelayedRemovalArray<Enemy>();
 
@@ -136,7 +114,7 @@ public class Level {
 
     public void spawnBullet(Vector2 position, Direction direction) {
         // TODO: Complete this method for adding new bullets to the bullets array
-        bullets.add(new Bullet(position, direction));
+
     }
 
 
