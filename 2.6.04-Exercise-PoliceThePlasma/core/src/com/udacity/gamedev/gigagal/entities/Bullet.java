@@ -13,14 +13,19 @@ public class Bullet {
 
     private final Direction direction;
     private final Level level;
-    public boolean active;
+
+    // TODO: Add boolean active flag
+
+
     private Vector2 position;
 
     public Bullet(Level level, Vector2 position, Direction direction) {
         this.level = level;
         this.position = position;
         this.direction = direction;
-        active = true;
+
+        // TODO: Set active to true
+
     }
 
     public void update(float delta) {
@@ -32,6 +37,14 @@ public class Bullet {
                 position.x += delta * Constants.BULLET_MOVE_SPEED;
                 break;
         }
+
+        // TODO: Get the world width from the level's viewport
+
+
+        // TODO: Get the level's viewport's camera's horizontal position
+
+
+        // TODO: If the bullet is offscreen, set active = false
 
 
     }

@@ -37,9 +37,9 @@ public class Level {
         bullets.begin();
         for (Bullet bullet : bullets) {
             bullet.update(delta);
-            if (!bullet.active) {
-                bullets.removeValue(bullet, false);
-            }
+
+            // TODO: If the bullet is not active, remove it from the bullets array
+
         }
         bullets.end();
 
