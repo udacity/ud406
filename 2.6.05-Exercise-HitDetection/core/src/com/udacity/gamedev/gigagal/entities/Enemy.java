@@ -15,9 +15,9 @@ public class Enemy {
 
     final long startTime;
     private final Platform platform;
-    public Vector2 position;
+
     // TODO: Add heath counter
-    public int health;
+    public Vector2 position;
     private Direction direction;
 
     public Enemy(Platform platform) {
@@ -27,7 +27,7 @@ public class Enemy {
         startTime = TimeUtils.nanoTime();
 
         // TODO: Initialize enemy health
-        health = Constants.ENEMY_HEALTH;
+
     }
 
     public void update(float delta) {
