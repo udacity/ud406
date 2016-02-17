@@ -10,7 +10,7 @@ public class Constants {
     public static final String TEXTURE_ATLAS = "images/gigagal.pack.atlas";
     public static final String STANDING_RIGHT = "standing-right";
 
-    // TODO: Define a Vector2 Constant for GigaGal's eye position within her sprites (12, 24)
+    // TODO: Define a Vector2 Constant for GigaGal's eye position within her sprites (16, 24)
     public static final Vector2 GIGAGAL_EYE_POSITION = new Vector2(16, 24);
 
     // TODO: Define a float constant for the height of GigaGal's eye above her feet (16)

@@ -138,7 +138,7 @@ public class Assets implements Disposable, AssetErrorListener {
         public ExplosionAssets(TextureAtlas atlas) {
 
             // TODO: Populate the explosion animation
-            // First find the appropraite AtlasRegions
+            // First find the appropriate AtlasRegions
             // Then pack them into an animation with the correct frame duration
 
 
