@@ -1,0 +1,99 @@
+{
+  "sceneName": "Level1",
+  "composite": {
+    "sImages": [
+      {
+        "uniqueId": 2,
+        "tags": [],
+        "x": 30,
+        "y": 64,
+        "originX": 15.5,
+        "originY": 17.5,
+        "layerName": "Default",
+        "imageName": "standing-right"
+      },
+      {
+        "uniqueId": 6,
+        "tags": [],
+        "x": 144,
+        "y": 110,
+        "originX": 32,
+        "originY": 32,
+        "zIndex": 4,
+        "layerName": "Default",
+        "imageName": "exit-portal-1"
+      },
+      {
+        "uniqueId": 7,
+        "tags": [],
+        "x": 107,
+        "y": 100,
+        "originX": 7.5,
+        "originY": 8.5,
+        "zIndex": 5,
+        "layerName": "Default",
+        "imageName": "powerup"
+      },
+      {
+        "uniqueId": 8,
+        "tags": [],
+        "x": 30,
+        "y": 165,
+        "originX": 14.5,
+        "originY": 22,
+        "zIndex": 6,
+        "layerName": "Default",
+        "imageName": "enemy"
+      }
+    ],
+    "sImage9patchs": [
+      {
+        "uniqueId": 3,
+        "tags": [],
+        "x": 32,
+        "y": 47,
+        "originX": 29,
+        "originY": 29,
+        "zIndex": 1,
+        "layerName": "Default",
+        "imageName": "platform",
+        "width": 58,
+        "height": 20
+      },
+      {
+        "uniqueId": 4,
+        "tags": [],
+        "x": 96,
+        "y": 40,
+        "originX": 29,
+        "originY": 29,
+        "zIndex": 2,
+        "layerName": "Default",
+        "imageName": "platform",
+        "width": 58,
+        "height": 58
+      },
+      {
+        "uniqueId": 5,
+        "itemIdentifier": "Enemy",
+        "tags": [],
+        "x": 18,
+        "y": 101,
+        "originX": 29,
+        "originY": 29,
+        "zIndex": 3,
+        "layerName": "Default",
+        "imageName": "platform",
+        "width": 58,
+        "height": 58
+      }
+    ],
+    "layers": [
+      {
+        "layerName": "Default",
+        "isVisible": true
+      }
+    ]
+  },
+  "physicsPropertiesVO": {}
+}

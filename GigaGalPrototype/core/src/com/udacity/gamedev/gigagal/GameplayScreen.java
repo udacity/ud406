@@ -6,11 +6,12 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
+import com.udacity.gamedev.gigagal.overlays.GigaGalHud;
+import com.udacity.gamedev.gigagal.overlays.OnscreenControls;
 import com.udacity.gamedev.gigagal.util.Assets;
 import com.udacity.gamedev.gigagal.util.ChaseCam;
 import com.udacity.gamedev.gigagal.util.Constants;
-import com.udacity.gamedev.gigagal.overlays.GigaGalHud;
-import com.udacity.gamedev.gigagal.overlays.OnscreenControls;
+import com.udacity.gamedev.gigagal.util.LevelLoader;
 
 
 public class GameplayScreen extends ScreenAdapter {
@@ -38,8 +39,8 @@ public class GameplayScreen extends ScreenAdapter {
         batch = new SpriteBatch();
         gameplayViewport = new ExtendViewport(Constants.WORLD_SIZE, Constants.WORLD_SIZE);
 
-        level = new Level(gameplayViewport);
-        //        level = LevelLoader.load("levels/intro_level.json", gameplayViewport);
+//        level = new Level(gameplayViewport);
+        level = LevelLoader.load("levels/Level1.dt", gameplayViewport);
         chaseCam = new ChaseCam(gameplayViewport.getCamera(), level.getGigaGal());
 
         hudViewport = new ExtendViewport(Constants.HUD_VIEWPORT_SIZE, Constants.HUD_VIEWPORT_SIZE);
@@ -89,7 +90,7 @@ public class GameplayScreen extends ScreenAdapter {
         hudViewport.apply();
         batch.setProjectionMatrix(hudViewport.getCamera().combined);
         batch.begin();
-        hud.render(batch, level.getGigaGal().getLives(),  level.getGigaGal().getAmmo(), 100);
+        hud.render(batch, level.getGigaGal().getLives(), level.getGigaGal().getAmmo(), 100);
         batch.end();
 
         onscreenControlsViewport.apply();
