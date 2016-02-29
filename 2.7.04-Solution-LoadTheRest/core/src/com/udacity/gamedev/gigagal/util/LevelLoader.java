@@ -24,8 +24,7 @@ public class LevelLoader {
     public static final String TAG = LevelLoader.class.toString();
 
     public static Level load(String path, Viewport viewport) {
-        Level level = new Level();
-        level.setViewport(viewport);
+        Level level = new Level(viewport);
 
         File file = Gdx.files.internal(path).file();
         JSONParser parser = new JSONParser();

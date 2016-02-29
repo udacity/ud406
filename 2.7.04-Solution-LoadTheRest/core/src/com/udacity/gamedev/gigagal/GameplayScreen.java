@@ -30,6 +30,9 @@ public class GameplayScreen extends ScreenAdapter {
         gameplayViewport = new ExtendViewport(Constants.WORLD_SIZE, Constants.WORLD_SIZE);
 
 //        level = new Level(gameplayViewport);
+//        level.initializeDebugLevel();
+
+
         level = LevelLoader.load("levels/Level1.dt", gameplayViewport);
         chaseCam = new ChaseCam(gameplayViewport.getCamera(), level.getGigaGal());
     }
