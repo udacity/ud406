@@ -19,23 +19,19 @@ import java.io.File;
 import java.io.FileReader;
 import java.util.Comparator;
 
-
 public class LevelLoader {
 
     public static final String TAG = LevelLoader.class.toString();
-
 
     public static Level load(String path, Viewport viewport) {
         Level level = new Level();
         level.setViewport(viewport);
 
         File file = Gdx.files.internal(path).file();
-
         JSONParser parser = new JSONParser();
-        JSONObject rootJsonObject;
 
         try {
-            rootJsonObject = (JSONObject) parser.parse(new FileReader(file));
+            JSONObject rootJsonObject = (JSONObject) parser.parse(new FileReader(file));
 
             JSONObject composite = (JSONObject) rootJsonObject.get(Constants.LEVEL_COMPOSITE);
 
@@ -51,6 +47,43 @@ public class LevelLoader {
         }
 
         return level;
+    }
+
+    private static void loadPlatforms(JSONArray array, Level level) {
+
+        Array<Platform> platformArray = new Array<Platform>();
+
+        for (Object object : array) {
+            final JSONObject platformObject = (JSONObject) object;
+
+            final float x = ((Number) platformObject.get(Constants.LEVEL_X_KEY)).floatValue();
+            final float y = ((Number) platformObject.get(Constants.LEVEL_Y_KEY)).floatValue();
+            final float width = ((Number) platformObject.get(Constants.LEVEL_WIDTH_KEY)).floatValue();
+            final float height = ((Number) platformObject.get(Constants.LEVEL_HEIGHT_KEY)).floatValue();
+
+            final Platform platform = new Platform(x, y + height, width, height);
+            platformArray.add(platform);
+
+            final String identifier = (String) platformObject.get(Constants.LEVEL_IDENTIFIER_KEY);
+            if (identifier != null && identifier.equals(Constants.LEVEL_ENEMY_TAG)) {
+                final Enemy enemy = new Enemy(platform);
+                level.getEnemies().add(enemy);
+            }
+        }
+
+        platformArray.sort(new Comparator<Platform>() {
+            @Override
+            public int compare(Platform o1, Platform o2) {
+                if (o1.top < o2.top) {
+                    return 1;
+                } else if (o1.top > o2.top) {
+                    return -1;
+                }
+                return 0;
+            }
+        });
+
+        level.getPlatforms().addAll(platformArray);
     }
 
     private static void loadNonPlatformEntities(Level level, JSONArray nonPlatformObjects) {
@@ -75,55 +108,6 @@ public class LevelLoader {
                 Gdx.app.log(TAG, "Loaded the exit portal at " + exitPortalPosition);
                 level.setExitPortal(new ExitPortal(exitPortalPosition));
             }
-
         }
     }
-
-
-    private static void loadPlatforms(JSONArray array, Level level) {
-
-        Array<Platform> platformArray = new Array<Platform>();
-
-        for (Object object : array) {
-            final JSONObject platformObject = (JSONObject) object;
-
-            final float x = ((Number) platformObject.get(Constants.LEVEL_X_KEY)).floatValue();
-            final float y = ((Number) platformObject.get(Constants.LEVEL_Y_KEY)).floatValue();
-            final float width = ((Number) platformObject.get(Constants.LEVEL_WIDTH_KEY)).floatValue();
-            final float height = ((Number) platformObject.get(Constants.LEVEL_HEIGHT_KEY)).floatValue();
-
-
-            final Platform platform = new Platform(x, y + height, width, height);
-
-            platformArray.add(platform);
-
-
-            final String identifier = (String) platformObject.get(Constants.LEVEL_IDENTIFIER_KEY);
-
-
-            if (identifier != null && identifier.equals(Constants.LEVEL_ENEMY_TAG)) {
-                final Enemy enemy = new Enemy(platform);
-                level.getEnemies().add(enemy);
-            }
-
-
-        }
-
-
-        platformArray.sort(new Comparator<Platform>() {
-            @Override
-            public int compare(Platform o1, Platform o2) {
-                if (o1.top < o2.top) {
-                    return 1;
-                } else if (o1.top > o2.top) {
-                    return -1;
-                }
-                return 0;
-            }
-        });
-
-        level.getPlatforms().addAll(platformArray);
-
-    }
-
 }

@@ -11,9 +11,7 @@ public class Constants {
     public static final float KILL_PLANE = -200;
     public static final float GRAVITY = 10;
     public static final float CHASE_CAM_MOVE_SPEED = WORLD_SIZE;
-
     public static final String TEXTURE_ATLAS = "images/gigagal.pack.atlas";
-
 
     // GigaGal
     public static final Vector2 GIGAGAL_EYE_POSITION = new Vector2(16, 24);
@@ -60,7 +58,6 @@ public class Constants {
     public static final float BULLET_MOVE_SPEED = 150;
     public static final Vector2 BULLET_CENTER = new Vector2(3, 2);
 
-
     // Explosion
     public static final String EXPLOSION_LARGE = "explosion-large";
     public static final String EXPLOSION_MEDIUM = "explosion-medium";
@@ -84,13 +81,10 @@ public class Constants {
     public static final float EXIT_PORTAL_FRAME_DURATION = 0.1f;
 
     // Level Loading
-
     public static final String LEVEL_COMPOSITE = "composite";
     public static final String LEVEL_9PATCHES = "sImage9patchs";
     public static final String LEVEL_IMAGES = "sImages";
     public static final String LEVEL_ERROR_MESSAGE = "There was a problem loading the level.";
-
-
     public static final String LEVEL_IMAGENAME_KEY = "imageName";
     public static final String LEVEL_X_KEY = "x";
     public static final String LEVEL_Y_KEY = "y";
@@ -98,34 +92,6 @@ public class Constants {
     public static final String LEVEL_HEIGHT_KEY = "height";
     public static final String LEVEL_IDENTIFIER_KEY = "itemIdentifier";
     public static final String LEVEL_ENEMY_TAG = "Enemy";
-
-
-
-
-
-
-    // HUD
-    public static final float HUD_VIEWPORT_SIZE = 480;
-    public static final float HUD_MARGIN = 20;
-    public static final String HUD_AMMO_LABEL = "Ammo: ";
-    public static final String HUD_SCORE_LABEL = "Score: ";
-
-
-
-
-    // Onscreen Controls
-    public static final float ONSCREEN_CONTROLS_VIEWPORT_SIZE = 200;
-
-
-    public static final String MOVE_LEFT_BUTTON = "button-move-left";
-    public static final String MOVE_RIGHT_BUTTON = "button-move-right";
-    public static final String SHOOT_BUTTON = "button-shoot";
-    public static final String JUMP_BUTTON = "button-jump";
-    public static final Vector2 BUTTON_CENTER = new Vector2(15, 15);
-    public static final float BUTTON_RAIDUS = 32;
-
-
-
 
 
 }
