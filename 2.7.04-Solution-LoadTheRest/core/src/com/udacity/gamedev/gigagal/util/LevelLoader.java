@@ -37,12 +37,15 @@ public class LevelLoader {
             JSONArray platforms = (JSONArray) composite.get(Constants.LEVEL_9PATCHES);
             loadPlatforms(platforms, level);
 
+            // TODO: Get the non-platform level objects (using the Constants.LEVEL_IMAGES key)
             JSONArray nonPlatformObjects = (JSONArray) composite.get(Constants.LEVEL_IMAGES);
+
+            // TODO: Call loadNonPlatformEntities()
             loadNonPlatformEntities(level, nonPlatformObjects);
 
         } catch (Exception ex) {
-            Gdx.app.log(TAG, ex.getMessage());
-            Gdx.app.log(TAG, Constants.LEVEL_ERROR_MESSAGE);
+            Gdx.app.error(TAG, ex.getMessage());
+            Gdx.app.error(TAG, Constants.LEVEL_ERROR_MESSAGE);
         }
 
         return level;
@@ -59,6 +62,9 @@ public class LevelLoader {
             final float y = ((Number) platformObject.get(Constants.LEVEL_Y_KEY)).floatValue();
             final float width = ((Number) platformObject.get(Constants.LEVEL_WIDTH_KEY)).floatValue();
             final float height = ((Number) platformObject.get(Constants.LEVEL_HEIGHT_KEY)).floatValue();
+
+            Gdx.app.log(TAG,
+                    "Loaded a platform at x = " + x + " y = " + (y + height) + " w = " + width + " h = " + height);
 
             final Platform platform = new Platform(x, y + height, width, height);
             platformArray.add(platform);
@@ -87,25 +93,40 @@ public class LevelLoader {
 
     private static void loadNonPlatformEntities(Level level, JSONArray nonPlatformObjects) {
         for (Object o : nonPlatformObjects) {
+
+            // First we need to cast the object to a JSONObject
             JSONObject item = (JSONObject) o;
+
+            // TODO: Get the lower left corner of the object
+            Vector2 lowerLeftCorner = new Vector2();
 
             final float x = ((Number) item.get(Constants.LEVEL_X_KEY)).floatValue();
             final float y = ((Number) item.get(Constants.LEVEL_Y_KEY)).floatValue();
-            final Vector2 imagePosition = new Vector2(x, y);
+            lowerLeftCorner = new Vector2(x, y);
 
+            // Check if this object is GigaGal
+            if (item.get(Constants.LEVEL_IMAGENAME_KEY).equals(Constants.STANDING_RIGHT)) {
 
-            if (item.get(Constants.LEVEL_IMAGENAME_KEY).equals(Constants.POWERUP_SPRITE)) {
-                final Vector2 powerupPosition = imagePosition.add(Constants.POWERUP_CENTER);
-                Gdx.app.log(TAG, "Loaded a powerup at " + powerupPosition);
-                level.getPowerups().add(new Powerup(powerupPosition));
-            } else if (item.get(Constants.LEVEL_IMAGENAME_KEY).equals(Constants.STANDING_RIGHT)) {
-                final Vector2 gigaGalPosition = imagePosition.add(Constants.GIGAGAL_EYE_POSITION);
+                // If so, add GigaGal's eye position to find her spawn position
+                final Vector2 gigaGalPosition = lowerLeftCorner.add(Constants.GIGAGAL_EYE_POSITION);
                 Gdx.app.log(TAG, "Loaded GigaGal at " + gigaGalPosition);
+
+                // Add our new GigaGal to the level
                 level.setGigaGal(new GigaGal(gigaGalPosition, level));
-            } else if (item.get(Constants.LEVEL_IMAGENAME_KEY).equals(Constants.EXIT_PORTAL_SPRITE_1)) {
-                final Vector2 exitPortalPosition = imagePosition.add(Constants.EXIT_PORTAL_CENTER);
+            }
+
+            // TODO: Go through the same process to load the Exit Portal
+            else if (item.get(Constants.LEVEL_IMAGENAME_KEY).equals(Constants.EXIT_PORTAL_SPRITE_1)) {
+                final Vector2 exitPortalPosition = lowerLeftCorner.add(Constants.EXIT_PORTAL_CENTER);
                 Gdx.app.log(TAG, "Loaded the exit portal at " + exitPortalPosition);
                 level.setExitPortal(new ExitPortal(exitPortalPosition));
+            }
+
+            // TODO: Load the Powerups
+            else if (item.get(Constants.LEVEL_IMAGENAME_KEY).equals(Constants.POWERUP_SPRITE)) {
+                final Vector2 powerupPosition = lowerLeftCorner.add(Constants.POWERUP_CENTER);
+                Gdx.app.log(TAG, "Loaded a powerup at " + powerupPosition);
+                level.getPowerups().add(new Powerup(powerupPosition));
             }
         }
     }

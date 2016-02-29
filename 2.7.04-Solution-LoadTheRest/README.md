@@ -1,29 +1,7 @@
-# GigaGal!
+# Load the Rest
 
-So here's my crack at creating a specification for what the game is going to look like.
+We're almost done loading up the level! Now that we have an exit portal to load, we'll load it, along with GigaGal's spawn location, and the location of any powerups that have been placed about the level.
 
-I don't think we're going to add multiple screens, nor multiple levels. The game will just consist of a single level, which the player will navigate from beginning to end.
+To do this, first we need to get the array of images that we placed in the level. Then, for each image, we'll save off its location. Note that the location stored in the level file is actually the bottom left corner of the image. Then we'll figure out if it's GigaGal, the exit portal, or a powerup. Finally, we'll all a new object of the appropriate type to the level, making sure we use the proper offset, so the bottom left corner of the in-game object matches where we placed the bottom left corner of the image in the level editor.
 
-
-## Assets
-
-The game requires a number of 
-
-## The Level Loader
-
-The Level loader will load a level specified in a PNG file, with elements 
-
-## The Player
-
-GigaGal can walk left and right, and can jump. She has a three element walk loop while moving on the ground, and an alternative sprite when she's in midair. She can fire bullets, which play a three element explosion animation when they hit something.
-
-## The Bullets
-
-## The Platforms
-
-The platforms wi 
-
-
-## The enemies
-
-Enemies can be spawned on top of platforms, and will walk back and forth at a constant rate, turning around if they reach the end of a platform or run into another enemy. 
+All the TODOs you'll need to handle are in `LevelLoader.java`. Best of luck! Note that we've already completed the code to load up GigaGal, as an example.
