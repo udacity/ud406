@@ -37,12 +37,12 @@ TODO: Create GigaGalGame
 TODO: Create GameplayScreen
 TODO: Create Level
 
-## util package
+## entities package
 
 TODO: Create GigaGal
 TODO: Create Platform
 
-## entities package
+## util package
 
 TODO: Create Assets
 TODO: Create Constants
