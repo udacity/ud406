@@ -11,34 +11,6 @@ bullet
   orig: 7, 5
   offset: 0, 0
   index: -1
-button-jump
-  rotate: false
-  xy: 260, 28
-  size: 32, 32
-  orig: 32, 32
-  offset: 0, 0
-  index: -1
-button-move-left
-  rotate: false
-  xy: 294, 28
-  size: 32, 32
-  orig: 32, 32
-  offset: 0, 0
-  index: -1
-button-move-right
-  rotate: false
-  xy: 328, 28
-  size: 32, 32
-  orig: 32, 32
-  offset: 0, 0
-  index: -1
-button-shoot
-  rotate: false
-  xy: 362, 28
-  size: 32, 32
-  orig: 32, 32
-  offset: 0, 0
-  index: -1
 enemy
   rotate: false
   xy: 62, 16
@@ -111,7 +83,7 @@ explosion-small
   index: -1
 jumping-left
   rotate: false
-  xy: 398, 53
+  xy: 260, 25
   size: 29, 35
   orig: 29, 35
   offset: 0, 0
@@ -132,14 +104,14 @@ platform
   index: -1
 powerup
   rotate: false
-  xy: 455, 34
+  xy: 425, 71
   size: 15, 17
   orig: 15, 17
   offset: 0, 0
   index: -1
 standing-left
   rotate: false
-  xy: 429, 53
+  xy: 291, 25
   size: 28, 35
   orig: 28, 35
   offset: 0, 0
@@ -153,7 +125,7 @@ standing-right
   index: -1
 walk-1-left
   rotate: false
-  xy: 426, 16
+  xy: 351, 25
   size: 27, 35
   orig: 27, 35
   offset: 0, 0
@@ -167,7 +139,7 @@ walk-1-right
   index: -1
 walk-2-left
   rotate: false
-  xy: 459, 53
+  xy: 398, 53
   size: 25, 35
   orig: 25, 35
   offset: 0, 0
@@ -181,7 +153,7 @@ walk-2-right
   index: -1
 walk-3-left
   rotate: false
-  xy: 396, 16
+  xy: 321, 25
   size: 28, 35
   orig: 28, 35
   offset: 0, 0

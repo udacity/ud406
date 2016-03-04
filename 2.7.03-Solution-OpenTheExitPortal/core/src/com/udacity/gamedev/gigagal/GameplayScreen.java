@@ -9,8 +9,6 @@ import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.udacity.gamedev.gigagal.util.Assets;
 import com.udacity.gamedev.gigagal.util.ChaseCam;
 import com.udacity.gamedev.gigagal.util.Constants;
-import com.udacity.gamedev.gigagal.overlays.GigaGalHud;
-import com.udacity.gamedev.gigagal.overlays.OnscreenControls;
 
 
 public class GameplayScreen extends ScreenAdapter {
@@ -20,15 +18,7 @@ public class GameplayScreen extends ScreenAdapter {
     ExtendViewport gameplayViewport;
     Level level;
     ChaseCam chaseCam;
-
-    ExtendViewport hudViewport;
-    GigaGalHud hud;
-
-    ExtendViewport onscreenControlsViewport;
-    OnscreenControls onscreenControls;
-
     SpriteBatch batch;
-
 
     @Override
     public void show() {
@@ -39,26 +29,15 @@ public class GameplayScreen extends ScreenAdapter {
         gameplayViewport = new ExtendViewport(Constants.WORLD_SIZE, Constants.WORLD_SIZE);
 
         level = new Level(gameplayViewport);
-        //        level = LevelLoader.load("levels/intro_level.json", gameplayViewport);
+        level.initializeDebugLevel();
+
+//        level = LevelLoader.load("Level1", gameplayViewport);
         chaseCam = new ChaseCam(gameplayViewport.getCamera(), level.getGigaGal());
-
-        hudViewport = new ExtendViewport(Constants.HUD_VIEWPORT_SIZE, Constants.HUD_VIEWPORT_SIZE);
-        hud = new GigaGalHud(hudViewport);
-
-        onscreenControlsViewport = new ExtendViewport(
-                Constants.ONSCREEN_CONTROLS_VIEWPORT_SIZE,
-                Constants.ONSCREEN_CONTROLS_VIEWPORT_SIZE);
-
-
-        onscreenControls = new OnscreenControls(onscreenControlsViewport);
     }
 
     @Override
     public void resize(int width, int height) {
         gameplayViewport.update(width, height, true);
-        hudViewport.update(width, height, true);
-        onscreenControlsViewport.update(width, height, true);
-        onscreenControls.recalculateButtonPositions();
     }
 
     @Override
@@ -84,22 +63,6 @@ public class GameplayScreen extends ScreenAdapter {
 
         batch.end();
 
-
-//        hudViewport.apply();
-//        batch.setProjectionMatrix(hudViewport.getCamera().combined);
-//        batch.begin();
-//        hud.render(batch, level.getGigaGal().getLives(),  level.getGigaGal().getAmmo(), 100);
-//        batch.end();
-
-//        onscreenControlsViewport.apply();
-//        batch.setProjectionMatrix(onscreenControlsViewport.getCamera().combined);
-//        batch.begin();
-//        onscreenControls.render(batch);
-//        batch.end();
-
-    }
-
-    public void levelComplete() {
 
     }
 }

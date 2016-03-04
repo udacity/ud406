@@ -12,6 +12,7 @@ import com.udacity.gamedev.gigagal.entities.Explosion;
 import com.udacity.gamedev.gigagal.entities.GigaGal;
 import com.udacity.gamedev.gigagal.entities.Platform;
 import com.udacity.gamedev.gigagal.entities.Powerup;
+import com.udacity.gamedev.gigagal.util.Constants;
 import com.udacity.gamedev.gigagal.util.Enums.Direction;
 
 public class Level {
@@ -19,38 +20,31 @@ public class Level {
     public static final String TAG = Level.class.getName();
 
     private Viewport viewport;
-
     private GigaGal gigaGal;
+
+    // TODO: Add an ExitPortal member
     private ExitPortal exitPortal;
+
     private Array<Platform> platforms;
     private DelayedRemovalArray<Enemy> enemies;
     private DelayedRemovalArray<Bullet> bullets;
     private DelayedRemovalArray<Explosion> explosions;
     private DelayedRemovalArray<Powerup> powerups;
 
-    public boolean gameOver;
-    public boolean victory;
+    public Level(Viewport viewport) {
+        this.viewport = viewport;
 
-    public Level() {
-        gigaGal = new GigaGal(new Vector2(50,50), this);
+        gigaGal = new GigaGal(Constants.DEFAULT_SPAWN_LOCATION, this);
         platforms = new Array<Platform>();
         enemies = new DelayedRemovalArray<Enemy>();
         bullets = new DelayedRemovalArray<Bullet>();
         explosions = new DelayedRemovalArray<Explosion>();
         powerups = new DelayedRemovalArray<Powerup>();
-        exitPortal = new ExitPortal(new Vector2(200,200));
 
-        gameOver = false;
-        victory = false;
+        // TODO: Initialize the exit portal with its default location
+        exitPortal = new ExitPortal(Constants.EXIT_PORTAL_DEFAULT_LOCATION);
     }
 
-    public Level(Viewport viewport) {
-        this();
-        this.viewport = viewport;
-
-        initializeDebugLevel();
-
-    }
 
     public void update(float delta) {
         // Update GigaGal
@@ -95,7 +89,10 @@ public class Level {
             platform.render(batch);
         }
 
-        for (Powerup powerup : powerups){
+        // TODO: Render the exit portal
+        exitPortal.render(batch);
+
+        for (Powerup powerup : powerups) {
             powerup.render(batch);
         }
 
@@ -103,7 +100,7 @@ public class Level {
             enemy.render(batch);
         }
 
-        exitPortal.render(batch);
+
         gigaGal.render(batch);
 
         for (Bullet bullet : bullets) {
@@ -116,10 +113,12 @@ public class Level {
 
     }
 
-    private void initializeDebugLevel() {
+    public void initializeDebugLevel() {
 
         gigaGal = new GigaGal(new Vector2(15, 40), this);
 
+        // TODO: Add an exit portal to the debug level
+        // Around (150, 150) will do fine
         exitPortal = new ExitPortal(new Vector2(150, 150));
 
         platforms = new Array<Platform>();
@@ -139,11 +138,8 @@ public class Level {
         platforms.add(new Platform(35, 55, 50, 20));
         platforms.add(new Platform(10, 20, 20, 9));
 
-        powerups.add(new Powerup(new Vector2(150, 150)));
-
-
+        powerups.add(new Powerup(new Vector2(20, 110)));
     }
-
 
 
     public Array<Platform> getPlatforms() {
@@ -158,12 +154,12 @@ public class Level {
         return powerups;
     }
 
-    public void setExitPortal(ExitPortal exitPortal) {
-        this.exitPortal = exitPortal;
-    }
-
     public ExitPortal getExitPortal() {
         return exitPortal;
+    }
+
+    public void setExitPortal(ExitPortal exitPortal) {
+        this.exitPortal = exitPortal;
     }
 
     public Viewport getViewport() {

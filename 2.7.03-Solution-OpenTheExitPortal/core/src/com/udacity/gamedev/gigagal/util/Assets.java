@@ -24,8 +24,9 @@ public class Assets implements Disposable, AssetErrorListener {
     public EnemyAssets enemyAssets;
     public ExplosionAssets explosionAssets;
     public PowerupAssets powerupAssets;
+
+    // TODO: Add an ExitPortalAssets member (defined below)
     public ExitPortalAssets exitPortalAssets;
-    public OnscreenControlsAssets onscreenControlsAssets;
 
     private AssetManager assetManager;
 
@@ -46,8 +47,9 @@ public class Assets implements Disposable, AssetErrorListener {
         enemyAssets = new EnemyAssets(atlas);
         explosionAssets = new ExplosionAssets(atlas);
         powerupAssets = new PowerupAssets(atlas);
+
+        // TODO: Initialize the exitPortalAssets
         exitPortalAssets = new ExitPortalAssets(atlas);
-        onscreenControlsAssets = new OnscreenControlsAssets(atlas);
     }
 
     @Override
@@ -154,6 +156,7 @@ public class Assets implements Disposable, AssetErrorListener {
 
     public class ExitPortalAssets {
 
+        // TODO: Add an Animation for the exit portal
         public final Animation exitPortal;
 
         public ExitPortalAssets(TextureAtlas atlas) {
@@ -165,27 +168,15 @@ public class Assets implements Disposable, AssetErrorListener {
             final AtlasRegion exitPortal6 = atlas.findRegion(Constants.EXIT_PORTAL_SPRITE_6);
 
             Array<AtlasRegion> exitPortalFrames = new Array<AtlasRegion>();
+
+            // TODO: Add the frames to the exitPortalFrames array
+
             exitPortalFrames.addAll(exitPortal1, exitPortal2, exitPortal3, exitPortal4, exitPortal5, exitPortal6);
+
+            // TODO: Package the frames into an animation, using the frame duration constant
+            // Go define that constant in Constants.java if you haven't already
 
             exitPortal = new Animation(Constants.EXIT_PORTAL_FRAME_DURATION, exitPortalFrames);
         }
     }
-
-    public class OnscreenControlsAssets {
-
-        public final AtlasRegion moveRight;
-        public final AtlasRegion moveLeft;
-        public final AtlasRegion shoot;
-        public final AtlasRegion jump;
-
-        public OnscreenControlsAssets(TextureAtlas atlas){
-            moveRight = atlas.findRegion(Constants.MOVE_RIGHT_BUTTON);
-            moveLeft = atlas.findRegion(Constants.MOVE_LEFT_BUTTON);
-            shoot = atlas.findRegion(Constants.SHOOT_BUTTON);
-            jump = atlas.findRegion(Constants.JUMP_BUTTON);
-        }
-
-
-    }
-
 }
