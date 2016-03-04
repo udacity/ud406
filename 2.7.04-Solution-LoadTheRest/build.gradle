@@ -106,7 +106,15 @@ project(":core") {
         }
     }
 
+    task copyLevels(type: Copy){
+        from "../GigaGalLevels/scenes"
+        into "../android/assets/levels"
+        exclude "MainScene.dt"
+    }
+
     project.tasks.compileJava.dependsOn packTextures
+    project.tasks.compileJava.dependsOn copyLevels
+
 }
 
 tasks.eclipse.doLast {

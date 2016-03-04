@@ -23,7 +23,9 @@ public class LevelLoader {
 
     public static final String TAG = LevelLoader.class.toString();
 
-    public static Level load(String path, Viewport viewport) {
+    public static Level load(String levelName, Viewport viewport) {
+
+        String path = Constants.LEVEL_DIR + File.separator + levelName + "." + Constants.LEVEL_FILE_EXTENSION;
         Level level = new Level(viewport);
 
         File file = Gdx.files.internal(path).file();
@@ -37,7 +39,7 @@ public class LevelLoader {
             JSONArray platforms = (JSONArray) composite.get(Constants.LEVEL_9PATCHES);
             loadPlatforms(platforms, level);
 
-            // TODO: Get the non-platform level objects (using the Constants.LEVEL_IMAGES key)
+            // TODO: Get the non-platform level objects from composite (using the Constants.LEVEL_IMAGES key)
             JSONArray nonPlatformObjects = (JSONArray) composite.get(Constants.LEVEL_IMAGES);
 
             // TODO: Call loadNonPlatformEntities()
@@ -71,6 +73,7 @@ public class LevelLoader {
 
             final String identifier = (String) platformObject.get(Constants.LEVEL_IDENTIFIER_KEY);
             if (identifier != null && identifier.equals(Constants.LEVEL_ENEMY_TAG)) {
+                Gdx.app.log(TAG, "Loaded an enemy on that platform");
                 final Enemy enemy = new Enemy(platform);
                 level.getEnemies().add(enemy);
             }

@@ -83,6 +83,8 @@ public class Level {
             platform.render(batch);
         }
 
+        exitPortal.render(batch);
+
         for (Powerup powerup : powerups) {
             powerup.render(batch);
         }
@@ -91,7 +93,7 @@ public class Level {
             enemy.render(batch);
         }
 
-        exitPortal.render(batch);
+
         gigaGal.render(batch);
 
         for (Bullet bullet : bullets) {
@@ -127,7 +129,9 @@ public class Level {
         platforms.add(new Platform(35, 55, 50, 20));
         platforms.add(new Platform(10, 20, 20, 9));
 
-        powerups.add(new Powerup(new Vector2(150, 150)));
+        powerups.add(new Powerup(new Vector2(20, 110)));
+
+
 
 
     }

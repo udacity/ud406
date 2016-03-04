@@ -81,6 +81,14 @@ public class Constants {
     public static final float EXIT_PORTAL_FRAME_DURATION = 0.1f;
 
     // Level Loading
+
+    public static final String LEVEL_DIR = "levels";
+    public static final String LEVEL_FILE_EXTENSION = "dt";
+
+    public static final String[] LEVELS = {"Level1"};
+
+
+
     public static final String LEVEL_COMPOSITE = "composite";
     public static final String LEVEL_9PATCHES = "sImage9patchs";
     public static final String LEVEL_IMAGES = "sImages";
