@@ -73,7 +73,6 @@ public class Constants {
 
     // Exit Portal
     // TODO: Note the constants we added for the exit portal frames
-
     public static final String EXIT_PORTAL_SPRITE_1 = "exit-portal-1";
     public static final String EXIT_PORTAL_SPRITE_2 = "exit-portal-2";
     public static final String EXIT_PORTAL_SPRITE_3 = "exit-portal-3";
@@ -84,11 +83,11 @@ public class Constants {
 
     // TODO: Add a constant for the exit portal frame duration
     // A tenth of a second gives a nice animation
-    public static final float EXIT_PORTAL_FRAME_DURATION = 0.1f;
+
 
     // TODO: Add a constant for the Exit portal's default location
     // Something like (200, 200) is fine
-    public static final Vector2 EXIT_PORTAL_DEFAULT_LOCATION = new Vector2(200, 200);
+
 
     // Level Loading
     public static final String LEVEL_DIR = "levels";

@@ -26,7 +26,7 @@ public class Assets implements Disposable, AssetErrorListener {
     public PowerupAssets powerupAssets;
 
     // TODO: Add an ExitPortalAssets member (defined below)
-    public ExitPortalAssets exitPortalAssets;
+
 
     private AssetManager assetManager;
 
@@ -49,7 +49,7 @@ public class Assets implements Disposable, AssetErrorListener {
         powerupAssets = new PowerupAssets(atlas);
 
         // TODO: Initialize the exitPortalAssets
-        exitPortalAssets = new ExitPortalAssets(atlas);
+
     }
 
     @Override
@@ -157,7 +157,7 @@ public class Assets implements Disposable, AssetErrorListener {
     public class ExitPortalAssets {
 
         // TODO: Add an Animation for the exit portal
-        public final Animation exitPortal;
+
 
         public ExitPortalAssets(TextureAtlas atlas) {
             final AtlasRegion exitPortal1 = atlas.findRegion(Constants.EXIT_PORTAL_SPRITE_1);
@@ -171,12 +171,10 @@ public class Assets implements Disposable, AssetErrorListener {
 
             // TODO: Add the frames to the exitPortalFrames array
 
-            exitPortalFrames.addAll(exitPortal1, exitPortal2, exitPortal3, exitPortal4, exitPortal5, exitPortal6);
 
             // TODO: Package the frames into an animation, using the frame duration constant
             // Go define that constant in Constants.java if you haven't already
 
-            exitPortal = new Animation(Constants.EXIT_PORTAL_FRAME_DURATION, exitPortalFrames);
         }
     }
 }

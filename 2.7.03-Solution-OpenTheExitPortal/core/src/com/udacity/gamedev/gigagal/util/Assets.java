@@ -170,12 +170,10 @@ public class Assets implements Disposable, AssetErrorListener {
             Array<AtlasRegion> exitPortalFrames = new Array<AtlasRegion>();
 
             // TODO: Add the frames to the exitPortalFrames array
-
             exitPortalFrames.addAll(exitPortal1, exitPortal2, exitPortal3, exitPortal4, exitPortal5, exitPortal6);
 
             // TODO: Package the frames into an animation, using the frame duration constant
             // Go define that constant in Constants.java if you haven't already
-
             exitPortal = new Animation(Constants.EXIT_PORTAL_FRAME_DURATION, exitPortalFrames);
         }
     }

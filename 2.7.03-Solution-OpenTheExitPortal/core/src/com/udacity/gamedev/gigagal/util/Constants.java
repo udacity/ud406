@@ -73,7 +73,6 @@ public class Constants {
 
     // Exit Portal
     // TODO: Note the constants we added for the exit portal frames
-
     public static final String EXIT_PORTAL_SPRITE_1 = "exit-portal-1";
     public static final String EXIT_PORTAL_SPRITE_2 = "exit-portal-2";
     public static final String EXIT_PORTAL_SPRITE_3 = "exit-portal-3";
