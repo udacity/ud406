@@ -15,8 +15,15 @@ Overlap2D is a game level and content editor for all desktop platforms where Jav
 
 We've included a copy of Overlap2D in the root of this repository, or you can download a copy from http://overlap2d.com/
 
+Let's create a new project(File -> New Project) and call it, GigaGalLevels. The Original Size is the dimensions of your complete level all across all screens. It's fine to leave it at the default of 1920 x 1200. Pixels per WUnit stands for pixels per world unit. This is mainly useful when you have a very large world that would be hard to manage in pixels. For GigaGal, we measure the world in pixels so change this to 1. That way we don't have to convert the output of Overlap2D before we display a level.
 
+This area is the scene. It holds all the components of your level. A project comes with a single scene called MainScene with nothing in it. You can create another level by selecting File -> Scenes -> Create New Scene. Name it Level1
 
+Let's add some platforms. Navigate to File -> Import Resources. From here you can import the GigaGal assets. It's important to note that drag and drop doesn't work on all platforms. Include  `standing-right.png`, the powerup, the platform, the enemy, and the first frame of the exit portal.
+
+Just one step left before we can build a level from our resources. We need to convert our platform graphic into a 9patch. You can do this by dragging a platform into the scene, right clicking, and selecting "convert to 9patch.
+
+One final detail: we'll only use enemy graphic in our level as a marker. To actually specify that we a platform needs an enemy on it, we'll give it the identifier "Enemy".
 
 ## Level Loading
 
