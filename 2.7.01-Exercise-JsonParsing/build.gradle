@@ -94,7 +94,10 @@ project(":core") {
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"
 
         // TODO: Note that we added a dependency on the JSON simple library
-        compile "com.googlecode.json-simple:json-simple:1.1.1"
+        // We also had to do some shenanigans to prevent a version conflict
+        compile ('com.googlecode.json-simple:json-simple:1.1.1') {
+            exclude module: 'junit'
+        }
     }
 
     task packTextures {
@@ -108,7 +111,7 @@ project(":core") {
         }
     }
 
-    // TODO: Check out the task we've added to copy the levels from the Overlap2D project to the assets directory8
+    // TODO: Check out the task we've added to copy the levels from the Overlap2D project to the assets directory
     task copyLevels(type: Copy){
         from "../GigaGalLevels/scenes"
         into "../android/assets/levels"
