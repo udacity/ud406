@@ -94,9 +94,11 @@ project(":core") {
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"
     }
 
-    task packTextures {
-        def pack = new File("android/assets/images/gigagal.pack.png")
-        def atlas = new File("android/assets/images/gigagal.pack.atlas")
+	task packTextures << {
+        final def prefix = project.getRootDir().absolutePath + "/"
+
+        def pack  = new File(prefix + "android/assets/images/gigagal.pack.png")
+        def atlas = new File(prefix + "android/assets/images/gigagal.pack.atlas")
 
         doLast {
             pack.delete()

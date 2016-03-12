@@ -100,28 +100,20 @@ project(":core") {
     }
 
     // TODO: Define packTextures task
-    task packTextures << {
-       // NOTE: When using android studio gradle executes from a different working directory
-       final def absolutePath = project.getRootDir().absolutePath
+    task packTextures {
+        final def prefix = project.getRootDir().absolutePath + "/"
 
-       final def packPath  = absolutePath + "/android/assets/images/gigagal.pack.png"
-       final def atlasPath = absolutePath + "/android/assets/images/gigagal.pack.atlas"
+        def pack = new File(prefix + "android/assets/images/gigagal.pack.png")
+        pack.delete()
+        def atlas = new File(prefix + "android/assets/images/gigagal.pack.atlas")
+        atlas.delete()
+        TexturePacker.process(prefix + "core/rawAssets/sprites", prefix + "android/assets/images", "gigagal.pack")
+    }
 
-       final def spriteSourceDir     = absolutePath + "/core/rawAssets/sprites"
-       final def packFileName        = "gigagal.pack"
-       final def textureAtlasDestDir = absolutePath + "/android/assets/images"
+    // TODO: Add task dependency between compileJava and packTextures
+    project.tasks.compileJava.dependsOn packTextures
 
-       def pack = new File(packPath)
-       pack.delete()
 
-       def atlas = new File(atlasPath)
-       atlas.delete()
-
-       TexturePacker.process(spriteSourceDir, textureAtlasDestDir, packFileName)
-   }
-
-   // TODO: Add task dependency between compileJava and packTextures
-   project.tasks.compileJava.dependsOn packTextures
 }
 
 tasks.eclipse.doLast {
