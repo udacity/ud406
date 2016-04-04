@@ -17,9 +17,9 @@ import com.udacity.gamedev.gigagal.util.Enums.Direction;
 public class Level {
 
     public static final String TAG = Level.class.getName();
-
+    public boolean gameOver;
+    public boolean victory;
     private Viewport viewport;
-
     private GigaGal gigaGal;
     private ExitPortal exitPortal;
     private Array<Platform> platforms;
@@ -28,17 +28,14 @@ public class Level {
     private DelayedRemovalArray<Explosion> explosions;
     private DelayedRemovalArray<Powerup> powerups;
 
-    public boolean gameOver;
-    public boolean victory;
-
     public Level() {
-        gigaGal = new GigaGal(new Vector2(50,50), this);
+        gigaGal = new GigaGal(new Vector2(50, 50), this);
         platforms = new Array<Platform>();
         enemies = new DelayedRemovalArray<Enemy>();
         bullets = new DelayedRemovalArray<Bullet>();
         explosions = new DelayedRemovalArray<Explosion>();
         powerups = new DelayedRemovalArray<Powerup>();
-        exitPortal = new ExitPortal(new Vector2(200,200));
+        exitPortal = new ExitPortal(new Vector2(200, 200));
 
         gameOver = false;
         victory = false;
@@ -95,15 +92,15 @@ public class Level {
             platform.render(batch);
         }
 
-        for (Powerup powerup : powerups){
+        exitPortal.render(batch);
+
+        for (Powerup powerup : powerups) {
             powerup.render(batch);
         }
 
         for (Enemy enemy : enemies) {
             enemy.render(batch);
         }
-
-        exitPortal.render(batch);
         gigaGal.render(batch);
 
         for (Bullet bullet : bullets) {
@@ -113,7 +110,6 @@ public class Level {
         for (Explosion explosion : explosions) {
             explosion.render(batch);
         }
-
     }
 
     private void initializeDebugLevel() {
@@ -145,7 +141,6 @@ public class Level {
     }
 
 
-
     public Array<Platform> getPlatforms() {
         return platforms;
     }
@@ -158,12 +153,12 @@ public class Level {
         return powerups;
     }
 
-    public void setExitPortal(ExitPortal exitPortal) {
-        this.exitPortal = exitPortal;
-    }
-
     public ExitPortal getExitPortal() {
         return exitPortal;
+    }
+
+    public void setExitPortal(ExitPortal exitPortal) {
+        this.exitPortal = exitPortal;
     }
 
     public Viewport getViewport() {

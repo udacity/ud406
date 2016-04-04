@@ -13,11 +13,11 @@ import com.udacity.gamedev.gigagal.util.Utils;
 
 public class Enemy {
 
+    final long startTime;
     private final Platform platform;
     public Vector2 position;
     public int health;
     private Direction direction;
-    final long startTime;
 
     public Enemy(Platform platform) {
         this.platform = platform;

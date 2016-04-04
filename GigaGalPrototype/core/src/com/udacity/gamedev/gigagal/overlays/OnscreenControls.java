@@ -5,6 +5,7 @@ import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.udacity.gamedev.gigagal.entities.GigaGal;
 import com.udacity.gamedev.gigagal.util.Assets;
 import com.udacity.gamedev.gigagal.util.Constants;
 import com.udacity.gamedev.gigagal.util.Utils;
@@ -25,14 +26,17 @@ public class OnscreenControls extends InputAdapter {
     private int shootPointer;
     private int jumpPointer;
 
+    private final GigaGal gigaGal;
 
-    public OnscreenControls(Viewport viewport) {
+    public OnscreenControls(Viewport viewport, GigaGal gigaGal) {
         this.viewport = viewport;
 
         moveLeftCenter = new Vector2();
         moveRightCenter = new Vector2();
         shootCenter = new Vector2();
         jumpCenter = new Vector2();
+
+        this.gigaGal = gigaGal;
 
         recalculateButtonPositions();
     }
@@ -43,8 +47,8 @@ public class OnscreenControls extends InputAdapter {
 
         Vector2 viewportPosition = viewport.unproject(new Vector2(screenX, screenY));
 
-        if (viewportPosition.dst(shootCenter) < Constants.BUTTON_RAIDUS){
-
+        if (viewportPosition.dst(shootCenter) < Constants.BUTTON_RAIDUS) {
+            gigaGal.shoot();
         }
 
         return super.touchDown(screenX, screenY, pointer, button);

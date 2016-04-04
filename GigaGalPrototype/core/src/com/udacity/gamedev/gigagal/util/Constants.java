@@ -100,17 +100,11 @@ public class Constants {
     public static final String LEVEL_ENEMY_TAG = "Enemy";
 
 
-
-
-
-
     // HUD
     public static final float HUD_VIEWPORT_SIZE = 480;
     public static final float HUD_MARGIN = 20;
     public static final String HUD_AMMO_LABEL = "Ammo: ";
     public static final String HUD_SCORE_LABEL = "Score: ";
-
-
 
 
     // Onscreen Controls
@@ -123,9 +117,6 @@ public class Constants {
     public static final String JUMP_BUTTON = "button-jump";
     public static final Vector2 BUTTON_CENTER = new Vector2(15, 15);
     public static final float BUTTON_RAIDUS = 32;
-
-
-
 
 
 }

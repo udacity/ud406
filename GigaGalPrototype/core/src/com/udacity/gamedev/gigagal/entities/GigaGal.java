@@ -57,7 +57,7 @@ public class GigaGal {
         respawn();
     }
 
-    private void respawn(){
+    private void respawn() {
         position.set(spawnLocation);
         lastFramePosition.set(spawnLocation);
         velocity.setZero();
@@ -79,7 +79,7 @@ public class GigaGal {
 
         if (position.y < Constants.KILL_PLANE) {
             lives--;
-            if (lives < 0){
+            if (lives < 0) {
 //                level.gameOver();
             }
             respawn();
@@ -168,7 +168,14 @@ public class GigaGal {
         powerups.end();
 
         // Shoot
-        if (Gdx.input.isKeyJustPressed(Keys.X) && ammo > 0) {
+        if (Gdx.input.isKeyJustPressed(Keys.X)) {
+            shoot();
+
+        }
+    }
+
+    public void shoot() {
+        if (ammo > 0) {
 
             ammo--;
             Vector2 bulletPosition;

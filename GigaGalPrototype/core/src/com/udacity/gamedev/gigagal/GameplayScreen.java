@@ -51,7 +51,7 @@ public class GameplayScreen extends ScreenAdapter {
                 Constants.ONSCREEN_CONTROLS_VIEWPORT_SIZE);
 
 
-        onscreenControls = new OnscreenControls(onscreenControlsViewport);
+        onscreenControls = new OnscreenControls(onscreenControlsViewport, level.getGigaGal());
         Gdx.input.setInputProcessor(onscreenControls);
     }
 
