@@ -14,6 +14,7 @@ import com.udacity.gamedev.gigagal.util.Utils;
 public class Enemy {
 
     final long startTime;
+    final float bobOffset;
     private final Platform platform;
     public Vector2 position;
     public int health;
@@ -25,6 +26,7 @@ public class Enemy {
         position = new Vector2(platform.left, platform.top + Constants.ENEMY_CENTER.y);
         startTime = TimeUtils.nanoTime();
         health = Constants.ENEMY_HEALTH;
+        bobOffset = MathUtils.random();
     }
 
     public void update(float delta) {
@@ -45,7 +47,7 @@ public class Enemy {
         }
 
         final float elapsedTime = Utils.secondsSince(startTime);
-        final float bobMultiplier = 1 + MathUtils.sin(MathUtils.PI2 * elapsedTime / Constants.ENEMY_BOB_PERIOD);
+        final float bobMultiplier = 1 + MathUtils.sin(MathUtils.PI2 * (bobOffset + elapsedTime / Constants.ENEMY_BOB_PERIOD));
         position.y = platform.top + Constants.ENEMY_CENTER.y + Constants.ENEMY_BOB_AMPLITUDE * bobMultiplier;
     }
 

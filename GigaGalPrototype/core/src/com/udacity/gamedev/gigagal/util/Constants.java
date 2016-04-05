@@ -81,6 +81,8 @@ public class Constants {
     public static final String EXIT_PORTAL_SPRITE_5 = "exit-portal-5";
     public static final String EXIT_PORTAL_SPRITE_6 = "exit-portal-6";
     public static final Vector2 EXIT_PORTAL_CENTER = new Vector2(31, 31);
+    public static final float EXIT_PORTAL_RADIUS = 28;
+
     public static final float EXIT_PORTAL_FRAME_DURATION = 0.1f;
 
     // Level Loading
@@ -90,7 +92,6 @@ public class Constants {
     public static final String LEVEL_IMAGES = "sImages";
     public static final String LEVEL_ERROR_MESSAGE = "There was a problem loading the level.";
 
-
     public static final String LEVEL_IMAGENAME_KEY = "imageName";
     public static final String LEVEL_X_KEY = "x";
     public static final String LEVEL_Y_KEY = "y";
@@ -98,6 +99,7 @@ public class Constants {
     public static final String LEVEL_HEIGHT_KEY = "height";
     public static final String LEVEL_IDENTIFIER_KEY = "itemIdentifier";
     public static final String LEVEL_ENEMY_TAG = "Enemy";
+    public static final String[] LEVELS = {"levels/Level1.dt", "levels/Level2.dt"};
 
 
     // HUD
@@ -109,8 +111,6 @@ public class Constants {
 
     // Onscreen Controls
     public static final float ONSCREEN_CONTROLS_VIEWPORT_SIZE = 200;
-
-
     public static final String MOVE_LEFT_BUTTON = "button-move-left";
     public static final String MOVE_RIGHT_BUTTON = "button-move-right";
     public static final String SHOOT_BUTTON = "button-shoot";
@@ -118,5 +118,8 @@ public class Constants {
     public static final Vector2 BUTTON_CENTER = new Vector2(15, 15);
     public static final float BUTTON_RAIDUS = 32;
 
+    // Victory/Game Over screens
+
+    public static final float LEVEL_END_DURATION = 3;
 
 }

@@ -34,6 +34,10 @@ public class GigaGal {
     private int ammo;
     private int lives;
 
+    public boolean jumpButtonPressed;
+    public boolean leftButtonPressed;
+    public boolean rightButtonPressed;
+
     public GigaGal(Vector2 spawnLocation, Level level) {
         this.spawnLocation = spawnLocation;
         this.level = level;
@@ -125,11 +129,17 @@ public class GigaGal {
             }
         }
 
+
+
         // Move left/right
         if (jumpState != JumpState.RECOILING) {
-            if (Gdx.input.isKeyPressed(Keys.LEFT)) {
+
+            boolean left = Gdx.input.isKeyPressed(Keys.LEFT) || leftButtonPressed;
+            boolean right = Gdx.input.isKeyPressed(Keys.RIGHT) || rightButtonPressed;
+
+            if (left && !right) {
                 moveLeft(delta);
-            } else if (Gdx.input.isKeyPressed(Keys.RIGHT)) {
+            } else if (right && !left) {
                 moveRight(delta);
             } else {
                 walkState = Enums.WalkState.NOT_WALKING;
@@ -137,7 +147,7 @@ public class GigaGal {
         }
 
         // Jump
-        if (Gdx.input.isKeyPressed(Keys.Z)) {
+        if (Gdx.input.isKeyPressed(Keys.Z) || jumpButtonPressed) {
             switch (jumpState) {
                 case GROUNDED:
                     startJump();
@@ -170,9 +180,10 @@ public class GigaGal {
         // Shoot
         if (Gdx.input.isKeyJustPressed(Keys.X)) {
             shoot();
-
         }
     }
+
+
 
     public void shoot() {
         if (ammo > 0) {
