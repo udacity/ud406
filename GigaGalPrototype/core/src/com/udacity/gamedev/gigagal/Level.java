@@ -1,6 +1,5 @@
 package com.udacity.gamedev.gigagal;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
@@ -23,6 +22,7 @@ public class Level {
     public boolean gameOver;
     public boolean victory;
     public Viewport viewport;
+    public int score;
     private GigaGal gigaGal;
     private ExitPortal exitPortal;
     private Array<Platform> platforms;
@@ -44,6 +44,7 @@ public class Level {
 
         gameOver = false;
         victory = false;
+        score = 0;
 
 
     }
@@ -57,12 +58,9 @@ public class Level {
     public void update(float delta) {
 
 
-
         if (gigaGal.getLives() < 0) {
             gameOver = true;
-        }
-
-        if (gigaGal.getPosition().dst(exitPortal.position) < Constants.EXIT_PORTAL_RADIUS) {
+        } else if (gigaGal.getPosition().dst(exitPortal.position) < Constants.EXIT_PORTAL_RADIUS) {
             victory = true;
         }
 
@@ -88,6 +86,7 @@ public class Level {
                 if (enemy.health < 1) {
                     spawnExplosion(enemy.position);
                     enemies.removeIndex(i);
+                    score += Constants.ENEMY_KILL_SCORE;
                 }
             }
             enemies.end();
@@ -112,7 +111,6 @@ public class Level {
         batch.begin();
 
         for (Platform platform : platforms) {
-            Gdx.app.log(TAG, "rendering a platform");
             platform.render(batch);
         }
 

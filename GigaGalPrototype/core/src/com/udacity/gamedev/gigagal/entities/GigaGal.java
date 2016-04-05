@@ -83,10 +83,9 @@ public class GigaGal {
 
         if (position.y < Constants.KILL_PLANE) {
             lives--;
-            if (lives < 0) {
-//                level.gameOver();
+            if (lives > -1) {
+                respawn();
             }
-            respawn();
         }
 
         // Land on/fall off platforms
@@ -172,6 +171,7 @@ public class GigaGal {
             );
             if (gigaGalBounds.overlaps(powerupBounds)) {
                 ammo += Constants.POWERUP_AMMO;
+                level.score += Constants.POWERUP_SCORE;
                 powerups.removeIndex(i);
             }
         }

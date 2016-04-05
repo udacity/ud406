@@ -36,14 +36,10 @@ public class GameplayScreen extends ScreenAdapter {
         Assets.instance.init(am);
 
         batch = new SpriteBatch();
-
         chaseCam = new ChaseCam();
-
-
         hud = new GigaGalHud();
         victoryOverlay = new VictoryOverlay();
         gameOverOverlay = new GameOverOverlay();
-
 
         onscreenControls = new OnscreenControls();
         if (onMobile()) {
@@ -59,11 +55,9 @@ public class GameplayScreen extends ScreenAdapter {
 
     @Override
     public void resize(int width, int height) {
-
         hud.viewport.update(width, height, true);
         victoryOverlay.viewport.update(width, height, true);
         gameOverOverlay.viewport.update(width, height, true);
-
         level.viewport.update(width, height, true);
         chaseCam.camera = level.viewport.getCamera();
         onscreenControls.viewport.update(width, height, true);
@@ -94,29 +88,30 @@ public class GameplayScreen extends ScreenAdapter {
         if (onMobile()) {
             onscreenControls.render(batch);
         }
-        hud.render(batch, level.getGigaGal().getLives(), level.getGigaGal().getAmmo(), 100);
+        hud.render(batch, level.getGigaGal().getLives(), level.getGigaGal().getAmmo(), level.score);
         renderLevelEndOverlays(batch);
     }
 
     private void renderLevelEndOverlays(SpriteBatch batch) {
         if (level.gameOver) {
-            levelFailed();
+
             if (levelEndOverlayStartTime == 0) {
                 levelEndOverlayStartTime = TimeUtils.nanoTime();
             }
+
+            Gdx.app.log(TAG, "Showing game over screen:" + Utils.secondsSince(levelEndOverlayStartTime));
+
             gameOverOverlay.render(batch);
             if (Utils.secondsSince(levelEndOverlayStartTime) > Constants.LEVEL_END_DURATION) {
                 levelEndOverlayStartTime = 0;
                 levelFailed();
             }
-
-            Gdx.app.log(TAG, "Showing game over screen:" + Utils.secondsSince(levelEndOverlayStartTime));
-        }
-
-        if (level.victory) {
+        } else if (level.victory) {
             if (levelEndOverlayStartTime == 0) {
                 levelEndOverlayStartTime = TimeUtils.nanoTime();
-            }Gdx.app.log(TAG, "Showing victory overlay:" + Utils.secondsSince(levelEndOverlayStartTime));
+            }
+
+            Gdx.app.log(TAG, "Showing victory overlay:" + Utils.secondsSince(levelEndOverlayStartTime));
             victoryOverlay.render(batch);
             if (Utils.secondsSince(levelEndOverlayStartTime) > Constants.LEVEL_END_DURATION) {
                 levelEndOverlayStartTime = 0;
