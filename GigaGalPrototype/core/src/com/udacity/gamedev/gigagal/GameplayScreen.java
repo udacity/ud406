@@ -6,6 +6,7 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.udacity.gamedev.gigagal.overlays.GameOverOverlay;
 import com.udacity.gamedev.gigagal.overlays.GigaGalHud;
@@ -14,6 +15,7 @@ import com.udacity.gamedev.gigagal.overlays.VictoryOverlay;
 import com.udacity.gamedev.gigagal.util.Assets;
 import com.udacity.gamedev.gigagal.util.ChaseCam;
 import com.udacity.gamedev.gigagal.util.Constants;
+import com.udacity.gamedev.gigagal.util.LevelLoader;
 import com.udacity.gamedev.gigagal.util.Utils;
 
 
@@ -122,10 +124,10 @@ public class GameplayScreen extends ScreenAdapter {
 
     private void startNewLevel() {
 
-        level = Level.debugLevel();
+//        level = Level.debugLevel();
 
-//        String levelName = Constants.LEVELS[MathUtils.random(Constants.LEVELS.length - 1)];
-//        level = LevelLoader.load(levelName);
+        String levelName = Constants.LEVELS[MathUtils.random(Constants.LEVELS.length - 1)];
+        level = LevelLoader.load(levelName);
 
         chaseCam.camera = level.viewport.getCamera();
         chaseCam.target = level.getGigaGal();
