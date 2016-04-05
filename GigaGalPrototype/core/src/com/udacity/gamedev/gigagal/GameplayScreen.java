@@ -97,9 +97,8 @@ public class GameplayScreen extends ScreenAdapter {
 
             if (levelEndOverlayStartTime == 0) {
                 levelEndOverlayStartTime = TimeUtils.nanoTime();
+                gameOverOverlay.init();
             }
-
-            Gdx.app.log(TAG, "Showing game over screen:" + Utils.secondsSince(levelEndOverlayStartTime));
 
             gameOverOverlay.render(batch);
             if (Utils.secondsSince(levelEndOverlayStartTime) > Constants.LEVEL_END_DURATION) {
@@ -109,9 +108,9 @@ public class GameplayScreen extends ScreenAdapter {
         } else if (level.victory) {
             if (levelEndOverlayStartTime == 0) {
                 levelEndOverlayStartTime = TimeUtils.nanoTime();
+                victoryOverlay.init();
             }
 
-            Gdx.app.log(TAG, "Showing victory overlay:" + Utils.secondsSince(levelEndOverlayStartTime));
             victoryOverlay.render(batch);
             if (Utils.secondsSince(levelEndOverlayStartTime) > Constants.LEVEL_END_DURATION) {
                 levelEndOverlayStartTime = 0;
@@ -129,8 +128,9 @@ public class GameplayScreen extends ScreenAdapter {
 //        level = LevelLoader.load(levelName);
 
         chaseCam.camera = level.viewport.getCamera();
-        onscreenControls.gigaGal = level.getGigaGal();
         chaseCam.target = level.getGigaGal();
+        onscreenControls.gigaGal = level.getGigaGal();
+        resize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
     }
 
     public void levelComplete() {
