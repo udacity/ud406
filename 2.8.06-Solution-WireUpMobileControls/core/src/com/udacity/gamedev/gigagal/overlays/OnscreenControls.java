@@ -47,16 +47,28 @@ public class OnscreenControls extends InputAdapter {
         Vector2 viewportPosition = viewport.unproject(new Vector2(screenX, screenY));
 
         if (viewportPosition.dst(shootCenter) < Constants.BUTTON_RAIDUS) {
+
+            // TODO: Call shoot() on GigaGal
             gigaGal.shoot();
+
         } else if (viewportPosition.dst(jumpCenter) < Constants.BUTTON_RAIDUS) {
+
+            // TODO: Save the jumpPointer and set gigaGal.jumpButtonPressed = true
             jumpPointer = pointer;
             gigaGal.jumpButtonPressed = true;
+
         } else if (viewportPosition.dst(moveLeftCenter) < Constants.BUTTON_RAIDUS) {
+
+            // TODO: Save the moveLeftPointer, and set gigaGal.leftButtonPressed = true
             moveLeftPointer = pointer;
             gigaGal.leftButtonPressed = true;
+
         } else if (viewportPosition.dst(moveRightCenter) < Constants.BUTTON_RAIDUS) {
+
+            // TODO: Save the moveRightPointer, and set gigaGal.rightButtonPressed = true
             moveRightPointer = pointer;
             gigaGal.rightButtonPressed = true;
+
         }
 
         return super.touchDown(screenX, screenY, pointer, button);
@@ -67,19 +79,30 @@ public class OnscreenControls extends InputAdapter {
         Vector2 viewportPosition = viewport.unproject(new Vector2(screenX, screenY));
 
         if (pointer == moveLeftPointer && viewportPosition.dst(moveRightCenter) < Constants.BUTTON_RAIDUS) {
+
+            // TODO: Handle the case where the left button touch has been dragged to the right button
+            // Inform GigaGal that the left button is no longer pressed
             gigaGal.leftButtonPressed = false;
+
+            // Inform GigaGal that the right button is now pressed
+            gigaGal.rightButtonPressed = true;
+
+            // Zero moveLeftPointer
             moveLeftPointer = 0;
 
+            // Save moveRightPointer
             moveRightPointer = pointer;
-            gigaGal.rightButtonPressed = true;
+
         }
 
         if (pointer == moveRightPointer && viewportPosition.dst(moveLeftCenter) < Constants.BUTTON_RAIDUS) {
-            gigaGal.rightButtonPressed = false;
-            moveRightPointer = 0;
 
-            moveLeftPointer = pointer;
+            // TODO: Handle the case where ther right button touch has been dragged to the left button
+            gigaGal.rightButtonPressed = false;
             gigaGal.leftButtonPressed = true;
+            moveRightPointer = 0;
+            moveLeftPointer = pointer;
+
         }
 
         return super.touchDragged(screenX, screenY, pointer);
@@ -96,10 +119,13 @@ public class OnscreenControls extends InputAdapter {
             jumpPointer = 0;
         }
 
+        // TODO: If the moveLeftPointer is no longer touched, inform GigaGal and zero moveLeftPointer
         if (!Gdx.input.isTouched(moveLeftPointer)) {
             gigaGal.leftButtonPressed = false;
             moveLeftPointer = 0;
         }
+
+        // TODO: Do the same for moveRightPointer
 
         if (!Gdx.input.isTouched(moveRightPointer)) {
             gigaGal.rightButtonPressed = false;
@@ -134,25 +160,18 @@ public class OnscreenControls extends InputAdapter {
                 Constants.BUTTON_CENTER
         );
         batch.end();
-
     }
 
     public void recalculateButtonPositions() {
-
-
         moveLeftCenter.set(Constants.BUTTON_RAIDUS * 3 / 4, Constants.BUTTON_RAIDUS);
         moveRightCenter.set(Constants.BUTTON_RAIDUS * 2, Constants.BUTTON_RAIDUS * 3 / 4);
-
         shootCenter.set(
                 viewport.getWorldWidth() - Constants.BUTTON_RAIDUS * 2f,
                 Constants.BUTTON_RAIDUS * 3 / 4
         );
-
         jumpCenter.set(
                 viewport.getWorldWidth() - Constants.BUTTON_RAIDUS * 3 / 4,
                 Constants.BUTTON_RAIDUS
         );
-
     }
-
 }

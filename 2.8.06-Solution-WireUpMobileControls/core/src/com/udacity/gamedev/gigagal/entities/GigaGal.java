@@ -21,6 +21,9 @@ import com.udacity.gamedev.gigagal.util.Utils;
 public class GigaGal {
 
     public final static String TAG = GigaGal.class.getName();
+    public boolean jumpButtonPressed;
+    public boolean leftButtonPressed;
+    public boolean rightButtonPressed;
     private Level level;
     private Vector2 spawnLocation;
     private Vector2 position;
@@ -33,10 +36,6 @@ public class GigaGal {
     private long jumpStartTime;
     private int ammo;
     private int lives;
-
-    public boolean jumpButtonPressed;
-    public boolean leftButtonPressed;
-    public boolean rightButtonPressed;
 
     public GigaGal(Vector2 spawnLocation, Level level) {
         this.spawnLocation = spawnLocation;
@@ -129,7 +128,6 @@ public class GigaGal {
         }
 
 
-
         // Move left/right
         if (jumpState != JumpState.RECOILING) {
 
@@ -182,8 +180,6 @@ public class GigaGal {
             shoot();
         }
     }
-
-
 
     public void shoot() {
         if (ammo > 0) {

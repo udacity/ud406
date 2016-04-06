@@ -18,11 +18,9 @@ public class GigaGalHud {
 
     public GigaGalHud() {
         this.viewport = new ExtendViewport(Constants.HUD_VIEWPORT_SIZE, Constants.HUD_VIEWPORT_SIZE);
-
         font = new BitmapFont();
         font.getData().setScale(1);
     }
-
 
     public void render(SpriteBatch batch, int lives, int ammo, int score) {
         viewport.apply();
@@ -33,16 +31,12 @@ public class GigaGalHud {
                         Constants.HUD_AMMO_LABEL + ammo;
 
         font.draw(batch, hudString, Constants.HUD_MARGIN, viewport.getWorldHeight() - Constants.HUD_MARGIN);
-
         final TextureRegion standingRight = Assets.instance.gigaGalAssets.standingRight;
-
         for (int i = 1; i <= lives; i++) {
-
             final Vector2 drawPosition = new Vector2(
                     viewport.getWorldWidth() - i * (Constants.HUD_MARGIN / 2 + standingRight.getRegionWidth()),
                     viewport.getWorldHeight() - Constants.HUD_MARGIN - standingRight.getRegionHeight()
             );
-
             Utils.drawTextureRegion(
                     batch,
                     standingRight,
@@ -50,8 +44,5 @@ public class GigaGalHud {
             );
         }
         batch.end();
-
     }
-
-
 }
