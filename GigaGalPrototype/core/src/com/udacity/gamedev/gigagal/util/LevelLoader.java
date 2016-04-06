@@ -1,9 +1,9 @@
 package com.udacity.gamedev.gigagal.util;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.viewport.Viewport;
 import com.udacity.gamedev.gigagal.Level;
 import com.udacity.gamedev.gigagal.entities.Enemy;
 import com.udacity.gamedev.gigagal.entities.ExitPortal;
@@ -15,8 +15,6 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-import java.io.File;
-import java.io.FileReader;
 import java.util.Comparator;
 
 
@@ -25,17 +23,17 @@ public class LevelLoader {
     public static final String TAG = LevelLoader.class.toString();
 
 
-    public static Level load(String path, Viewport viewport) {
+    public static Level load(String path) {
         Level level = new Level();
-        level.setViewport(viewport);
 
-        File file = Gdx.files.internal(path).file();
+
+        FileHandle file = Gdx.files.internal(path);
 
         JSONParser parser = new JSONParser();
         JSONObject rootJsonObject;
 
         try {
-            rootJsonObject = (JSONObject) parser.parse(new FileReader(file));
+            rootJsonObject = (JSONObject) parser.parse(file.reader());
 
             JSONObject composite = (JSONObject) rootJsonObject.get(Constants.LEVEL_COMPOSITE);
 
@@ -53,14 +51,22 @@ public class LevelLoader {
         return level;
     }
 
+    private static Vector2 extractXY(JSONObject object) {
+
+        Number x = (Number) object.get(Constants.LEVEL_X_KEY);
+        Number y = (Number) object.get(Constants.LEVEL_Y_KEY);
+
+        return new Vector2(
+                (x == null) ? 0 : x.floatValue(),
+                (y == null) ? 0 : y.floatValue()
+        );
+    }
+
     private static void loadNonPlatformEntities(Level level, JSONArray nonPlatformObjects) {
         for (Object o : nonPlatformObjects) {
             JSONObject item = (JSONObject) o;
 
-            final float x = ((Number) item.get(Constants.LEVEL_X_KEY)).floatValue();
-            final float y = ((Number) item.get(Constants.LEVEL_Y_KEY)).floatValue();
-            final Vector2 imagePosition = new Vector2(x, y);
-
+            final Vector2 imagePosition = extractXY(item);
 
             if (item.get(Constants.LEVEL_IMAGENAME_KEY).equals(Constants.POWERUP_SPRITE)) {
                 final Vector2 powerupPosition = imagePosition.add(Constants.POWERUP_CENTER);
@@ -87,13 +93,13 @@ public class LevelLoader {
         for (Object object : array) {
             final JSONObject platformObject = (JSONObject) object;
 
-            final float x = ((Number) platformObject.get(Constants.LEVEL_X_KEY)).floatValue();
-            final float y = ((Number) platformObject.get(Constants.LEVEL_Y_KEY)).floatValue();
+            Vector2 bottomLeft = extractXY(platformObject);
+
             final float width = ((Number) platformObject.get(Constants.LEVEL_WIDTH_KEY)).floatValue();
             final float height = ((Number) platformObject.get(Constants.LEVEL_HEIGHT_KEY)).floatValue();
 
 
-            final Platform platform = new Platform(x, y + height, width, height);
+            final Platform platform = new Platform(bottomLeft.x, bottomLeft.y + height, width, height);
 
             platformArray.add(platform);
 

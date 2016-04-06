@@ -11,6 +11,7 @@ public class Explosion {
 
     private final Vector2 position;
     private final long startTime;
+    public float offset = 0;
 
     public Explosion(Vector2 position) {
         this.position = position;
@@ -18,16 +19,22 @@ public class Explosion {
     }
 
     public void render(SpriteBatch batch) {
-        Utils.drawTextureRegion(
-                batch,
-                Assets.instance.explosionAssets.explosion.getKeyFrame(Utils.secondsSince(startTime)),
-                position.x - Constants.EXPLOSION_CENTER.x,
-                position.y - Constants.EXPLOSION_CENTER.y
-        );
+        if (!isFinished() && !yetToStart()) {
+            Utils.drawTextureRegion(
+                    batch,
+                    Assets.instance.explosionAssets.explosion.getKeyFrame(Utils.secondsSince(startTime) - offset),
+                    position.x - Constants.EXPLOSION_CENTER.x,
+                    position.y - Constants.EXPLOSION_CENTER.y
+            );
+        }
+    }
+
+    public boolean yetToStart(){
+        return Utils.secondsSince(startTime) - offset < 0;
     }
 
     public boolean isFinished() {
-        final float elapsedTime = Utils.secondsSince(startTime);
+        float elapsedTime = Utils.secondsSince(startTime) - offset;
         return Assets.instance.explosionAssets.explosion.isAnimationFinished(elapsedTime);
     }
 }

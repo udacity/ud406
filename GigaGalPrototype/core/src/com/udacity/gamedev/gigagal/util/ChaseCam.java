@@ -8,14 +8,13 @@ import com.udacity.gamedev.gigagal.entities.GigaGal;
 
 public class ChaseCam {
 
-    private final Camera camera;
-    private final GigaGal target;
+    public static final String TAG = ChaseCam.class.getName();
+
+    public Camera camera;
+    public GigaGal target;
     private Boolean following;
 
-
-    public ChaseCam(Camera camera, GigaGal target) {
-        this.camera = camera;
-        this.target = target;
+    public ChaseCam() {
         following = true;
     }
 

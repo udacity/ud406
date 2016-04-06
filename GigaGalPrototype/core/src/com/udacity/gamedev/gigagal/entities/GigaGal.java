@@ -34,6 +34,10 @@ public class GigaGal {
     private int ammo;
     private int lives;
 
+    public boolean jumpButtonPressed;
+    public boolean leftButtonPressed;
+    public boolean rightButtonPressed;
+
     public GigaGal(Vector2 spawnLocation, Level level) {
         this.spawnLocation = spawnLocation;
         this.level = level;
@@ -57,7 +61,7 @@ public class GigaGal {
         respawn();
     }
 
-    private void respawn(){
+    private void respawn() {
         position.set(spawnLocation);
         lastFramePosition.set(spawnLocation);
         velocity.setZero();
@@ -79,10 +83,9 @@ public class GigaGal {
 
         if (position.y < Constants.KILL_PLANE) {
             lives--;
-            if (lives < 0){
-//                level.gameOver();
+            if (lives > -1) {
+                respawn();
             }
-            respawn();
         }
 
         // Land on/fall off platforms
@@ -125,11 +128,17 @@ public class GigaGal {
             }
         }
 
+
+
         // Move left/right
         if (jumpState != JumpState.RECOILING) {
-            if (Gdx.input.isKeyPressed(Keys.LEFT)) {
+
+            boolean left = Gdx.input.isKeyPressed(Keys.LEFT) || leftButtonPressed;
+            boolean right = Gdx.input.isKeyPressed(Keys.RIGHT) || rightButtonPressed;
+
+            if (left && !right) {
                 moveLeft(delta);
-            } else if (Gdx.input.isKeyPressed(Keys.RIGHT)) {
+            } else if (right && !left) {
                 moveRight(delta);
             } else {
                 walkState = Enums.WalkState.NOT_WALKING;
@@ -137,7 +146,7 @@ public class GigaGal {
         }
 
         // Jump
-        if (Gdx.input.isKeyPressed(Keys.Z)) {
+        if (Gdx.input.isKeyPressed(Keys.Z) || jumpButtonPressed) {
             switch (jumpState) {
                 case GROUNDED:
                     startJump();
@@ -162,13 +171,22 @@ public class GigaGal {
             );
             if (gigaGalBounds.overlaps(powerupBounds)) {
                 ammo += Constants.POWERUP_AMMO;
+                level.score += Constants.POWERUP_SCORE;
                 powerups.removeIndex(i);
             }
         }
         powerups.end();
 
         // Shoot
-        if (Gdx.input.isKeyJustPressed(Keys.X) && ammo > 0) {
+        if (Gdx.input.isKeyJustPressed(Keys.X)) {
+            shoot();
+        }
+    }
+
+
+
+    public void shoot() {
+        if (ammo > 0) {
 
             ammo--;
             Vector2 bulletPosition;
