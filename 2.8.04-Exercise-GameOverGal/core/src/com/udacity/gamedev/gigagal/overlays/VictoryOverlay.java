@@ -46,7 +46,7 @@ public class VictoryOverlay {
         batch.setProjectionMatrix(viewport.getCamera().combined);
         batch.begin();
 
-        for (Explosion explosion : explosions) {
+        for (Explosion explosion : explosions){
             explosion.render(batch);
         }
 
