@@ -1,6 +1,7 @@
 package com.udacity.gamedev.gigagal.util;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.udacity.gamedev.gigagal.Level;
 
@@ -9,7 +10,6 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import java.io.File;
-import java.io.FileReader;
 
 public class LevelLoader {
 
@@ -26,15 +26,15 @@ public class LevelLoader {
 
         try {
 
-            // TODO: Get the level File object using Gdx.files.internal
-            File file = Gdx.files.internal(path).file();
+            // TODO: Get the level FileHandle object using Gdx.files.internal
+            FileHandle file = Gdx.files.internal(path);
 
             // TODO: Create a new JSONParser
             JSONParser parser = new JSONParser();
 
             // TODO: get the root JSONObject by parsing the level file
-            // Wrap the file in a FileReader() and call parse() on the parser, then cast the result to a JSONObject
-            JSONObject rootJsonObject = (JSONObject) parser.parse(new FileReader(file));
+            // Use file.reader() to pass a file reader into parse() on the parser, then cast the result to a JSONObject
+            JSONObject rootJsonObject = (JSONObject) parser.parse(file.reader());
 
             // TODO: Log rootJsonObject.keySet().toString() to see the keys available in this JSONObject
             Gdx.app.log(TAG, rootJsonObject.keySet().toString());

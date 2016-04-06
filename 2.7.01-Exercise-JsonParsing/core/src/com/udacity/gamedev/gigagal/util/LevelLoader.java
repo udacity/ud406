@@ -15,17 +15,16 @@ public class LevelLoader {
         // Use the LEVEL_DIR constant, File.separator, the level name, and LEVEL_FILE_EXTENSION
 
 
-
         try {
 
-            // TODO: Get the level File object using Gdx.files.internal
+            // TODO: Get the level FileHandle object using Gdx.files.internal
 
 
             // TODO: Create a new JSONParser
 
 
             // TODO: get the root JSONObject by parsing the level file
-            // Wrap the file in a FileReader() and call parse() on the parser, then cast the result to a JSONObject
+            // Use file.reader() to pass a file reader into parse() on the parser, then cast the result to a JSONObject
 
 
             // TODO: Log rootJsonObject.keySet().toString() to see the keys available in this JSONObject

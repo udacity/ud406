@@ -1,6 +1,7 @@
 package com.udacity.gamedev.gigagal.util;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.udacity.gamedev.gigagal.Level;
@@ -12,7 +13,6 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import java.io.File;
-import java.io.FileReader;
 import java.util.Comparator;
 
 public class LevelLoader {
@@ -24,11 +24,11 @@ public class LevelLoader {
         String path = Constants.LEVEL_DIR + File.separator + levelName + "." + Constants.LEVEL_FILE_EXTENSION;
         Level level = new Level(viewport);
 
-        File file = Gdx.files.internal(path).file();
+        FileHandle file = Gdx.files.internal(path);
         JSONParser parser = new JSONParser();
 
         try {
-            JSONObject rootJsonObject = (JSONObject) parser.parse(new FileReader(file));
+            JSONObject rootJsonObject = (JSONObject) parser.parse(file.reader());
 
             JSONObject composite = (JSONObject) rootJsonObject.get(Constants.LEVEL_COMPOSITE);
 
@@ -44,6 +44,11 @@ public class LevelLoader {
         return level;
     }
 
+    private static float safeGetFloat(JSONObject object, String key){
+        Number number = (Number) object.get(key);
+        return (number == null) ? 0 : number.floatValue();
+    }
+
     private static void loadPlatforms(JSONArray array, Level level) {
 
         Array<Platform> platformArray = new Array<Platform>();
@@ -51,8 +56,8 @@ public class LevelLoader {
         for (Object object : array) {
             final JSONObject platformObject = (JSONObject) object;
 
-            final float x = ((Number) platformObject.get(Constants.LEVEL_X_KEY)).floatValue();
-            final float y = ((Number) platformObject.get(Constants.LEVEL_Y_KEY)).floatValue();
+            final float x = safeGetFloat(platformObject, Constants.LEVEL_X_KEY);
+            final float y = safeGetFloat(platformObject, Constants.LEVEL_Y_KEY);
             final float width = ((Number) platformObject.get(Constants.LEVEL_WIDTH_KEY)).floatValue();
             final float height = ((Number) platformObject.get(Constants.LEVEL_HEIGHT_KEY)).floatValue();
 
