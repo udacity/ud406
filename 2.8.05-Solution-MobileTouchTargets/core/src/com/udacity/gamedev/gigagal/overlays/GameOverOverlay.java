@@ -38,7 +38,7 @@ public class GameOverOverlay {
 
             Platform fakePlatform = new Platform(
                     MathUtils.random(viewport.getWorldWidth()),
-                    MathUtils.random(-Constants.ENEMY_CENTER.y/2, viewport.getWorldHeight()
+                    MathUtils.random(-Constants.ENEMY_CENTER.y / 2, viewport.getWorldHeight()
                     ), 0, 0);
 
             Enemy enemy = new Enemy(fakePlatform);
@@ -59,14 +59,14 @@ public class GameOverOverlay {
         float timeElapsed = Utils.secondsSince(startTime);
         int enemiesToShow = (int) (Constants.ENEMY_COUNT * (timeElapsed / Constants.LEVEL_END_DURATION));
 
-        for (int i = 0; i < enemiesToShow; i++){
+        for (int i = 0; i < enemiesToShow; i++) {
             Enemy enemy = enemies.get(i);
             enemy.update(0);
             enemy.render(batch);
         }
 
 
-        font.draw(batch, Constants.GAME_OVER_MESSAGE, viewport.getWorldWidth() / 2, viewport.getWorldWidth() / 2.5f, 0, Align.center, false);
+        font.draw(batch, Constants.GAME_OVER_MESSAGE, viewport.getWorldWidth() / 2, viewport.getWorldHeight() / 2.5f, 0, Align.center, false);
 
         batch.end();
 

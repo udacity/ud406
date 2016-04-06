@@ -66,7 +66,7 @@ public class GameOverOverlay {
         }
 
 
-        font.draw(batch, Constants.GAME_OVER_MESSAGE, viewport.getWorldWidth() / 2, viewport.getWorldWidth() / 2.5f, 0, Align.center, false);
+        font.draw(batch, Constants.GAME_OVER_MESSAGE, viewport.getWorldWidth() / 2, viewport.getWorldHeight() / 2.5f, 0, Align.center, false);
 
         batch.end();
 
