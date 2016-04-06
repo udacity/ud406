@@ -97,7 +97,7 @@ public class OnscreenControls extends InputAdapter {
 
         if (pointer == moveRightPointer && viewportPosition.dst(moveLeftCenter) < Constants.BUTTON_RAIDUS) {
 
-            // TODO: Handle the case where ther right button touch has been dragged to the left button
+            // TODO: Handle the case where the right button touch has been dragged to the left button
             gigaGal.rightButtonPressed = false;
             gigaGal.leftButtonPressed = true;
             moveRightPointer = 0;
@@ -126,7 +126,6 @@ public class OnscreenControls extends InputAdapter {
         }
 
         // TODO: Do the same for moveRightPointer
-
         if (!Gdx.input.isTouched(moveRightPointer)) {
             gigaGal.rightButtonPressed = false;
             moveRightPointer = 0;
