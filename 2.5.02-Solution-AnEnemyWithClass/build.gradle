@@ -92,17 +92,20 @@ project(":core") {
 
     dependencies {
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"
-        compile "com.googlecode.json-simple:json-simple:1.1.1"
     }
 
     task packTextures {
-        def pack = new File("android/assets/images/gigagal.pack.png")
-        def atlas = new File("android/assets/images/gigagal.pack.atlas")
+        def pack = new File("${rootProject.getRootDir()}/android/assets/images/gigagal.pack.png")
+        def atlas = new File("${rootProject.getRootDir()}/android/assets/images/gigagal.pack.atlas")
+
+        inputs.dir "${rootProject.getRootDir()}/core/rawAssets/sprites"
+        outputs.file "${rootProject.getRootDir()}/android/assets/images/gigagal.pack.png"
+        outputs.file "${rootProject.getRootDir()}/android/assets/images/gigagal.pack.atlas"
 
         doLast {
             pack.delete()
             atlas.delete()
-            TexturePacker.process("core/rawAssets/sprites", "android/assets/images", "gigagal.pack")
+            TexturePacker.process("${rootProject.getRootDir()}/core/rawAssets/sprites", "${rootProject.getRootDir()}/android/assets/images", "gigagal.pack")
         }
     }
 

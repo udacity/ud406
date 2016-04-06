@@ -101,13 +101,18 @@ project(":core") {
 
     // TODO: Define packTextures task
     task packTextures {
-        final def prefix = project.getRootDir().absolutePath + "/";
+        def pack = new File("${rootProject.getRootDir()}/android/assets/images/gigagal.pack.png")
+        def atlas = new File("${rootProject.getRootDir()}/android/assets/images/gigagal.pack.atlas")
 
-        def pack = new File(prefix + "android/assets/images/gigagal.pack.png")
-        pack.delete()
-        def atlas = new File(prefix + "android/assets/images/gigagal.pack.atlas")
-        atlas.delete()
-        TexturePacker.process(prefix + "core/rawAssets/sprites", prefix + "android/assets/images", "gigagal.pack")
+        inputs.dir "${rootProject.getRootDir()}/core/rawAssets/sprites"
+        outputs.file "${rootProject.getRootDir()}/android/assets/images/gigagal.pack.png"
+        outputs.file "${rootProject.getRootDir()}/android/assets/images/gigagal.pack.atlas"
+
+        doLast {
+            pack.delete()
+            atlas.delete()
+            TexturePacker.process("${rootProject.getRootDir()}/core/rawAssets/sprites", "${rootProject.getRootDir()}/android/assets/images", "gigagal.pack")
+        }
     }
 
     // TODO: Add task dependency between compileJava and packTextures
