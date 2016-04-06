@@ -57,7 +57,7 @@ public class Level {
 
     public void update(float delta) {
 
-
+        // TODO: If GigaGal has less than 0 lives, set gameOver to true
         if (gigaGal.getLives() < 0) {
             gameOver = true;
         } else if (gigaGal.getPosition().dst(exitPortal.position) < Constants.EXIT_PORTAL_RADIUS) {

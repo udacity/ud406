@@ -1,5 +1,5 @@
-# Mobile Controls Touch Targets
+# Game Over, Gal
 
-In this exercise we'll set up another overlay layer for the on-screen mobile controls. This should be pretty old hat by now, so we've just left a few pieces of positioning the buttons up to you.
+In this exercise, we'll add a game over screen, much like we added the victory screen in the last level. It's up to you how creative you want to get with this, but our reference solution involves spawning a few hundred enemies on invisible platforms.
 
-Check out the TODOs to get started!
+Check out the TODOs to get started.

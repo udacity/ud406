@@ -101,16 +101,6 @@ public class Constants {
     public static final String HUD_AMMO_LABEL = "Ammo: ";
     public static final String HUD_SCORE_LABEL = "Score: ";
 
-    // Onscreen Controls
-    // TODO: Review the constants we've added for the on-screen controls
-    public static final float ONSCREEN_CONTROLS_VIEWPORT_SIZE = 200;
-    public static final String MOVE_LEFT_BUTTON = "button-move-left";
-    public static final String MOVE_RIGHT_BUTTON = "button-move-right";
-    public static final String SHOOT_BUTTON = "button-shoot";
-    public static final String JUMP_BUTTON = "button-jump";
-    public static final Vector2 BUTTON_CENTER = new Vector2(15, 15);
-    public static final float BUTTON_RADIUS = 32;
-
     // Victory/Game Over screens
     public static final float LEVEL_END_DURATION = 5;
     public static final String VICTORY_MESSAGE = "You are the Winrar!";

@@ -38,16 +38,13 @@ public class GameOverOverlay {
 
             Platform fakePlatform = new Platform(
                     MathUtils.random(viewport.getWorldWidth()),
-                    MathUtils.random(-Constants.ENEMY_CENTER.y/2, viewport.getWorldHeight()
+                    MathUtils.random(-Constants.ENEMY_CENTER.y, viewport.getWorldHeight()
                     ), 0, 0);
 
             Enemy enemy = new Enemy(fakePlatform);
 
             enemies.add(enemy);
-
-
         }
-
     }
 
     public void render(SpriteBatch batch) {
@@ -55,6 +52,9 @@ public class GameOverOverlay {
         viewport.apply();
         batch.setProjectionMatrix(viewport.getCamera().combined);
         batch.begin();
+
+        // TODO: Draw a game over message
+        // Feel free to get more creative with this screen. Perhaps you could cover the screen in enemy robots?
 
         float timeElapsed = Utils.secondsSince(startTime);
         int enemiesToShow = (int) (Constants.ENEMY_COUNT * (timeElapsed / Constants.LEVEL_END_DURATION));
@@ -65,8 +65,7 @@ public class GameOverOverlay {
             enemy.render(batch);
         }
 
-
-        font.draw(batch, Constants.GAME_OVER_MESSAGE, viewport.getWorldWidth() / 2, viewport.getWorldWidth() / 2.5f, 0, Align.center, false);
+        font.draw(batch, Constants.GAME_OVER_MESSAGE, viewport.getWorldWidth() / 2, viewport.getWorldHeight() / 2.5f, 0, Align.center, false);
 
         batch.end();
 
