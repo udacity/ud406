@@ -56,10 +56,8 @@ public class GameplayScreen extends ScreenAdapter {
         chaseCam.camera = level.viewport.getCamera();
 
         // TODO: Update the onscreenControls.viewport
-        onscreenControls.viewport.update(width, height, true);
 
         // TODO: Call recalculateButtonPositions() on the onscreenControls
-        onscreenControls.recalculateButtonPositions();
 
     }
 
@@ -86,7 +84,6 @@ public class GameplayScreen extends ScreenAdapter {
         level.render(batch);
 
         // TODO: Render the onscreenControls
-        onscreenControls.render(batch);
 
         hud.render(batch, level.getGigaGal().getLives(), level.getGigaGal().getAmmo(), level.score);
         renderLevelEndOverlays(batch);
