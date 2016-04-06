@@ -43,7 +43,7 @@ public class LevelLoader {
             // TODO: Get the first platform in the array
 
 
-            // TODO: Log the keys avalible in the platform object
+            // TODO: Log the keys available in the platform object
 
 
 

@@ -51,7 +51,7 @@ public class LevelLoader {
             // TODO: Get the first platform in the array
             JSONObject firstPlatform = (JSONObject) platforms.get(0);
 
-            // TODO: Log the keys avalible in the platform object
+            // TODO: Log the keys available in the platform object
             Gdx.app.log(TAG, firstPlatform.keySet().toString());
 
 
