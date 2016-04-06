@@ -1,6 +1,7 @@
 package com.udacity.gamedev.gigagal.overlays;
 
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
@@ -22,7 +23,7 @@ public class VictoryOverlay {
     public VictoryOverlay() {
         this.viewport = new ExtendViewport(Constants.WORLD_SIZE, Constants.WORLD_SIZE);
 
-        font = new BitmapFont();
+        font = new BitmapFont(Gdx.files.internal(Constants.FONT_FILE));
         font.getData().setScale(1);
     }
 
