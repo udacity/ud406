@@ -26,5 +26,8 @@ public class ExitPortal {
         final TextureRegion region = Assets.instance.exitPortalAssets.exitPortal.getKeyFrame(elapsedTime, true);
         Utils.drawTextureRegion(batch, region, position, Constants.EXIT_PORTAL_CENTER);
     }
+
+
+
 }
 

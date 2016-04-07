@@ -11,9 +11,7 @@ public class Constants {
     public static final float KILL_PLANE = -200;
     public static final float GRAVITY = 10;
     public static final float CHASE_CAM_MOVE_SPEED = WORLD_SIZE;
-
     public static final String TEXTURE_ATLAS = "images/gigagal.pack.atlas";
-
 
     // GigaGal
     public static final Vector2 GIGAGAL_EYE_POSITION = new Vector2(16, 24);
@@ -60,7 +58,6 @@ public class Constants {
     public static final float BULLET_MOVE_SPEED = 150;
     public static final Vector2 BULLET_CENTER = new Vector2(3, 2);
 
-
     // Explosion
     public static final String EXPLOSION_LARGE = "explosion-large";
     public static final String EXPLOSION_MEDIUM = "explosion-medium";
@@ -81,7 +78,22 @@ public class Constants {
     public static final String EXIT_PORTAL_SPRITE_5 = "exit-portal-5";
     public static final String EXIT_PORTAL_SPRITE_6 = "exit-portal-6";
     public static final Vector2 EXIT_PORTAL_CENTER = new Vector2(31, 31);
+    public static final float EXIT_PORTAL_RADIUS = 28;
     public static final float EXIT_PORTAL_FRAME_DURATION = 0.1f;
+
+    // Level Loading
+    public static final String LEVEL_COMPOSITE = "composite";
+    public static final String LEVEL_9PATCHES = "sImage9patchs";
+    public static final String LEVEL_IMAGES = "sImages";
+    public static final String LEVEL_ERROR_MESSAGE = "There was a problem loading the level.";
+    public static final String LEVEL_IMAGENAME_KEY = "imageName";
+    public static final String LEVEL_X_KEY = "x";
+    public static final String LEVEL_Y_KEY = "y";
+    public static final String LEVEL_WIDTH_KEY = "width";
+    public static final String LEVEL_HEIGHT_KEY = "height";
+    public static final String LEVEL_IDENTIFIER_KEY = "itemIdentifier";
+    public static final String LEVEL_ENEMY_TAG = "Enemy";
+    public static final String[] LEVELS = {"levels/Level1.dt", "levels/Level2.dt"};
 
     // HUD
     public static final float HUD_VIEWPORT_SIZE = 480;
@@ -89,22 +101,17 @@ public class Constants {
     public static final String HUD_AMMO_LABEL = "Ammo: ";
     public static final String HUD_SCORE_LABEL = "Score: ";
 
+    // Victory/Game Over screens
+    public static final float LEVEL_END_DURATION = 5;
+    public static final String VICTORY_MESSAGE = "You are the Winrar!";
+    public static final String GAME_OVER_MESSAGE = "Game Over, Gal";
+    public static final int EXPLOSION_COUNT =500;
+    public static final int ENEMY_COUNT =200;
+    public static final String FONT_FILE = "font/header.fnt";
 
-
-
-    // Onscreen Controls
-    public static final float ONSCREEN_CONTROLS_VIEWPORT_SIZE = 200;
-
-
-    public static final String MOVE_LEFT_BUTTON = "button-move-left";
-    public static final String MOVE_RIGHT_BUTTON = "button-move-right";
-    public static final String SHOOT_BUTTON = "button-shoot";
-    public static final String JUMP_BUTTON = "button-jump";
-    public static final Vector2 BUTTON_CENTER = new Vector2(15, 15);
-    public static final int BUTTON_SIZE = 32;
-
-
-
-
+    // Scoring
+    public static final int ENEMY_KILL_SCORE = 100;
+    public static final int ENEMY_HIT_SCORE = 25;
+    public static final int POWERUP_SCORE = 50;
 
 }
