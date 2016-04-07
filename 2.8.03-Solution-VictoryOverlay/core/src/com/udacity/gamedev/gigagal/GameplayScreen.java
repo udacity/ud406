@@ -6,7 +6,6 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.TimeUtils;
-import com.udacity.gamedev.gigagal.overlays.GameOverOverlay;
 import com.udacity.gamedev.gigagal.overlays.GigaGalHud;
 import com.udacity.gamedev.gigagal.overlays.VictoryOverlay;
 import com.udacity.gamedev.gigagal.util.Assets;
@@ -25,7 +24,6 @@ public class GameplayScreen extends ScreenAdapter {
     private ChaseCam chaseCam;
     private GigaGalHud hud;
     private VictoryOverlay victoryOverlay;
-    private GameOverOverlay gameOverOverlay;
 
     @Override
     public void show() {
@@ -36,7 +34,6 @@ public class GameplayScreen extends ScreenAdapter {
         chaseCam = new ChaseCam();
         hud = new GigaGalHud();
         victoryOverlay = new VictoryOverlay();
-        gameOverOverlay = new GameOverOverlay();
         startNewLevel();
     }
 
@@ -44,7 +41,6 @@ public class GameplayScreen extends ScreenAdapter {
     public void resize(int width, int height) {
         hud.viewport.update(width, height, true);
         victoryOverlay.viewport.update(width, height, true);
-        gameOverOverlay.viewport.update(width, height, true);
         level.viewport.update(width, height, true);
         chaseCam.camera = level.viewport.getCamera();
     }
@@ -76,20 +72,28 @@ public class GameplayScreen extends ScreenAdapter {
     }
 
     private void renderLevelEndOverlays(SpriteBatch batch) {
+
         if (level.victory) {
             if (levelEndOverlayStartTime == 0) {
+                // TODO: Set levelEndOverlayStartTime = TimeUtils.nanoTime()
                 levelEndOverlayStartTime = TimeUtils.nanoTime();
+
+                // TODO: Call init on the victory overlay
                 victoryOverlay.init();
             }
+
+            // TODO: Render the victory overlay
             victoryOverlay.render(batch);
+
             if (Utils.secondsSince(levelEndOverlayStartTime) > Constants.LEVEL_END_DURATION) {
+
+                // TODO: Reset levelEndOverlayStartTime to 0
                 levelEndOverlayStartTime = 0;
+
+                // TODO: Call levelComplete()
                 levelComplete();
             }
         }
-
-        // TODO: Repeat the level victory logic to display the game over screen and call levelFailed()
-
     }
 
     private void startNewLevel() {
@@ -105,10 +109,6 @@ public class GameplayScreen extends ScreenAdapter {
     }
 
     public void levelComplete() {
-        startNewLevel();
-    }
-
-    public void levelFailed() {
         startNewLevel();
     }
 }

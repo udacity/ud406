@@ -1,5 +1,7 @@
-# Game Over, Gal
+# Victory Overlay
 
-In this exercise, we'll add a game over screen, much like we added the victory screen in the last level. It's up to you how creative you want to get with this, but our reference solution involves spawning a few hundred enemies on invisible platforms.
+Let's add in an overlay to be displayed when GigaGal completes a level!
 
-Check out the TODOs to get started.
+First we'll need to add a flag to the `Level` to indicate when GigaGal has reached the exit portal. Then we'll need to create a suitably awesome overlay to display. A congratulatory message plus a bunch of explosions (fireworks?) sounds good. Finally, we need to work out the logic of when and how long to display the overlay, and when to start a new level!
+
+Check out the TODOs to get started.``````````

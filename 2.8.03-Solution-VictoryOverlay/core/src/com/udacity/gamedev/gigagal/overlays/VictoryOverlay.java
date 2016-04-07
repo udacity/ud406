@@ -29,7 +29,13 @@ public class VictoryOverlay {
 
     public void init() {
         explosions = new Array<Explosion>(Constants.EXPLOSION_COUNT);
+
+        // TODO: Fill the explosions array with explosions at random locations within the viewport
+        // Also, set the offset of each explosion to a random float from 0 -- Constants.LEVEL_END_DURATION
+
         for (int i = 0; i < Constants.EXPLOSION_COUNT; i++) {
+
+
             Explosion explosion = new Explosion(new Vector2(
                     MathUtils.random(viewport.getWorldWidth()),
                     MathUtils.random(viewport.getWorldHeight())
@@ -46,9 +52,13 @@ public class VictoryOverlay {
         batch.setProjectionMatrix(viewport.getCamera().combined);
         batch.begin();
 
+        // TODO: Render the explosions/fireworks
+
         for (Explosion explosion : explosions){
             explosion.render(batch);
         }
+
+        // TODO: Draw a victory message
 
         font.draw(batch, Constants.VICTORY_MESSAGE, viewport.getWorldWidth() / 2, viewport.getWorldHeight() / 2.5f, 0, Align.center, false);
 

@@ -82,9 +82,7 @@ public class GigaGal {
 
         if (position.y < Constants.KILL_PLANE) {
             lives--;
-            if (lives > -1) {
-                respawn();
-            }
+            respawn();
         }
 
         // Land on/fall off platforms
