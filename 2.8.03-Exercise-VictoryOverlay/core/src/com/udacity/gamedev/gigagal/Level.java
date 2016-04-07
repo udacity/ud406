@@ -58,9 +58,6 @@ public class Level {
     public void update(float delta) {
 
         // TODO: If GigaGal is touching the exit portal, set victory to true
-        if (gigaGal.getPosition().dst(exitPortal.position) < Constants.EXIT_PORTAL_RADIUS) {
-            victory = true;
-        }
 
         if (!gameOver && !victory) {
 
