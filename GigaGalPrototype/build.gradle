@@ -98,23 +98,19 @@ project(":core") {
     }
 
     task packTextures {
-        def pack = new File("${rootProject.getRootDir()}/android/assets/images/gigagal.pack.png")
-        def atlas = new File("${rootProject.getRootDir()}/android/assets/images/gigagal.pack.atlas")
-
-        inputs.dir "${rootProject.getRootDir()}/core/rawAssets/sprites"
-        outputs.file "${rootProject.getRootDir()}/android/assets/images/gigagal.pack.png"
-        outputs.file "${rootProject.getRootDir()}/android/assets/images/gigagal.pack.atlas"
-
+        def inputDir = "$rootDir/core/rawAssets/sprites"
+        def outputDir = "$rootDir/android/assets/images"
+        inputs.dir inputDir
+        outputs.dir outputDir
         doLast {
-            pack.delete()
-            atlas.delete()
-            TexturePacker.process("${rootProject.getRootDir()}/core/rawAssets/sprites", "${rootProject.getRootDir()}/android/assets/images", "gigagal.pack")
+            delete(outputDir)
+            TexturePacker.process(inputDir, outputDir, "gigagal.pack")
         }
     }
 
     task copyLevels(type: Copy){
-        from "../GigaGalLevels/scenes"
-        into "../android/assets/levels"
+        from "$rootDir/GigaGalLevels/scenes"
+        into "$rootDir/android/assets/levels"
         exclude "MainScene.dt"
     }
 
