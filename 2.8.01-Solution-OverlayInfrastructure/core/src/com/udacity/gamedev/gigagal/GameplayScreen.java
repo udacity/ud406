@@ -16,9 +16,10 @@ public class GameplayScreen extends ScreenAdapter {
     public static final String TAG = GameplayScreen.class.getName();
 
     SpriteBatch batch;
-    long levelEndOverlayStartTime;
     private Level level;
     private ChaseCam chaseCam;
+
+    // TODO: Add a new GigaGalHud
     private GigaGalHud hud;
 
     @Override
@@ -28,6 +29,8 @@ public class GameplayScreen extends ScreenAdapter {
 
         batch = new SpriteBatch();
         chaseCam = new ChaseCam();
+
+        // TODO: Initalize the GigaGalHud
         hud = new GigaGalHud();
 
         startNewLevel();
@@ -35,7 +38,10 @@ public class GameplayScreen extends ScreenAdapter {
 
     @Override
     public void resize(int width, int height) {
+
+        // TODO: Update the HUD's viewport
         hud.viewport.update(width, height, true);
+
         level.viewport.update(width, height, true);
         chaseCam.camera = level.viewport.getCamera();
     }
@@ -62,7 +68,8 @@ public class GameplayScreen extends ScreenAdapter {
 
         level.render(batch);
 
-        hud.render(batch, level.getGigaGal().getLives(), level.getGigaGal().getAmmo(), level.score);
+        // TODO: Render the HUD
+        hud.render(batch);
 
     }
 
@@ -76,9 +83,5 @@ public class GameplayScreen extends ScreenAdapter {
         chaseCam.camera = level.viewport.getCamera();
         chaseCam.target = level.getGigaGal();
         resize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-    }
-
-    public void levelComplete() {
-        startNewLevel();
     }
 }

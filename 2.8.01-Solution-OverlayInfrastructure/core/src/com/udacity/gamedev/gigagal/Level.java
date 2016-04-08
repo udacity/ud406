@@ -77,9 +77,6 @@ public class Level {
             if (enemy.health < 1) {
                 spawnExplosion(enemy.position);
                 enemies.removeIndex(i);
-
-                // TODO: Add the ENEMY_KILL_SCORE to the score
-
             }
         }
         enemies.end();

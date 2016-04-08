@@ -3,6 +3,7 @@ package com.udacity.gamedev.gigagal.overlays;
 
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.udacity.gamedev.gigagal.util.Constants;
@@ -13,20 +14,31 @@ public class GigaGalHud {
     final BitmapFont font;
 
     public GigaGalHud() {
+
+        // TODO: Initialize the viewport with an ExtendViewport, using Constants.HUD_VIEWPORT_SIZE
         this.viewport = new ExtendViewport(Constants.HUD_VIEWPORT_SIZE, Constants.HUD_VIEWPORT_SIZE);
+
+        // TODO: Initialize a new BitmapFont
         font = new BitmapFont();
-        font.getData().setScale(1);
+
     }
 
-    public void render(SpriteBatch batch, int lives, int ammo, int score) {
+    public void render(SpriteBatch batch) {
+
+        // TODO: Apply the viewport
         viewport.apply();
+
+        // TODO: Set the projection matrix
         batch.setProjectionMatrix(viewport.getCamera().combined);
+
+        // TODO: Begin a batch
         batch.begin();
 
-        // TODO: Draw GigaGal's score and ammo count in the top left of the viewport
+        // TODO: Draw some test text in the middle of the screen
+        font.draw(batch, "Testing, testing. Are you there, GigaGal?", viewport.getWorldWidth() / 2, viewport.getWorldHeight() / 2, 0, Align.center, false);
 
-        // TODO: Draw a tiny GigaGal in the top right for each life left
-
+        // TODO: End the batch
         batch.end();
+
     }
 }

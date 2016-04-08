@@ -1,3 +1,3 @@
-# Heads-Up Display
+# Overlay Infrastructure
 
-In this exercise, we'll use our overlay infrastructure to draw helpful information, like GigaGal's ammo and lives remaining, and the player's score. To do that, we'll also have to start calculating a score. Check out the TODOs to get started! 
+Drawing overlays for head-up displays, level end screens, and onscreen controls is pretty easy if you remember all the steps in setting and using a new viewport. We haven't done that since the beginning of the course, so let's get a little practice. First finish up the TODOs in `GigaGalHud`, then update `GameplayScreen` to make sure the HUD is drawn!
