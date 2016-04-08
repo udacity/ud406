@@ -99,21 +99,16 @@ project(":core") {
 
 
     // TODO: Uncomment the following definition of the packTextures task
-    //task packTextures  {
-    // task packTextures {
-    //     def pack = new File("${rootProject.getRootDir()}/android/assets/images/gigagal.pack.png")
-    //     def atlas = new File("${rootProject.getRootDir()}/android/assets/images/gigagal.pack.atlas")
-
-    //     inputs.dir "${rootProject.getRootDir()}/core/rawAssets/sprites"
-    //     outputs.file "${rootProject.getRootDir()}/android/assets/images/gigagal.pack.png"
-    //     outputs.file "${rootProject.getRootDir()}/android/assets/images/gigagal.pack.atlas"
-
-    //     doLast {
-    //         pack.delete()
-    //         atlas.delete()
-    //         TexturePacker.process("${rootProject.getRootDir()}/core/rawAssets/sprites", "${rootProject.getRootDir()}/android/assets/images", "gigagal.pack")
-    //     }
-    // }
+//    task packTextures {
+//        def inputDir = "$rootDir/core/rawAssets/sprites"
+//        def outputDir = "$rootDir/android/assets/images"
+//        inputs.dir inputDir
+//        outputs.dir outputDir
+//        doLast {
+//            delete(outputDir)
+//            TexturePacker.process(inputDir, outputDir, "gigagal.pack")
+//        }
+//    }
 
       // TODO: Uncomment the following line declaring a dependency between compileJava and packTextures
 //    project.tasks.compileJava.dependsOn packTextures
