@@ -1,0 +1,42 @@
+
+pack.png
+size: 128,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+enemy
+  rotate: false
+  xy: 68, 82
+  size: 29, 44
+  orig: 29, 44
+  offset: 0, 0
+  index: -1
+exit-portal-1
+  rotate: false
+  xy: 2, 62
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+platform
+  rotate: false
+  xy: 2, 2
+  size: 58, 58
+  split: 11, 9, 10, 9
+  orig: 58, 58
+  offset: 0, 0
+  index: -1
+powerup
+  rotate: false
+  xy: 99, 109
+  size: 15, 17
+  orig: 15, 17
+  offset: 0, 0
+  index: -1
+standing-right
+  rotate: false
+  xy: 68, 45
+  size: 31, 35
+  orig: 31, 35
+  offset: 0, 0
+  index: -1

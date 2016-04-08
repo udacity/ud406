@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.DelayedRemovalArray;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.udacity.gamedev.gigagal.entities.Bullet;
 import com.udacity.gamedev.gigagal.entities.Enemy;
@@ -12,14 +13,16 @@ import com.udacity.gamedev.gigagal.entities.Explosion;
 import com.udacity.gamedev.gigagal.entities.GigaGal;
 import com.udacity.gamedev.gigagal.entities.Platform;
 import com.udacity.gamedev.gigagal.entities.Powerup;
+import com.udacity.gamedev.gigagal.util.Constants;
 import com.udacity.gamedev.gigagal.util.Enums.Direction;
 
 public class Level {
 
     public static final String TAG = Level.class.getName();
-
-    private Viewport viewport;
-
+    public boolean gameOver;
+    public boolean victory;
+    public Viewport viewport;
+    public int score;
     private GigaGal gigaGal;
     private ExitPortal exitPortal;
     private Array<Platform> platforms;
@@ -28,32 +31,32 @@ public class Level {
     private DelayedRemovalArray<Explosion> explosions;
     private DelayedRemovalArray<Powerup> powerups;
 
-    public boolean gameOver;
-    public boolean victory;
-
     public Level() {
-        gigaGal = new GigaGal(new Vector2(50,50), this);
+        viewport = new ExtendViewport(Constants.WORLD_SIZE, Constants.WORLD_SIZE);
+
+        gigaGal = new GigaGal(new Vector2(50, 50), this);
         platforms = new Array<Platform>();
         enemies = new DelayedRemovalArray<Enemy>();
         bullets = new DelayedRemovalArray<Bullet>();
         explosions = new DelayedRemovalArray<Explosion>();
         powerups = new DelayedRemovalArray<Powerup>();
-        exitPortal = new ExitPortal(new Vector2(200,200));
+        exitPortal = new ExitPortal(new Vector2(200, 200));
 
         gameOver = false;
         victory = false;
+        score = 0;
+
+
     }
 
-    public Level(Viewport viewport) {
-        this();
-        this.viewport = viewport;
-
-        initializeDebugLevel();
-
+    public static Level debugLevel() {
+        Level level = new Level();
+        level.initializeDebugLevel();
+        return level;
     }
 
     public void update(float delta) {
-        // Update GigaGal
+
         gigaGal.update(delta, platforms);
 
         // Update Bullets
@@ -74,6 +77,9 @@ public class Level {
             if (enemy.health < 1) {
                 spawnExplosion(enemy.position);
                 enemies.removeIndex(i);
+
+                // TODO: Add the ENEMY_KILL_SCORE to the score
+
             }
         }
         enemies.end();
@@ -86,24 +92,28 @@ public class Level {
             }
         }
         explosions.end();
-
     }
 
     public void render(SpriteBatch batch) {
+
+        viewport.apply();
+
+        batch.setProjectionMatrix(viewport.getCamera().combined);
+        batch.begin();
 
         for (Platform platform : platforms) {
             platform.render(batch);
         }
 
-        for (Powerup powerup : powerups){
+        exitPortal.render(batch);
+
+        for (Powerup powerup : powerups) {
             powerup.render(batch);
         }
 
         for (Enemy enemy : enemies) {
             enemy.render(batch);
         }
-
-        exitPortal.render(batch);
         gigaGal.render(batch);
 
         for (Bullet bullet : bullets) {
@@ -114,6 +124,7 @@ public class Level {
             explosion.render(batch);
         }
 
+        batch.end();
     }
 
     private void initializeDebugLevel() {
@@ -139,11 +150,8 @@ public class Level {
         platforms.add(new Platform(35, 55, 50, 20));
         platforms.add(new Platform(10, 20, 20, 9));
 
-        powerups.add(new Powerup(new Vector2(150, 150)));
-
-
+        powerups.add(new Powerup(new Vector2(20, 110)));
     }
-
 
 
     public Array<Platform> getPlatforms() {
@@ -158,12 +166,12 @@ public class Level {
         return powerups;
     }
 
-    public void setExitPortal(ExitPortal exitPortal) {
-        this.exitPortal = exitPortal;
-    }
-
     public ExitPortal getExitPortal() {
         return exitPortal;
+    }
+
+    public void setExitPortal(ExitPortal exitPortal) {
+        this.exitPortal = exitPortal;
     }
 
     public Viewport getViewport() {
