@@ -1,3 +1,7 @@
+// TODO: Check out the changes we've made to build.gradle
+// Getting into a fight with Gradle isn't really part of the learning objectives for this course
+// so these TODOs are already complete.
+
 // TODO: Import com.badlogic.gdx.tools.texturepacker.TexturePacker
 import com.badlogic.gdx.tools.texturepacker.TexturePacker
 
