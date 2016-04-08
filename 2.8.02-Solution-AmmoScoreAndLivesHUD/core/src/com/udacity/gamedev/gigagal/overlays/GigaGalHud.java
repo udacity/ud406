@@ -26,11 +26,15 @@ public class GigaGalHud {
         viewport.apply();
         batch.setProjectionMatrix(viewport.getCamera().combined);
         batch.begin();
+
+        // TODO: Draw GigaGal's score and ammo count in the top left of the viewport
         final String hudString =
                 Constants.HUD_SCORE_LABEL + score + "\n" +
                         Constants.HUD_AMMO_LABEL + ammo;
 
         font.draw(batch, hudString, Constants.HUD_MARGIN, viewport.getWorldHeight() - Constants.HUD_MARGIN);
+
+        // TODO: Draw a tiny GigaGal in the top right for each life left
         final TextureRegion standingRight = Assets.instance.gigaGalAssets.standingRight;
         for (int i = 1; i <= lives; i++) {
             final Vector2 drawPosition = new Vector2(
@@ -43,6 +47,7 @@ public class GigaGalHud {
                     drawPosition
             );
         }
+
         batch.end();
     }
 }

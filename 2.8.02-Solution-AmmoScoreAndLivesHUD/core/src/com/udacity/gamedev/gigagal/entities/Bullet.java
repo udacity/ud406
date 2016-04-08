@@ -38,6 +38,8 @@ public class Bullet {
                 level.spawnExplosion(position);
                 active = false;
                 enemy.health -= 1;
+
+                // TODO: Add the ENEMY_HIT_SCORE to the level.score
                 level.score += Constants.ENEMY_HIT_SCORE;
             }
         }

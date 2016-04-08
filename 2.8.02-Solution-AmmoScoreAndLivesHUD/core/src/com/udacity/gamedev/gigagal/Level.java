@@ -57,45 +57,41 @@ public class Level {
 
     public void update(float delta) {
 
-        // TODO: If GigaGal is touching the exit portal, set victory to true
+        gigaGal.update(delta, platforms);
 
-        if (!gameOver && !victory) {
-
-            gigaGal.update(delta, platforms);
-
-            // Update Bullets
-            bullets.begin();
-            for (Bullet bullet : bullets) {
-                bullet.update(delta);
-                if (!bullet.active) {
-                    bullets.removeValue(bullet, false);
-                }
+        // Update Bullets
+        bullets.begin();
+        for (Bullet bullet : bullets) {
+            bullet.update(delta);
+            if (!bullet.active) {
+                bullets.removeValue(bullet, false);
             }
-            bullets.end();
-
-            // Update Enemies
-            enemies.begin();
-            for (int i = 0; i < enemies.size; i++) {
-                Enemy enemy = enemies.get(i);
-                enemy.update(delta);
-                if (enemy.health < 1) {
-                    spawnExplosion(enemy.position);
-                    enemies.removeIndex(i);
-                    score += Constants.ENEMY_KILL_SCORE;
-                }
-            }
-            enemies.end();
-
-            // Update Explosions
-            explosions.begin();
-            for (int i = 0; i < explosions.size; i++) {
-                if (explosions.get(i).isFinished()) {
-                    explosions.removeIndex(i);
-                }
-            }
-            explosions.end();
         }
+        bullets.end();
 
+        // Update Enemies
+        enemies.begin();
+        for (int i = 0; i < enemies.size; i++) {
+            Enemy enemy = enemies.get(i);
+            enemy.update(delta);
+            if (enemy.health < 1) {
+                spawnExplosion(enemy.position);
+                enemies.removeIndex(i);
+
+                // TODO: Add the ENEMY_KILL_SCORE to the score
+                score += Constants.ENEMY_KILL_SCORE;
+            }
+        }
+        enemies.end();
+
+        // Update Explosions
+        explosions.begin();
+        for (int i = 0; i < explosions.size; i++) {
+            if (explosions.get(i).isFinished()) {
+                explosions.removeIndex(i);
+            }
+        }
+        explosions.end();
     }
 
     public void render(SpriteBatch batch) {

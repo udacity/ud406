@@ -29,7 +29,7 @@ public class Explosion {
         }
     }
 
-    public boolean yetToStart(){
+    public boolean yetToStart() {
         return Utils.secondsSince(startTime) - offset < 0;
     }
 

@@ -96,20 +96,14 @@ public class Constants {
     public static final String[] LEVELS = {"levels/Level1.dt", "levels/Level2.dt"};
 
     // HUD
+    // TODO: Check out the constants we've added for the HUD
     public static final float HUD_VIEWPORT_SIZE = 480;
     public static final float HUD_MARGIN = 20;
     public static final String HUD_AMMO_LABEL = "Ammo: ";
     public static final String HUD_SCORE_LABEL = "Score: ";
 
-    // Victory/Game Over screens
-    public static final float LEVEL_END_DURATION = 5;
-    public static final String VICTORY_MESSAGE = "You are the Winrar!";
-    public static final String GAME_OVER_MESSAGE = "Game Over, Gal";
-    public static final int EXPLOSION_COUNT =500;
-    public static final int ENEMY_COUNT =200;
-    public static final String FONT_FILE = "font/header.fnt";
-
     // Scoring
+    // TODO: Check out the constants we've added for scoring
     public static final int ENEMY_KILL_SCORE = 100;
     public static final int ENEMY_HIT_SCORE = 25;
     public static final int POWERUP_SCORE = 50;
