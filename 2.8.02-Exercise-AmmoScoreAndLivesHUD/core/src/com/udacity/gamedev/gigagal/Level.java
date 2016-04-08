@@ -79,7 +79,7 @@ public class Level {
                 enemies.removeIndex(i);
 
                 // TODO: Add the ENEMY_KILL_SCORE to the score
-                score += Constants.ENEMY_KILL_SCORE;
+
             }
         }
         enemies.end();
