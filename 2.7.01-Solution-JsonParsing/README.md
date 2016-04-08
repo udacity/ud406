@@ -21,7 +21,7 @@ This area is the scene. It holds all the components of your level. A project com
 
 Let's add some platforms. Navigate to File -> Import Resources. From here you can import the GigaGal assets. It's important to note that drag and drop doesn't work on all platforms. Include  `standing-right.png`, the powerup, the platform, the enemy, and the first frame of the exit portal.
 
-Just one step left before we can build a level from our resources. We need to convert our platform graphic into a 9patch. You can do this by dragging a platform into the scene, right clicking, and selecting "convert to 9patch.
+Just one step left before we can build a level from our resources. We need to convert our platform graphic into a 9patch. You can do this by dragging a platform into the scene, right clicking, and selecting "convert to NinePatch". If the "Convert to NinePatch" option isn't available, you can use [this tool](http://developer.android.com/tools/help/draw9patch.html) to  make your platform into a ninepatch.
 
 One final detail: we'll only use enemy graphic in our level as a marker. To actually specify that we a platform needs an enemy on it, we'll give it the identifier "Enemy".
 
