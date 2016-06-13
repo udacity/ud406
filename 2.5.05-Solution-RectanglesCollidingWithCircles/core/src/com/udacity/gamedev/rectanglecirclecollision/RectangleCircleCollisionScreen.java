@@ -109,8 +109,8 @@ public class RectangleCircleCollisionScreen extends ScreenAdapter {
         boolean inHorizontalNeighborhood = rectangle.x - circle.radius < circle.x && circle.x < rectangle.x + rectangle.width + circle.radius;
         boolean inVerticalNeighborhood = rectangle.y - circle.radius < circle.y && circle.y < rectangle.y + rectangle.height + circle.radius;
 
-        boolean touchingAnEdge = inHorizontalInterval && inVerticalInterval ||
-                inHorizontalNeighborhood && inVerticalNeighborhood;
+        boolean touchingAnEdge = inHorizontalInterval && inVerticalNeighborhood ||
+                inHorizontalNeighborhood && inVerticalInterval;
 
         return containsACorner || touchingAnEdge;
     }
