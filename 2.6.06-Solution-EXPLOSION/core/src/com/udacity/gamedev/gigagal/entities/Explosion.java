@@ -29,8 +29,8 @@ public class Explosion {
         Utils.drawTextureRegion(
                 batch,
                 Assets.instance.explosionAssets.explosion.getKeyFrame(Utils.secondsSince(startTime)),
-                position.x - Constants.EXPLOSION_CENTER.x,
-                position.y - Constants.EXPLOSION_CENTER.y
+                position,
+                Constants.EXPLOSION_CENTER
         );
     }
 
