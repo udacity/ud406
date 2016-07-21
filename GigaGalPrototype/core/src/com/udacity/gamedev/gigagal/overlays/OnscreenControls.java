@@ -46,15 +46,15 @@ public class OnscreenControls extends InputAdapter {
 
         Vector2 viewportPosition = viewport.unproject(new Vector2(screenX, screenY));
 
-        if (viewportPosition.dst(shootCenter) < Constants.BUTTON_RAIDUS) {
+        if (viewportPosition.dst(shootCenter) < Constants.BUTTON_RADIUS) {
             gigaGal.shoot();
-        } else if (viewportPosition.dst(jumpCenter) < Constants.BUTTON_RAIDUS) {
+        } else if (viewportPosition.dst(jumpCenter) < Constants.BUTTON_RADIUS) {
             jumpPointer = pointer;
             gigaGal.jumpButtonPressed = true;
-        } else if (viewportPosition.dst(moveLeftCenter) < Constants.BUTTON_RAIDUS) {
+        } else if (viewportPosition.dst(moveLeftCenter) < Constants.BUTTON_RADIUS) {
             moveLeftPointer = pointer;
             gigaGal.leftButtonPressed = true;
-        } else if (viewportPosition.dst(moveRightCenter) < Constants.BUTTON_RAIDUS) {
+        } else if (viewportPosition.dst(moveRightCenter) < Constants.BUTTON_RADIUS) {
             moveRightPointer = pointer;
             gigaGal.rightButtonPressed = true;
         }
@@ -66,7 +66,7 @@ public class OnscreenControls extends InputAdapter {
     public boolean touchDragged(int screenX, int screenY, int pointer) {
         Vector2 viewportPosition = viewport.unproject(new Vector2(screenX, screenY));
 
-        if (pointer == moveLeftPointer && viewportPosition.dst(moveRightCenter) < Constants.BUTTON_RAIDUS) {
+        if (pointer == moveLeftPointer && viewportPosition.dst(moveRightCenter) < Constants.BUTTON_RADIUS) {
             gigaGal.leftButtonPressed = false;
             moveLeftPointer = 0;
 
@@ -74,7 +74,7 @@ public class OnscreenControls extends InputAdapter {
             gigaGal.rightButtonPressed = true;
         }
 
-        if (pointer == moveRightPointer && viewportPosition.dst(moveLeftCenter) < Constants.BUTTON_RAIDUS) {
+        if (pointer == moveRightPointer && viewportPosition.dst(moveLeftCenter) < Constants.BUTTON_RADIUS) {
             gigaGal.rightButtonPressed = false;
             moveRightPointer = 0;
 
@@ -140,17 +140,17 @@ public class OnscreenControls extends InputAdapter {
     public void recalculateButtonPositions() {
 
 
-        moveLeftCenter.set(Constants.BUTTON_RAIDUS * 3 / 4, Constants.BUTTON_RAIDUS);
-        moveRightCenter.set(Constants.BUTTON_RAIDUS * 2, Constants.BUTTON_RAIDUS * 3 / 4);
+        moveLeftCenter.set(Constants.BUTTON_RADIUS * 3 / 4, Constants.BUTTON_RADIUS);
+        moveRightCenter.set(Constants.BUTTON_RADIUS * 2, Constants.BUTTON_RADIUS * 3 / 4);
 
         shootCenter.set(
-                viewport.getWorldWidth() - Constants.BUTTON_RAIDUS * 2f,
-                Constants.BUTTON_RAIDUS * 3 / 4
+                viewport.getWorldWidth() - Constants.BUTTON_RADIUS * 2f,
+                Constants.BUTTON_RADIUS * 3 / 4
         );
 
         jumpCenter.set(
-                viewport.getWorldWidth() - Constants.BUTTON_RAIDUS * 3 / 4,
-                Constants.BUTTON_RAIDUS
+                viewport.getWorldWidth() - Constants.BUTTON_RADIUS * 3 / 4,
+                Constants.BUTTON_RADIUS
         );
 
     }
