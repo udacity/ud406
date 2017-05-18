@@ -33,7 +33,7 @@ public class GigaGal {
 
     Vector2 position;
 
-    // TODO: Add Vector2 to hold GigaGal's postion last frame
+    // TODO: Add Vector2 to hold GigaGal's position last frame
 
 
     Vector2 velocity;
