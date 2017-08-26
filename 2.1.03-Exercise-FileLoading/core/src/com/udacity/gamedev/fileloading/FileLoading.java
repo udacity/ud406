@@ -29,7 +29,7 @@ public class FileLoading extends ApplicationAdapter {
             Cipher cipher = Cipher.getInstance("AES");
             cipher.init(Cipher.ENCRYPT_MODE, key);
             byte[] encryptedBytes = cipher.doFinal(message.getBytes());
-            if (Gdx.app.getType() == ApplicationType.Android){
+            if (Gdx.app.getType() != ApplicationType.Desktop){
                 throw new Exception("This demo works only with the desktop backend");
             }
             return Base64.encodeBase64String(encryptedBytes);
@@ -43,7 +43,7 @@ public class FileLoading extends ApplicationAdapter {
         try {
             Cipher cipher = Cipher.getInstance("AES");
             cipher.init(Cipher.DECRYPT_MODE, key);
-            if (Gdx.app.getType() == ApplicationType.Android){
+            if (Gdx.app.getType() != ApplicationType.Desktop){
                 throw new Exception("This demo works only with the desktop backend");
             }
             byte[] encryptedBytes = Base64.decodeBase64(encrypted);
