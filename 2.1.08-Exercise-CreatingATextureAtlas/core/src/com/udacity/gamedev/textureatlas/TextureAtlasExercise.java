@@ -9,7 +9,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class TextureAtlasExercise extends ApplicationAdapter implements AssetErrorListener {
 
-    public static final String TAG = TextureAtlasExercise.class.getName();
+    private static final String TAG = TextureAtlasExercise.class.getName();
 
     private static final String ATLAS = "images/gigagal.pack.atlas";
     private static final String STANDING_RIGHT = "standing-right";
@@ -17,7 +17,7 @@ public class TextureAtlasExercise extends ApplicationAdapter implements AssetErr
     // TODO: Add an AssetManager
 
 
-    SpriteBatch batch;
+    private SpriteBatch batch;
 
     // TODO: Add an AtlasRegion to hold the standing right sprite
 

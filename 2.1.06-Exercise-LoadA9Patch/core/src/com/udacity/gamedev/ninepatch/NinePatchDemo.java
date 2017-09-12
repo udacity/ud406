@@ -13,8 +13,8 @@ public class NinePatchDemo extends ApplicationAdapter {
     private static final float TEST_SIZE_1 = 20;
     private static final float TEST_SIZE_2 = 40;
 
-    SpriteBatch batch;
-    FitViewport viewport;
+    private SpriteBatch batch;
+    private FitViewport viewport;
 
     // TODO: Add a Texture for the raw platform image
 
