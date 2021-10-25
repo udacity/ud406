@@ -23,14 +23,14 @@ public class Animations extends ApplicationAdapter {
 
     private static final float WALK_LOOP_FRAME_DURATION = 0.1f;
 
-    SpriteBatch batch;
-    ExtendViewport viewport;
+    private SpriteBatch batch;
+    private ExtendViewport viewport;
 
-    Animation walkLoop;
-    long startTime;
+    private Animation walkLoop;
+    private long startTime;
 
-    Animation explosion;
-    DelayedRemovalArray<OneShotAnimation> explosions;
+    private Animation explosion;
+    private DelayedRemovalArray<OneShotAnimation> explosions;
 
     @Override
     public void create() {
@@ -141,12 +141,12 @@ public class Animations extends ApplicationAdapter {
     }
 
 
-    class OneShotAnimation {
-        public final Vector2 position;
+    private class OneShotAnimation {
+        final Vector2 position;
         private final Animation animation;
         private final long startTimeNanos;
 
-        public OneShotAnimation(Animation animation, Vector2 position, long startTimeNanos) {
+        OneShotAnimation(Animation animation, Vector2 position, long startTimeNanos) {
             this.animation = animation;
             this.position = position;
             this.startTimeNanos = startTimeNanos;
@@ -156,11 +156,11 @@ public class Animations extends ApplicationAdapter {
             return MathUtils.nanoToSec * (TimeUtils.nanoTime() - startTimeNanos);
         }
 
-        public TextureRegion getFrame() {
+        TextureRegion getFrame() {
             return animation.getKeyFrame(elapsedTime());
         }
 
-        public boolean isAnimationFinished() {
+        boolean isAnimationFinished() {
             return animation.isAnimationFinished(elapsedTime());
         }
 
